@@ -2,31 +2,29 @@
 title: Passo 01 - Setup Inicial
 description: 
 published: true
-date: 2022-05-10T20:04:52.428Z
+date: 2022-05-10T20:12:03.854Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T20:04:52.428Z
 ---
 
-# Step 1: Initial Setup
+# Passo 1: Configuração Inicial 
 
-Before we can begin work on our plugin, we must first ensure that we have a suitable development environment in place.
+Antes de começarmos à trabalhar no plugin em si, primeiro temos que garantir que temos um ambiente de desenvolvimento adequado para o plugin.
 
-## Set Up the Development Environment
+## Criando o Ambiente de Desenvolvimento
 
-### Install NetBox
+### Instalação do Netbox
 
-Plugin development requires a local installation of NetBox. If you don't already have NetBox installed, please consult the [installation instructions](https://netbox.readthedocs.io/en/stable/installation/).
+O desenvolvimento de plugins exige uma instalação local do Netbox. Se você ainda não tem o Netbox instalado, pode consultar a [instruções de instalação](https://netbox.readthedocs.io/en/feature/installation/).
 
-Be sure to enable debugging in your NetBox configuration by setting `DEBUG = True`. This will ensure that static assets can be served by the development server, and return complete tracebacks whenever there's a server error.
+:green_circle: **Dica:** Se a instalação será utilizada somente para desenvolvimento, é necessário seguir somente até o passo três do **Guia de Instalação** para ter um servidor de desenvolvimento do Netbox rodando corretamente (`manage.py runserver`).
 
-:green_circle: **Tip:** If this installation will be for development use only, it is generally necessary to complete only up to step three in the installation guide, culminating with successfully running the NetBox development server (`manage.py runserver`).
+:warning: **Aviso:** Esse guia exige uma versão do Netbox maior ou igual a v3.2. Tentar usar uma versão mais recente **não irá funcionar**.
 
-:warning: **Warning:** This guide requires NetBox v3.2 or later. Attempting to use an earlier NetBox release will not work.
+### Clonar o Repositório git
 
-### Clone the git Repository
-
-Next, we'll clone the demo git repository from GitHub. First, `cd` into your preferred location (your home directory is probably fine), then clone the repo with `git clone`. We're checking out the `init` branch, which will provide us with an empty workspace to start.
+Agora, nós iremos clonar a versão demo do repositório git do GitHub. Primeiro, utilize o comando `cd` na pasta de sua preferência (o repositório base do seu usuário é suficiente), e então clonar o repositório com o comando `git clone`. Nós iremos clonar o repositório já na branch `step00-empty`, que vai nos permitir iniciar do zero. 
 
 ```bash
 $ git clone --branch step00-empty https://github.com/netbox-community/netbox-plugin-demo
@@ -38,28 +36,29 @@ remote: Total 58 (delta 12), reused 58 (delta 12), pack-reused 0
 Unpacking objects: 100% (58/58), done.
 ```
 
-:blue_square: **Note:** It isn't strictly required to clone the demo repository, but it will enable you to conveniently check out snapshots of the code as the lessons progress and overcome any hiccups.
+:blue_square: **Observação:** It isn't strictly required to clone the demo repository, but it will enable you to conveniently check out snapshots of the code as the lessons progress and overcome any hiccups.
+:blue_square: **Observação:** Não é estritamente necessário clonar o repositório demo. Mas vai te permitir facilmente verificar as versões (snapshots) do codigo enquanto progredimos e resolvemos os problemas.
 
-## Plugin Configuration
+## Configuração do Plugin
 
-### Create `__init__.py`
+### Criar o arquivo `__init__.py`
 
-The `PluginConfig` class holds all the information needs to know about our plugin to install it. First, we'll create a subdirectory to hold out plugin's Python code, as well as an `__init__.py` file to hold the `PluginConfig` definition.
+Na classe `PluginConfig` está toda a informação necessária sobre o plugin para instalá-lo. Primeiro, teremos que criar um sub-diretório onde estará todo o código do plugin, assim como o arquivo `__init__.py` que terá definição da classe `PluginConfig`.
 
 ```bash
 $ mkdir netbox_access_lists
 $ touch netbox_access_lists/__init__.py
 ```
 
-Next, open `__init__.py` in the text editor of your choice and import the `PluginConfig` class from NetBox at the top of the file.
+Agora, abra o arquivo `__init__.py` no editor de texto de sua preferência e importe a classe `PluginConfig` do Netbox no topo do arquivo.
 
 ```python
 from extras.plugins import PluginConfig
 ```
 
-### Create the PluginConfig Class
+### Criar a classe PluginConfig
 
-We'll create a new class named `NetBoxAccessListsConfig` by subclassing `PluginConfig`. This will define all the necessary parameters that control the configuration of our plugin once installed. There are [many optional attributes](https://netbox.readthedocs.io/en/stable/plugins/development/#pluginconfig-attributes) that can be set here, but for now we only need to define a few.
+We'll create a new class named `NetBoxAccessListsConfig` by subclassing `PluginConfig`. This will define all the necessary parameters that control the configuration of our plugin once installed. There are [many optional attributes](https://netbox.readthedocs.io/en/feature/plugins/development/#pluginconfig-attributes) that can be set here, but for now we only need to define a few.
 
 ```python
 class NetBoxAccessListsConfig(PluginConfig):
