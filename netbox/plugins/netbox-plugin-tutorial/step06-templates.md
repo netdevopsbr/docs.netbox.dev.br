@@ -1,8 +1,8 @@
 ---
-title: Untitled Page
+title: Passo 06 - Templates
 description: 
 published: true
-date: 2022-05-10T19:57:53.142Z
+date: 2022-05-10T19:58:12.735Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T19:57:13.801Z
