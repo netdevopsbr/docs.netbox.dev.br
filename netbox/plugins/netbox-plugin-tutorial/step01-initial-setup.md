@@ -2,7 +2,7 @@
 title: Passo 01 - Setup Inicial
 description: 
 published: true
-date: 2022-05-11T02:16:27.977Z
+date: 2022-05-11T02:16:49.001Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T20:04:52.428Z
@@ -207,6 +207,6 @@ Com isso, terminamos nosso setup inicial. Agora iremos para a parte boa!
 <div align="center">
 
   
-- [Passo 02: Models](../step02-models.md) :arrow_right:
+- [Passo 02: Models](./step02-models.md) :arrow_right:
 {.links-list}
 </div>
