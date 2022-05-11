@@ -2,7 +2,7 @@
 title: Passo 01 - Setup Inicial
 description: 
 published: true
-date: 2022-05-10T20:12:03.854Z
+date: 2022-05-11T01:43:53.312Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T20:04:52.428Z
@@ -12,16 +12,25 @@ dateCreated: 2022-05-10T20:04:52.428Z
 
 Antes de começarmos à trabalhar no plugin em si, primeiro temos que garantir que temos um ambiente de desenvolvimento adequado para o plugin.
 
+<br>
+
+<div align=center>
+ 
 ## Criando o Ambiente de Desenvolvimento
+</div>
 
 ### Instalação do Netbox
 
 O desenvolvimento de plugins exige uma instalação local do Netbox. Se você ainda não tem o Netbox instalado, pode consultar a [instruções de instalação](https://netbox.readthedocs.io/en/feature/installation/).
 
-:green_circle: **Dica:** Se a instalação será utilizada somente para desenvolvimento, é necessário seguir somente até o passo três do **Guia de Instalação** para ter um servidor de desenvolvimento do Netbox rodando corretamente (`manage.py runserver`).
+> **Dica:** Se a instalação será utilizada somente para **desenvolvimento**, é necessário seguir somente até o passo três do **Guia de Instalação** para ter um servidor de desenvolvimento do Netbox rodando corretamente (`manage.py runserver`).
+{.is-info}
 
-:warning: **Aviso:** Esse guia exige uma versão do Netbox maior ou igual a v3.2. Tentar usar uma versão mais recente **não irá funcionar**.
+> **AVISO:** Esse guia exige uma versão do Netbox maior ou igual a v3.2. Tentar usar uma versão mais recente **não irá funcionar**.
+{.is-warning}
 
+<br>
+ 
 ### Clonar o Repositório git
 
 Agora, nós iremos clonar a versão demo do repositório git do GitHub. Primeiro, utilize o comando `cd` na pasta de sua preferência (o repositório base do seu usuário é suficiente), e então clonar o repositório com o comando `git clone`. Nós iremos clonar o repositório já na branch `step00-empty`, que vai nos permitir iniciar do zero. 
@@ -36,18 +45,24 @@ remote: Total 58 (delta 12), reused 58 (delta 12), pack-reused 0
 Unpacking objects: 100% (58/58), done.
 ```
 
-:blue_square: **Observação:** It isn't strictly required to clone the demo repository, but it will enable you to conveniently check out snapshots of the code as the lessons progress and overcome any hiccups.
-:blue_square: **Observação:** Não é estritamente necessário clonar o repositório demo. Mas vai te permitir facilmente verificar as versões (snapshots) do codigo enquanto progredimos e resolvemos os problemas.
+> **Observação:** Não é estritamente necessário clonar o repositório demo. Mas vai te permitir facilmente verificar as versões (snapshots) do codigo enquanto progredimos e resolvemos os problemas.
+{.is-info}
+
+<br>
+
+<div align=center>
 
 ## Configuração do Plugin
+</div>
 
 ### Criar o arquivo `__init__.py`
 
-Na classe `PluginConfig` está toda a informação necessária sobre o plugin para instalá-lo. Primeiro, teremos que criar um sub-diretório onde estará todo o código do plugin, assim como o arquivo `__init__.py` que terá definição da classe `PluginConfig`.
+Na classe `PluginConfig` está toda a informação necessária sobre o plugin para instalá-lo. 
+Primeiro, teremos que criar um sub-diretório onde estará todo o código do plugin, assim como o arquivo `__init__.py` que terá definição da classe `PluginConfig`.
 
 ```bash
-$ mkdir netbox_access_lists
-$ touch netbox_access_lists/__init__.py
+mkdir netbox_access_lists
+touch netbox_access_lists/__init__.py
 ```
 
 Agora, abra o arquivo `__init__.py` no editor de texto de sua preferência e importe a classe `PluginConfig` do Netbox no topo do arquivo.
@@ -56,9 +71,11 @@ Agora, abra o arquivo `__init__.py` no editor de texto de sua preferência e imp
 from extras.plugins import PluginConfig
 ```
 
-### Criar a classe PluginConfig
+<br>
 
-We'll create a new class named `NetBoxAccessListsConfig` by subclassing `PluginConfig`. This will define all the necessary parameters that control the configuration of our plugin once installed. There are [many optional attributes](https://netbox.readthedocs.io/en/feature/plugins/development/#pluginconfig-attributes) that can be set here, but for now we only need to define a few.
+### Criar a classe `PluginConfig`
+
+Nós criaremos uma nova classe chamada `NetBoxAccessListsConfig` criando uma subclasse de `PluginConfig`. Isso irá definir todos os parâmetros necessários para controlar a configuração do nosso plugin uma vez que seja instalado. Existe muitos [parâmetros opcionais](https://netbox.readthedocs.io/en/feature/plugins/development/#pluginconfig-attributes) que podem ser configurados aqui, mas por enquanto vamos precisar definir alguns somente.
 
 ```python
 class NetBoxAccessListsConfig(PluginConfig):
@@ -69,17 +86,22 @@ class NetBoxAccessListsConfig(PluginConfig):
     base_url = 'access-lists'
 ```
 
-This will be sufficient to install our plugin in NetBox later on. Finally, we need to expose this class as `config` to ensure that NetBox detects it. Add this line to the end of the file:
+Somente com isso já conseguimos instalar o plugin posteriormente. Finalmente, precisamos expor essa classe como `config` para permitir que o Netbox detecte isso. Para isso, adicione a seguinte linha de código no fim do arquivo:
 
 ```python
 config = NetBoxAccessListsConfig
 ```
 
-## Create a README
+<br>
 
-It's considered best practice to always include a `README` file with any code you publish. This is a brief piece of documentation that explains your project's purpose, how to install/run it, where to find help, etc. Because this is just a learning exercise, we don't have much to say about our plugin, but go ahead and create the file anyway.
+<div align=center>
 
-Back in the project's root (one level up from `__init__.py`), create a file named `README.md` and enter the following content:
+## Criar um README
+</div>
+
+É considerado uma boa prática sempre incluir um arquivo `README` para qualquer código que você publique. **Serve como um pequeno pedaço de documentação para explicar o propósito do seu projeto, como instalá-lo e utilizar, onde achar ajuda, etc.** Como esse projeto é somente para aprendizado, nós não temos muita coisa para dizer sobre nosso plugin, mas criaremos o arquivo de qualquer forma.
+
+De volta à pasta root do projeto (um nível acima de `__init__.py`), crie um arquivo chamado `README.md` e coloque o seguinte conteúdo:
 
 ```markdown
 ## netbox-access-lists
@@ -87,13 +109,19 @@ Back in the project's root (one level up from `__init__.py`), create a file name
 Manage simple access control lists in NetBox
 ```
 
-:green_circle: **Tip:** You'll notice that we've given our `README` file a `md` extension. This tells tools which support it to render the file as Markdown for better readability.
+> Note que definimos ao arquivo `README` a extensão `md`. Isso informa as ferramentas que suportam esse tipo de arquivo para que renderize como **Markdown**.
+{.is-info}
 
-## Install the Plugin
+<br>
 
-### Create `setup.py`
+<div align=center>
 
-To enable the installation of our plugin into the virtual environment we created above, we'll create a simple Python setup script. In the project's root directory, create a file named `setup.py` and enter the code below.
+## Instalar o Plugin
+</div>
+
+### Criar o arquivo`setup.py`
+
+Para permitir a instalação do nosso plugin no ambiente virtual que criamos acima, iremos criar um simples script Python. No diretório root do projeto (pasta inicial), crie um arquivo chamado `setup.py` e insira o código abaixo.
 
 ```python
 from setuptools import find_packages, setup
@@ -109,7 +137,8 @@ setup(
 )
 ```
 
-:warning: **Warning:** Be sure to create `setup.py` in the project root and _not_ within the `netbox_access_lists` directory.
+> **AVISO:** Certifique-se de criar o `setup.py` na **pasta root do projeto** e _não_ dentro do diretório `netbox_access_lists`.
+{.is-warning}
 
 This file will call the `setup()` function provided by Python's [`setuptools`](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/) library to install our code. There are plenty of additional arguments that can be passed, but for our example this is sufficient.
 
