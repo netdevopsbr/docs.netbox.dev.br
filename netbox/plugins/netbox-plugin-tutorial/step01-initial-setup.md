@@ -2,7 +2,7 @@
 title: Passo 01 - Setup Inicial
 description: 
 published: true
-date: 2022-05-11T01:43:53.312Z
+date: 2022-05-11T01:44:53.991Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T20:04:52.428Z
