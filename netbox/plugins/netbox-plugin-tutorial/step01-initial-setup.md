@@ -2,13 +2,13 @@
 title: Passo 01 - Setup Inicial
 description: 
 published: true
-date: 2022-05-11T01:50:58.961Z
+date: 2022-05-11T02:15:34.861Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T20:04:52.428Z
 ---
 
-# Passo 1: Configuração Inicial 
+# Passo 1: Configuração Inicial (REVISAR A TRADUÇÃO)
 
 Antes de começarmos à trabalhar no plugin em si, primeiro temos que garantir que temos um ambiente de desenvolvimento adequado para o plugin.
 
@@ -147,17 +147,21 @@ Nesse arquivo nós iremos chamar a função `setup()` fornecida pela biblioteca 
 
 <br>
 
-### Activate the Virtual Environment
+### Ativar o Ambiente Virtual
 
-To ensure our plugin is accessible to the NetBox installation, we first need to activate the Python [virtual environment](https://docs.python.org/3/library/venv.html) that was created when we installed NetBox. To do this, determine the virtual environment's path (this will be `/opt/netbox/venv/` if you use the documentation's defaults) and activate it:
+Para garantir que o plugin seja acessível pela instalação do Netbox, nós primeiro precisamos ativar o [ambiente virtual do Python](https://docs.python.org/3/library/venv.html) que foi criado quando instalamos o Netbox. Para isso, determine o caminho (path) para o ambiente virtual (que por padrão é `/opt/netbox/venv/`, caso tenha utilizado os passos informados no guia de instalação) e ative-o:
 
 ```bash
-$ source /opt/netbox/venv/bin/activate
+source /opt/netbox/venv/bin/activate
 ```
 
-### Run `setup.py`
+<br>
+
+### Rode o `setup.py`
 
 We can now install our plugin by running `setup.py`. First, make sure the virtual environment is still active, then run the following command from the project's root. The `develop` argument tells `setuptools` to create a link to our local development path instead of copying files into the virtual environment. This avoids the need to re-install the plugin every time we make a change.
+
+Nós agora podemos instalar nosso plugin utilizando o `setup.py`. Primeiro, certifique-se que o ambiente virtual está ativo ainda e, então, rode o seguinte comando na pasta root do projeto (plugin).
 
 ```bash
 $ python3 setup.py develop
@@ -169,9 +173,13 @@ writing manifest file 'netbox_access_lists.egg-info/SOURCES.txt'
 running build_ext
 ```
 
-### Configure NetBox
+O argumento `develop` diz ao `setuptools` que crie um **link** para o **pasta/caminho (path) local de desenvolvimento** ao invés de copiar os arquivos para o ambiente virtual. Isso evita que seja necessário instalar o plugin novamente toda vez que uma mudança é feita.
 
-Finally, we need to configure NetBox to enable our new plugin. Over in the NetBox installation path, open `netbox/netbox/configuration.py` and look for the `PLUGINS` parameter; this should be an empty list. (If it's not yet defined, go ahead and create it.) Add the name of our plugin to this list:
+<br>
+
+### Configurar o NetBox
+
+Finalmente, nós precisamos configurar o Netbox para habilitar o nosso novo plugin. Vá até a pasta (path) onde o Netbox foi instalado, abra o arquivo `netbox/netbox/configuration.py` e procure pelo parâmetro `PLUGINS`; que por padrão é uma lista vazia. (Se o parâmetro não estiver definido ainda, você pode criá-lo). Adicione o nome do nosso plugin nesta lista:
 
 ```python
 # configuration.py
@@ -180,22 +188,25 @@ PLUGINS = [
 ]
 ```
 
-Save the file and run the NetBox development server (if not already running):
+Salve o arquivo e rode o servidor de desenvolvimento do Netbox (caso ainda não esteja rodando):
 
 ```bash
 $ python netbox/manage.py runserver
 ```
 
-You should see the development server start successfully. Open NetBox in a new browser window, log in as a superuser, and navigate to the admin UI. Under **System > Installed Plugins** you should see our plugin listed.
+O servidor de desenvolvimento é pra ter iniciado corretamente. Abra o Netbox em uma nova janela do navegador, **logue como superuser** e navegue para a interface admin do Netbox (admin UI). Em **System > Installed Plugins** você deve ver o nosso plugin listado.
 
-![Django admin UI: Plugins list](/images/step01-django-admin-plugins.png)
+![Django admin UI: Plugins list](/netbox/plugins/netbox-plugin-tutorial/step01-initial-setup/step01-django-admin-plugins.png)
 
-:green_circle: **Tip:** You can check your work at the end of each step in the tutorial by running a `git diff` against the corresponding branch. For example, at the end of step one, run `git diff step01-initial-setup` to compare your work with the completed step. This will help identify any tasks you might have missed.
+> Você pode verificar seu trabalho no fim de cada passo (step) do tutorial rodando o comando `git diff` em relação à branch correspondente. Por exemplo, quando terminar o **Passo 01**, rode o comando `git diff step01-initial-setup` para comparar seu trabalho (código) com o exemplo já feito previamente. Isso irá ajudar identificar se por acaso esqueceu de realizar um dos passos do tutorial.
+{.is-info}
 
-This completes our initial setup. Now, onto the fun stuff!
+Com isso, terminamos nosso setup inicial. Agora iremos para a parte boa!
+<br>
 
 <div align="center">
 
-[Step 2: Models](/tutorial/step02-models.md) :arrow_right:
-
+  
+- [Passo 02: Models](./netbox-plugin-tutorial/step02-models.md) :arrow_right:
+{.links-list}
 </div>
