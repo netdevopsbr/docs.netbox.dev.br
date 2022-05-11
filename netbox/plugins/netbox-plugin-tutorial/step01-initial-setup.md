@@ -2,7 +2,7 @@
 title: Passo 01 - Setup Inicial
 description: 
 published: true
-date: 2022-05-11T01:44:53.991Z
+date: 2022-05-11T01:50:58.961Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-10T20:04:52.428Z
@@ -140,9 +140,12 @@ setup(
 > **AVISO:** Certifique-se de criar o `setup.py` na **pasta root do projeto** e _não_ dentro do diretório `netbox_access_lists`.
 {.is-warning}
 
-This file will call the `setup()` function provided by Python's [`setuptools`](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/) library to install our code. There are plenty of additional arguments that can be passed, but for our example this is sufficient.
+Nesse arquivo nós iremos chamar a função `setup()` fornecida pela biblioteca [`setuptools`](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/) do Python para instalar nosso código. Existe diversos argumentos adicionais que podem ser informados, mas para o nosso exemplo já é suficiente os que iremos utilizar.
 
-:green_circle: **Tip:** There are alternative methods for installing Python code which work just as well; free free to use your preferred approach. Just be aware that this guide assumes the use of `setuptools` and adjust accordingly.
+> Há várias maneiras alternativas para instalar um código Python que funciona tão bem quanto o **setuptools**. Não há problema caso queria utilizar outro método, mas fique ciente que esse guia assume que você está utilizando o `setuptools` e ajustado conforme orientado.
+{.is-info}
+
+<br>
 
 ### Activate the Virtual Environment
 
