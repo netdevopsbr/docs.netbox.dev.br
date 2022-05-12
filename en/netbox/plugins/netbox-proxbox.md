@@ -2,18 +2,23 @@
 title: Proxbox
 description: Netbox Plugin for integration between Proxmox and Netbox
 published: true
-date: 2022-05-12T13:53:59.506Z
+date: 2022-05-12T14:02:57.080Z
 tags: proxbox, netbox, netbox-plugin, proxmox
 editor: markdown
 dateCreated: 2022-05-12T13:32:55.815Z
 ---
 
+# Proxbox Plugin
+  
+ 
+<br>
 <div align=center>
-
-  # Proxbox
+  
+  ## Introduction
 </div>
 
-## Introduction
+
+
 
 ### What is Proxbox?
 **Proxbox was created to "mirror" Proxmox on Netbox.** The goal is to make Proxmox GUI unnecessary, allowing to do anything you do on Proxmox GUI, but on Netbox GUI.
@@ -45,8 +50,21 @@ Proxbox is currently able to get the following information from Proxmox:
 
 <br>
 
-### Roadmap
-- **Virtual Machines and Containers**
-  - [**Get Network information from Proxmox** (IP address from VM's and Containers, MAC address, etc...)](https://github.com/netdevopsbr/netbox-proxbox/issues/52)
+<div align=center>
+  
+  ## Roadmap
+</div>
+
+- #### **Virtual Machines and Containers**
+  - ##### [**Get Network information from Proxmox** (IP address from VM's and Containers, MAC address, etc...)](https://github.com/netdevopsbr/netbox-proxbox/issues/52)
+- #### Metrics and Graphs views (like Hardware usage, Storage occupation, etc...)
+  
+- #### **Add, Change and Delete actions** (currently, Proxbox only reads information from Proxmox, but can't change anything)
+- #### [**Add multi-cluster support**](https://github.com/netdevopsbr/netbox-proxbox/issues/33)
+  
+  > Proxbox can only connect with a single cluster (Proxmox Datacenter)
+  {.is-warning}
+  <!-- This comment makes "is-warning" class work --->
+{.links-list}
 
 
