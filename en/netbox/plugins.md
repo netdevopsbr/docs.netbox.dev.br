@@ -2,7 +2,7 @@
 title: Netbox Plugins
 description: 
 published: true
-date: 2022-05-12T15:26:37.276Z
+date: 2022-05-12T15:31:42.613Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-12T15:26:37.276Z
@@ -47,7 +47,7 @@ dateCreated: 2022-05-12T15:26:37.276Z
 
 ## Virtualization Plugins
 
-- [netbox-proxbox *Netbox Plugin for integration between Proxmox and Netbox*](https://github.com/netdevopsbr/netbox-proxbox)
+- [netbox-proxbox *Netbox Plugin for integration between Proxmox and Netbox*](./plugins/netbox-proxbox)
 - [netbox-vcenter *vCenter integration plugin for NetBox*](https://github.com/sjm-steffann/netbox-vcenter)
 {.links-list}
 
