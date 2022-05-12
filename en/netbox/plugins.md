@@ -2,7 +2,7 @@
 title: Netbox Plugins
 description: 
 published: true
-date: 2022-05-12T15:31:42.613Z
+date: 2022-05-12T15:40:23.411Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-12T15:26:37.276Z
@@ -61,6 +61,7 @@ dateCreated: 2022-05-12T15:26:37.276Z
 
 ## Utilities / Addons / Useful
 - [netbox-qrcode *NetBox Plugin for generate QR Codes*](https://github.com/k01ek/netbox-qrcode)
+- [netbox_contextmenus *Add context buttons to the links, making navigating in netbox less clicky*](https://github.com/PieterL75/netbox_contextmenus)
 {.links-list}
 
 <br>
