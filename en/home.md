@@ -2,7 +2,7 @@
 title: NetDevOps BR - Docs and Tutorials
 description: 
 published: true
-date: 2022-05-12T14:25:44.272Z
+date: 2022-05-12T14:26:03.280Z
 tags: 
 editor: markdown
 dateCreated: 2022-04-27T18:09:39.356Z
@@ -10,7 +10,7 @@ dateCreated: 2022-04-27T18:09:39.356Z
 
 # NetDevOps BR - Docs and Tutorials
 
-- ### Netbox Plugins
+- ## Netbox Plugins
 
   - ### [Proxbox](./netbox/plugins/netbox-proxbox) <br> Netbox Plugin for integration between [Proxmox](https://www.proxmox.com/) and [Netbox](https://github.com/netbox-community/netbox)
 
