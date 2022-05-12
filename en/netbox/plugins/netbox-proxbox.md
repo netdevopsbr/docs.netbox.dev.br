@@ -2,7 +2,7 @@
 title: Proxbox
 description: Netbox Plugin for integration between Proxmox and Netbox
 published: true
-date: 2022-05-12T14:13:32.506Z
+date: 2022-05-12T14:14:36.943Z
 tags: proxbox, netbox, netbox-plugin, proxmox
 editor: markdown
 dateCreated: 2022-05-12T13:32:55.815Z
@@ -10,7 +10,11 @@ dateCreated: 2022-05-12T13:32:55.815Z
 
 # Proxbox Plugin
 
-- ## Summary
+- <div align=center>
+    
+    ## Summary
+  </div>
+  
   - ### [Introduction](#introduction)
     - #### [What is Proxbox?](#what-is-proxbox?)
     - #### [Why?](#why?)
