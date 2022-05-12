@@ -2,7 +2,7 @@
 title: Proxbox
 description: Netbox Plugin for integration between Proxmox and Netbox
 published: true
-date: 2022-05-12T14:06:02.432Z
+date: 2022-05-12T14:13:32.506Z
 tags: proxbox, netbox, netbox-plugin, proxmox
 editor: markdown
 dateCreated: 2022-05-12T13:32:55.815Z
@@ -14,8 +14,12 @@ dateCreated: 2022-05-12T13:32:55.815Z
   - ### [Introduction](#introduction)
     - #### [What is Proxbox?](#what-is-proxbox?)
     - #### [Why?](#why?)
+    - #### [How it works (system architecture)](#how-it-works-system-architecture)
     - #### [Current features](#current-features)
     - #### [Roadmap](#roadmap)
+  - ### [Installation](./netbox-proxbox/instalattion) 
+  - ### Development
+  - ### Release Notes
 {.links-list}
  
 <br>
@@ -37,6 +41,17 @@ Since I started working with Networking, it always bothered me the amount of sof
 
 I think Netbox has the potential to be the brain of the network (or the controller). With the Plugin feature, it makes possible to not necessary replace all softwares and use only Netbox, but integrate it all with Netbox in a way that you can manage your network only using Netbox, one system. With that in mind, I started the work with Proxbox and I expect to collaborate with the community by creating much more Plugins or helping others with their own Plugins.
 
+---
+
+<br>
+
+### How it works (system architecture)
+
+> This section is being written
+{.is-info}
+
+---
+
 <br>
 
 ### Current features
@@ -55,8 +70,9 @@ Proxbox is currently able to get the following information from Proxmox:
   - Memory
   - Node (Server)
 
-<br>
+---
 
+<br>
 <div align=center>
   
   ## Roadmap
