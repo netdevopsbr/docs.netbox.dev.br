@@ -2,7 +2,7 @@
 title: Proxbox
 description: Netbox Plugin for integration between Proxmox and Netbox
 published: true
-date: 2022-05-12T13:49:10.113Z
+date: 2022-05-12T13:53:59.506Z
 tags: proxbox, netbox, netbox-plugin, proxmox
 editor: markdown
 dateCreated: 2022-05-12T13:32:55.815Z
@@ -28,7 +28,25 @@ I think Netbox has the potential to be the brain of the network (or the controll
 <br>
 
 ### Current features
+Proxbox is currently able to get the following information from Proxmox:
 
+- **Cluster name**
+- **Nodes (Servers)**
+  - Status (online / offline)
+  - Name
+- **Virtual Machines and Containers**
+  - Status (online / offline)
+  - Name
+  - ID
+  - CPU
+  - Disk
+  - Memory
+  - Node (Server)
 
+<br>
+
+### Roadmap
+- **Virtual Machines and Containers**
+  - [**Get Network information from Proxmox** (IP address from VM's and Containers, MAC address, etc...)](https://github.com/netdevopsbr/netbox-proxbox/issues/52)
 
 
