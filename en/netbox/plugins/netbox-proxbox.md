@@ -2,7 +2,7 @@
 title: Proxbox
 description: Netbox Plugin for integration between Proxmox and Netbox
 published: true
-date: 2022-05-12T14:42:48.161Z
+date: 2022-05-12T15:32:50.464Z
 tags: proxbox, netbox, netbox-plugin, proxmox
 editor: markdown
 dateCreated: 2022-05-12T13:32:55.815Z
@@ -104,7 +104,7 @@ Proxbox is currently able to get the following information from Proxmox:
     <img style="display:inline-block;" height=20px src="/netbox/plugins/netbox-proxbox/github.png" alt="GitHub Icon">
  
     <a href="https://github.com/netdevopsbr/netbox-proxbox" style="display:inline-block;">
-    	<p style="display:inline-block; font-size: 20px;">GitHub Repository</p>
+      <h2 style="display:inline-block; font-size: 20px;">GitHub Repository</h2>
   	</a>
   </div>
 {.links-list}
