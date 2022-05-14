@@ -1,8 +1,8 @@
 ---
-title: Comunidade NetDevOps Brasil 🇧🇷
+title: Comunidade Netbox Brasil 🇧🇷
 description: 
 published: true
-date: 2022-05-12T11:40:20.315Z
+date: 2022-05-14T15:50:23.608Z
 tags: 
 editor: markdown
 dateCreated: 2022-04-27T20:17:00.620Z
