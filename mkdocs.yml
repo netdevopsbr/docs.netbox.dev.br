@@ -12,9 +12,6 @@ theme:
     - navigation.footer
   icon:
     repo: fontawesome/brands/github
-plugins:
-  - search:
-    lang: pt-BR
 extra:
   social:
     - icon: fontawesome/brands/github
