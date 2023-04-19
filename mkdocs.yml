@@ -1,1 +1,27 @@
 site_name: Documentação Netbox
+theme:
+  language: pt-BR
+  palette:
+    scheme: default
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - navigation.footer
+  icon:
+    repo: fontawesome/brands/github
+plugins:
+  - search:
+    lang: pt
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/netbox-community/netbox
+    - icon: fontawesome/brands/slack
+      link: https://netdev.chat/
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/netboxbr
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/9N3V4mpMXU
+repo_url: https://github.com/netbox-community/netbox
