@@ -1,5 +1,6 @@
 site_name: Documentação Netbox
 theme:
+  name: material
   language: pt-BR
   palette:
     scheme: default
