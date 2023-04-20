@@ -23,3 +23,6 @@ extra:
     - icon: fontawesome/brands/discord
       link: https://discord.gg/9N3V4mpMXU
 repo_url: https://github.com/netbox-community/netbox
+plugins:
+  - search
+  - social
