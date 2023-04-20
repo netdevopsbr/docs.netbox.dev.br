@@ -33,3 +33,5 @@ repo_url: https://github.com/netbox-community/netbox
 plugins:
   - search
   - social
+extra_css:
+  - https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css
