@@ -4,7 +4,7 @@ Netbox é a solução lider para modelagem e **documentação das redes** modern
 
 ![Netbox UI](https://github.com/netdevopsbr/docs.netbox.dev.br/blob/main/images/netbox-ui.webp)
 
-## :dns: Feito para Redes (Networks)
+## :material-server-network: Feito para Redes (Networks)
 
 Diferente de outros CMDBs (configuration management database), NetBox fez uma curadoria dos modelos de dados que provê especificamente as necessidades dos engenheiros e operadores de rede. Entrega uma variedade de tipos de objeto cuidadosamente feito para melhor servir as necessidades do design de infraestrutura e documentação. Essas características cobrem todas as vertentes de das tecnologias de rede, desde gerenciamento de endereços IP até cabeamento e overlays, e ainda mais:
 - Regiões hierárquicas, sites, e localizações
@@ -21,7 +21,7 @@ Diferente de outros CMDBs (configuration management database), NetBox fez uma cu
 - Atrelação de locação (aluguel)
 - Gerencimento de contatos
 
-## :construction: Customizável e Extensível
+## :material-tools: Customizável e Extensível
 Em adição ao seu modelo de dados robusto e extensivo, **NetBox oferece uma grande quantidade de mecanismos que podem ser customizados e extendidos**. Sua arquitetura robusta de plugins permite que os usuários extendam a aplicação para estar em conformidade com suas necessidades mínimas de esforço de desenvolvimento.
 - Custom fields (Campos Customizados)
 - Custom model validation (Validação customizada de modelos de dados)
@@ -30,10 +30,10 @@ Em adição ao seu modelo de dados robusto e extensivo, **NetBox oferece uma gra
 - Plugins
 - REST & GraphQL APIs
 
-## :lock_open: Sempre aberto (opensource)
+## :material-lock-open: Sempre aberto (opensource)
 Porque o NetBox é uma **aplicação open source** licenciada pela [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html), seu código fonte inteiro é acessível pelos usuários finais que utilizam o sistema e não existe risco algum de [vendor lock-in](https://pt.wikipedia.org/wiki/Aprisionamento_tecnol%C3%B3gico). Além disso, **o desenvolvimento do NetBox é completamente público**, movido pela comunidade, onde todos podem contribuir.
 
-## :python: Feito em Python
+## :simple-python: Feito em Python
 Netbox é feito pelo framework muito popular **[Django](http://www.djangoproject.com/)** da **linguagem Python**, que já é a linguagem favorita entre os engenheiros de rede. Usuários podem alavancar suas habilidades existentes de criar código em Python para extender as já existentes funcionalidades do NetBox através de **scripts customizados** e **plugins**.
 
 ## :flag: Começando com o Netbox?
