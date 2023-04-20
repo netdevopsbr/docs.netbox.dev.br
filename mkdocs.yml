@@ -18,7 +18,7 @@ theme:
     - toc.integrate
   icon:
     repo: fontawesome/brands/github
-    logo: assets/favicon.ico
+    logo: ./docs/assets/favicon.ico
 extra:
   social:
     - icon: fontawesome/brands/github
