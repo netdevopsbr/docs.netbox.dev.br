@@ -23,5 +23,5 @@ jobs:
       - run: sudo pip3 install mkdocs-material
       - run: sudo pip3 install mkdocs-minify-plugin
       - run: sudo pip3 install mkdocs-redirects
-      - run: sudo pip3 install pillow libcairo2 libcairo2-dev cairosvg
+      - run: sudo pip3 install pillow cairosvg
       - run: sudo mkdocs gh-deploy --force
