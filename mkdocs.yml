@@ -18,6 +18,7 @@ theme:
     - toc.integrate
   icon:
     repo: fontawesome/brands/github
+    logo: assets/favicon.ico
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -37,6 +38,7 @@ extra_css:
   - https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css
 markdown_extensions:
   - attr_list
+  - def_list
   - md_in_html
   - pymdownx.superfences:
       custom_fences:
@@ -44,3 +46,9 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
+  - abbr
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - tables
+  - footnotes

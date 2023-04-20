@@ -2,7 +2,7 @@
 
 <div align=center>
 
-![Netbox Logo](./images/netbox_logo.svg)
+    ![Netbox Logo](./images/netbox_logo.svg)
 </div>
 
 
