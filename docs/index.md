@@ -1,8 +1,6 @@
 # A mais completa ferramenta de Network Source of Truth
 
-<div align=center>
-    ![Netbox Logo](./images/netbox_logo.svg)
-</div>
+![Netbox Logo](./images/netbox_logo.svg){ align=center }
 
 > This is a community translation from **[Offical Netbox Documentantion](https://docs.netbox.dev/)** to **portuguese (pt-br)**.<br>
 **There is no relation to [Netbox Labs](https://netboxlabs.com) or its official repo's.** It is just a effort to increase brazilian community base.
