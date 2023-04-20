@@ -1,8 +1,16 @@
 # A mais completa ferramenta de Network Source of Truth
 
+<div align=center>
+    ![Netbox Logo](./images/netbox_logo.svg)
+</div>
+
+> This is a community translation from **[Offical Netbox Documentantion](https://docs.netbox.dev/)** to **portuguese (pt-br)**.<br>
+**There is no relation to [Netbox Labs](https://netboxlabs.com) or its official repo's.** It is just a effort to increase brazilian community base.
+{.is-warning}
+
 Netbox é a solução lider para modelagem e **documentação das redes** modernas. Combinando as disciplinas tradicionais de gerência de **endereçamento IP (IPAM)** e **gerenciamento de infraestrutura de datacenter (DCIM)** com **API** e extensões poderosas, NetBox fornece o **"source of truth"** (fonte de verdade) ideal para a **automação de rede**. Continue lendo e descubra o porquê de milhares de organizações ao redor do mundo colocam o Netbox no coração de suas infraestruturas.
 
-![Netbox UI](https://github.com/netdevopsbr/docs.netbox.dev.br/blob/main/images/netbox-ui.webp)
+![Netbox UI](./images/netbox-ui.webp)
 
 ## :material-server-network: Feito para Redes (Networks)
 
