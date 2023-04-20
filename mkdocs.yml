@@ -11,6 +11,10 @@ theme:
     - search.suggest
     - search.highlight
     - navigation.footer
+    - navigation.path
+    - navigation.top
+    - toc.follow
+    - toc.integrate
   icon:
     repo: fontawesome/brands/github
 extra:
