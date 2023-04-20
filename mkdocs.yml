@@ -26,6 +26,7 @@ extra:
       link: https://t.me/netboxbr
     - icon: fontawesome/brands/discord
       link: https://discord.gg/9N3V4mpMXU
+  homepage: https://netboxlabs.com
 repo_url: https://github.com/netbox-community/netbox
 plugins:
   - search

@@ -1,10 +1,8 @@
-# A mais completa ferramente de Network Source of Truth (Fonte de Verdade para a Rede)
+# A mais completa ferramenta de Network Source of Truth
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Netbox é a solução lider para modelagem e **documentação das redes** modernas. Combinando as disciplinas tradicionais de gerência de **endereçamento IP (IPAM)** e **gerenciamento de infraestrutura de datacenter (DCIM)** com **API** e extensões poderosas, NetBox fornece o **"source of truth"** (fonte de verdade) ideal para a **automação de rede**. Continue lendo e descubra o porquê de milhares de organizações ao redor do mundo colocam o Netbox no coração de suas infraestruturas.
 
-Netbox é a solução lider para modelagem e documentação das redes modernas. Combinando as disciplinas tradicionais de gerência de endereçamento IP (IPAM) e gerenciamento de infraestrutura de datacenter (DCIM) com API e extensões poderosas, NetBox fornece o "source of truth" (fonte de verdade) ideal para a automação de rede. Continue lendo e descubra o porquê de milhares de organizações ao redor do mundo colocam o Netbox no coração de suas infraestruturas.
-
-![Netbox UI](/images/netbox-ui.webp)
+![Netbox UI](https://github.com/netdevopsbr/docs.netbox.dev.br/blob/main/images/netbox-ui.webp)
 
 ## Feito para Redes (Networks)
 
@@ -24,7 +22,7 @@ Diferente de outros CMDBs (configuration management database), NetBox fez uma cu
 - Gerencimento de contatos
 
 ## Customizável e Extensível
-Em adição ao seu modelo de dados robusto e extensivo, NetBox oferece uma grande quantidade de mecanismos que podem ser customizados e extendidos. Sua arquitetura robusta de plugins permite que os usuários extendam a aplicação para estar em conformidade com suas necessidades mínimas de esforço de desenvolvimento.
+Em adição ao seu modelo de dados robusto e extensivo, **NetBox oferece uma grande quantidade de mecanismos que podem ser customizados e extendidos**. Sua arquitetura robusta de plugins permite que os usuários extendam a aplicação para estar em conformidade com suas necessidades mínimas de esforço de desenvolvimento.
 - Custom fields (Campos Customizados)
 - Custom model validation (Validação customizada de modelos de dados)
 - Export templates (Exportação de templates)
@@ -33,4 +31,4 @@ Em adição ao seu modelo de dados robusto e extensivo, NetBox oferece uma grand
 - REST & GraphQL APIs
 
 ## Sempre aberto (opensource)
-Porque o NetBox é uma aplicação open source licenciada pela [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html), seu código fonte inteiro é acessível pelos usuários finais que utilizam o sistema e não existe risco algum de [vendor lock-in](https://pt.wikipedia.org/wiki/Aprisionamento_tecnol%C3%B3gico). Além disso, o desenvolvimento do NetBox é completamente público, movido pela comunidade, onde todos podem contribuir.
+Porque o NetBox é uma **aplicação open source** licenciada pela [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html), seu código fonte inteiro é acessível pelos usuários finais que utilizam o sistema e não existe risco algum de [vendor lock-in](https://pt.wikipedia.org/wiki/Aprisionamento_tecnol%C3%B3gico). Além disso, **o desenvolvimento do NetBox é completamente público**, movido pela comunidade, onde todos podem contribuir.
