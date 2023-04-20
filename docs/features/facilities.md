@@ -56,5 +56,6 @@ Finalmente, o NetBox modela cada equipamento de rack como um objeto dentro de um
 
 Cada rack pode ser associado em um site (local), mas essa associação em uma localização (location) dentro de um site é opcional. Usuários também podem criar papéis customizados aos quais os racks podem ser relacionados. NetBox suporta rastreamento do espaço de um rack com unidades parciais, podendo ser criado um rack de tamanho 2.5.
 
-> **Devices**
-> Você vai notar que o diagrama acima que um dispositivo pode ser instalado dentro de um site, localização ou rack. Essa abordagem permite uma flexibilidade enorme, como nem todos os sites precisam definir uma localização filha e nem todos os dispositivos estão dentro de um rack.
+!!! tip
+
+    Você vai notar que o diagrama acima que um dispositivo pode ser instalado dentro de um site, localização ou rack. Essa abordagem permite uma flexibilidade enorme, como nem todos os sites precisam definir uma localização filha e nem todos os dispositivos estão dentro de um rack.
