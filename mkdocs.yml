@@ -18,7 +18,6 @@ theme:
     - toc.integrate
   icon:
     repo: fontawesome/brands/github
-    logo: netbox_icon
 extra:
   social:
     - icon: fontawesome/brands/github
