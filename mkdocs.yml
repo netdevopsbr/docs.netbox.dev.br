@@ -35,3 +35,6 @@ plugins:
   - social
 extra_css:
   - https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css
+markdown_extensions:
+  - attr_list
+  - md_in_html
