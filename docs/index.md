@@ -32,3 +32,12 @@ Em adição ao seu modelo de dados robusto e extensivo, **NetBox oferece uma gra
 
 ## :lock_open: Sempre aberto (opensource)
 Porque o NetBox é uma **aplicação open source** licenciada pela [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html), seu código fonte inteiro é acessível pelos usuários finais que utilizam o sistema e não existe risco algum de [vendor lock-in](https://pt.wikipedia.org/wiki/Aprisionamento_tecnol%C3%B3gico). Além disso, **o desenvolvimento do NetBox é completamente público**, movido pela comunidade, onde todos podem contribuir.
+
+## :python: Feito em Python
+Netbox é feito pelo framework muito popular **[Django](http://www.djangoproject.com/)** da **linguagem Python**, que já é a linguagem favorita entre os engenheiros de rede. Usuários podem alavancar suas habilidades existentes de criar código em Python para extender as já existentes funcionalidades do NetBox através de **scripts customizados** e **plugins**.
+
+## :flag: Começando com o Netbox?
+- Se quer pular a instalação, experimente a [versão demo](https://demo.netbox.dev/) disponível publicamente
+- O [guia de instalação](https://docs.netbox.dev/en/stable/installation/) lhe ajudará a fazer sua própria instalação e torná-la disponível (up and running)
+- Ou tente a [imagem Docker](https://github.com/netbox-community/netbox-docker) feita pela comunidade para uma abordagem "low-touch"
+- [NetBox Cloud](https://netboxlabs.com/netbox-cloud) é uma solução ofertada pela [NetBox Labs](https://netboxlabs.com/)
