@@ -11,6 +11,8 @@
 
     **There is no relation to [Netbox Labs](https://netboxlabs.com) or its official repo's.** It is just a effort to increase brazilian community base.
 
+    If you are portuguese native speaker and was able to easily read this warning, I highly recommend you to continue read the [Netbox Offial Docs in English](https://docs.netbox.dev)! It will surely be more productive to your learning.
+
 
 
 Netbox é a solução lider para modelagem e **documentação das redes** modernas. Combinando as disciplinas tradicionais de gerência de **endereçamento IP (IPAM)** e **gerenciamento de infraestrutura de datacenter (DCIM)** com **API** e extensões poderosas, NetBox fornece o **"source of truth"** (fonte de verdade) ideal para a **automação de rede**. Continue lendo e descubra o porquê de milhares de organizações ao redor do mundo colocam o Netbox no coração de suas infraestruturas.
