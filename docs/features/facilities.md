@@ -58,4 +58,4 @@ Cada rack pode ser associado em um site (local), mas essa associação em uma lo
 
 !!! tip
 
-    Você vai notar que o diagrama acima que um dispositivo pode ser instalado dentro de um site, localização ou rack. Essa abordagem permite uma flexibilidade enorme, como nem todos os sites precisam definir uma localização filha e nem todos os dispositivos estão dentro de um rack.
+    Você vai notar no diagrama acima que um dispositivo pode ser instalado dentro de um site, localização ou rack. Essa abordagem permite uma flexibilidade enorme, como nem todos os sites precisam definir uma localização filha e nem todos os dispositivos estão dentro de um rack.
