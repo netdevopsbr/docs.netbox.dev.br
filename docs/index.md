@@ -51,3 +51,21 @@ Netbox é feito pelo framework muito popular **[Django](http://www.djangoproject
 - O [guia de instalação](https://docs.netbox.dev/en/stable/installation/) lhe ajudará a fazer sua própria instalação e torná-la disponível (up and running)
 - Ou tente a [imagem Docker](https://github.com/netbox-community/netbox-docker) feita pela comunidade para uma abordagem "low-touch"
 - [NetBox Cloud](https://netboxlabs.com/netbox-cloud) é uma solução ofertada pela [NetBox Labs](https://netboxlabs.com/)
+
+---
+
+!!! info Contributing to Project
+
+    ### Português
+
+    Se você é brasileiro ou nativo da língua portuguesa e tem segurança, tanto com o português quanto com o inglês, não deixe de visitar o [repositório no GitHub](https://github.com/netdevopsbr/docs.netbox.dev.br) e **revisar** os textos ou ainda **traduzir** o trabalho em andamento! Basta clonar o repositório, fazer as devidas alterações e abrir uma [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). Agradeço desde já!
+
+    Se ainda quer contribuir de outra forma, ajudaria muito se pudesse virar um sponsor ou fazer uma contribuição individual [clicando aqui!](https://github.com/sponsors/emersonfelipesp)
+
+    ---
+
+    ### English
+    
+    If you are **english native speaker**, but knows the portuguese language and feels comfortable to **contribute**, feel free to visit the [github repository](https://github.com/netdevopsbr/docs.netbox.dev.br) and **review** or **translate** the ongoing work! Just clone the repo and make the desired changes, then open a Pull Request for approval!
+
+    Or maybe you would like to financially contribute to this project, it would be very helpful if you sponsor at any value [using this link](https://github.com/sponsors/emersonfelipesp)! Thank you already!
