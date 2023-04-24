@@ -1,4 +1,9 @@
-# Staged Changes
+# Mudanças Pendentes (Staged)
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A staged change represents the creation of a new object or the modification or deletion of an existing object to be performed at some future point. Each change must be assigned to a [branch](./branch.md).
 

@@ -1,4 +1,9 @@
-# Configuration Contexts
+# Configurações de Contexto
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 Context data is made available to [devices](../dcim/device.md) and/or [virtual machines](../virtualization/virtualmachine.md) based on their relationships to other objects in NetBox. For example, context data can be associated only with devices assigned to a particular site, or only to virtual machines in a certain cluster.
 

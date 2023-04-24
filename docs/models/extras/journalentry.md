@@ -1,4 +1,9 @@
-# Journal Entries
+# Entradas de Journal
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 Most objects in NetBox support journaling. This is the ability of users to record chronological notes indicating changes to or work performed on resources in NetBox. For example, a data center technician might add a journal entry for a device when swapping out a failed power supply.
 

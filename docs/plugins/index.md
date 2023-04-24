@@ -1,5 +1,10 @@
 # Plugins
 
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+
 Plugins are packaged [Django](https://docs.djangoproject.com/) apps that can be installed alongside NetBox to provide custom functionality not present in the core application. Plugins can introduce their own models and views, but cannot interfere with existing components. A NetBox user may opt to install plugins provided by the community or build his or her own.
 
 Plugins are supported on NetBox v2.8 and later.

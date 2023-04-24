@@ -1,4 +1,9 @@
-# Cluster Types
+# Tipos de Cluster
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A cluster type represents a technology or mechanism by which a [cluster](./cluster.md) is formed. For example, you might create a cluster type named "VMware vSphere" for a locally hosted cluster or "DigitalOcean NYC3" for one hosted by a cloud provider.
 

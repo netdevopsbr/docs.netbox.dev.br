@@ -1,4 +1,9 @@
-# Virtual Machines
+# Máquinas Virtuais
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A virtual machine (VM) represents a virtual compute instance hosted within a [cluster](./cluster.md). Each VM must be assigned to a [site](../dcim/site.md) and/or cluster, and may optionally be assigned to a particular host [device](../dcim/device.md) within a cluster.
 

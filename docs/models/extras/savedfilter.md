@@ -1,5 +1,10 @@
-# Saved Filters
+# Filtros Salvos
 
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+  
 When filtering lists of objects in NetBox, users can save applied filters for future use. This is handy for complex filter strategies involving multiple discrete filters. For example, you might want to find all planned devices within a region that have a specific platform. Once you've applied the desired filters to the object list, simply create a saved filter with name and optional description. This filter can then be applied directly for future queries via both the UI and REST API.
 
 ## Fields

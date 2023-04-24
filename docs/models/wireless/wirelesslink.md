@@ -1,4 +1,9 @@
-# Wireless Links
+# Links de Wireless (Wi-Fi)
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A wireless link represents a connection between exactly two wireless interfaces. Unlike a [wireless LAN](./wirelesslan.md), which permit an arbitrary number of client associations, wireless links are used to model point-to-point wireless connections.
 

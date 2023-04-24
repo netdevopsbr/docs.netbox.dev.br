@@ -1,5 +1,10 @@
 # Virtual Routing and Forwarding (VRF)
 
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+
 A VRF object in NetBox represents a Virtual Routing and Forwarding (VRF) domain. Each VRF is essentially an independent routing table. VRFs are commonly used to isolate customers or organizations from one another within a network, or to route overlapping address space (e.g. multiple instances of the 10.0.0.0/8 space). Each VRF may be assigned to a specific tenant to aid in organizing the available IP space by customer or internal user.
 
 Each [prefix](./prefix.md), [IP range](./iprange.md), and [IP address](./ipaddress.md) may be assigned to one (and only one) VRF. If you have a prefix or IP address which exists in multiple VRFs, you will need to create a separate instance of it in NetBox for each VRF. Any such object not assigned to a VRF is said to belong to the "global" table.

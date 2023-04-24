@@ -1,4 +1,9 @@
-# Service Templates
+# Templates de Serviços
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 Service templates can be used to instantiate [services](./service.md) on [devices](../dcim/device.md) and [virtual machines](../virtualization/virtualmachine.md).
 

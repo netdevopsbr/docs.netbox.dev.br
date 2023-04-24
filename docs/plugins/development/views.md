@@ -1,4 +1,9 @@
-# Views
+# Visualizações (Views)
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 ## Writing Views
 

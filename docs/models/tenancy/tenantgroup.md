@@ -1,4 +1,9 @@
-# Tenant Groups
+# Grupos de Locação
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 [Tenants](./tenant.md) can be organized by custom groups. For instance, you might create one group called "Customers" and one called "Departments." The assignment of a tenant to a group is optional.
 

@@ -1,4 +1,9 @@
-# Aggregates
+# Agregados (IP)
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 IP addressing is by nature hierarchical. The first few levels of the IPv4 hierarchy, for example, look like this:
 

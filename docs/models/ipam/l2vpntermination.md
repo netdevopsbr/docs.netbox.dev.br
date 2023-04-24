@@ -1,4 +1,9 @@
-# L2VPN Termination
+# Terminação de L2VPN
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A L2VPN termination is the attachment of an [L2VPN](./l2vpn.md) to an [interface](../dcim/interface.md) or [VLAN](./vlan.md). Note that the L2VPNs of the following types may have only two terminations assigned to them:
 

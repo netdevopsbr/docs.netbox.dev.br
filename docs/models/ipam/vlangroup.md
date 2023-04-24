@@ -1,4 +1,9 @@
-# VLAN Groups
+# Grupos de VLAN
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 VLAN groups can be used to organize [VLANs](./vlan.md) within NetBox. Each VLAN group can be scoped to a particular [region](../dcim/region.md), [site group](../dcim/sitegroup.md), [site](../dcim/sitegroup.md), [location](../dcim/location.md), [rack](../dcim/rack.md), [cluster group](../virtualization/clustergroup.md), or [cluster](../virtualization/cluster.md). Member VLANs will be available for assignment to devices and/or virtual machines within the specified scope.
 

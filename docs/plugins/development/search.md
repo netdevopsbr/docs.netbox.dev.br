@@ -1,4 +1,9 @@
-# Search
+# Pesquisa (Search)
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 !!! note
     This feature was introduced in NetBox v3.4.

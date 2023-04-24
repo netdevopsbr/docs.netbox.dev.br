@@ -1,5 +1,10 @@
 # ASN
 
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+
 An Autonomous System Number (ASN) is a numeric identifier used in the BGP protocol to identify which [autonomous system](https://en.wikipedia.org/wiki/Autonomous_system_%28Internet%29) a particular prefix is originating and transiting through. NetBox support both 32- and 64- ASNs.
 
 ASNs must be globally unique within NetBox, must each may be assigned to multiple [sites](../dcim/site.md).

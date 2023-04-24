@@ -1,5 +1,10 @@
 # Clusters
 
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+
 A cluster is a logical grouping of physical resources within which [virtual machines](./virtualmachine.md) run. Physical [devices](../dcim/device.md) may be associated with clusters as hosts. This allows users to track on which host(s) a particular virtual machine may reside.
 
 ## Fields

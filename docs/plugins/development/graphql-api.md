@@ -1,4 +1,9 @@
-# GraphQL API
+# API GraphQL
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 ## Defining the Schema Class
 

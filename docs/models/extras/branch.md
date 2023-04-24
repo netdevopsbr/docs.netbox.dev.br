@@ -1,4 +1,9 @@
-# Branches
+# Filial
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A branch is a collection of related [staged changes](./stagedchange.md) that have been prepared for merging into the active database. A branch can be merged by executing its `commit()` method. Deleting a branch will delete all its related changes.
 

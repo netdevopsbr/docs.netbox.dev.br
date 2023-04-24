@@ -5,6 +5,11 @@ hide:
 
 # Markdown
 
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+
 NetBox supports markdown rendering for certain text fields.
 
 ## Syntax

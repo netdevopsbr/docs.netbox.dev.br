@@ -1,4 +1,9 @@
-# IP Ranges
+# Ranges de IP
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 This model represents an arbitrary range of individual IPv4 or IPv6 addresses, inclusive of its starting and ending addresses. For instance, the range 192.0.2.10 to 192.0.2.20 has eleven members. (The total member count is available as the `size` property on an IPRange instance.) Like [prefixes](./prefix.md) and [IP addresses](./ipaddress.md), each IP range may optionally be assigned to a [VRF](./vrf.md).
 

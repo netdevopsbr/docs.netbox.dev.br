@@ -1,4 +1,9 @@
-# IP Addresses
+# Endereços IP
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 An IP address object in NetBox comprises a single host address (either IPv4 or IPv6) and its subnet mask, and represents an IP address as configured on a network interface. IP addresses can be assigned to [device](../dcim/device.md) and [virtual machine](../virtualization/virtualmachine.md) interfaces, as well as to [FHRP groups](./fhrpgroup.md). Further, each device and virtual machine may have one of its interface IPs designated as its primary IP per address family (one for IPv4 and one for IPv6).
 

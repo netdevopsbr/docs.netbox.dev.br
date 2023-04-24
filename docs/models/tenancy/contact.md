@@ -1,4 +1,9 @@
-# Contacts
+# Contatos
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A contact represents an individual or group that has been associated with an object in NetBox for administrative reasons. For example, you might assign one or more operational contacts to each site.
 

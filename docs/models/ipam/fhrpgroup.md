@@ -1,4 +1,9 @@
-# FHRP Group
+# Grupo FHRP
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 A first-hop redundancy protocol (FHRP) enables multiple physical interfaces to present a virtual [IP address](./ipaddress.md) (VIP) in a redundant manner. Examples of such protocols include:
 

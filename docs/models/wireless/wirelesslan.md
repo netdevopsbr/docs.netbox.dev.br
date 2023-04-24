@@ -32,7 +32,12 @@ The type of wireless authentication in use. Options include:
 * WPA Personal (PSK)
 * WPA Enterprise
 
-### Authentication Cipher
+### Cipher de Autenticação
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 The security cipher used to apply wireless authentication. Options include:
 

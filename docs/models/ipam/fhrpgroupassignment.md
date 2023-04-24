@@ -1,4 +1,9 @@
-# FHRP Group Assignments
+# Relação de Grupos FHRP
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 Member device and VM interfaces can be assigned to [FHRP groups](./fhrpgroup.md) to indicate their participation in maintaining a common virtual IP address (VIP). For instance, three interfaces, each belonging to a different router, may each be assigned to the same FHRP group to serve a shared VIP. Each of these assignments would typically receive a different priority.
 
