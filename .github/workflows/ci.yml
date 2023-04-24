@@ -30,6 +30,10 @@ jobs:
           sudo pip3 install pillow cairosvg
       - name: Deploy MkDocs Page
         run: sudo mkdocs gh-deploy --force
+      - name: Git Commit staged
+        run: |
+          sudo git add .
+          sudo git commit -m "Saves 'site' html pages"
       - name: Change custom domain
         run: |
           sudo git checkout gh-pages
