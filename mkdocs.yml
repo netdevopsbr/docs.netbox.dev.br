@@ -34,22 +34,22 @@ theme:
 plugins:
   - search
   - social
-  - mkdocstrings:
-      handlers:
-        python:
-          setup_commands:
-            - import os
-            - import django
-            - os.chdir('netbox/')
-            - os.environ.setdefault("DJANGO_SETTINGS_MODULE", "netbox.settings")
-            - django.setup()
-          options:
-            heading_level: 3
-            members_order: source
-            show_root_heading: true
-            show_root_full_path: false
-            show_root_toc_entry: false
-            show_source: false
+  #- mkdocstrings:
+  #    handlers:
+  #      python:
+  #        setup_commands:
+  #          - import os
+  #          - import django
+  #          - os.chdir('netbox/')
+  #          - os.environ.setdefault("DJANGO_SETTINGS_MODULE", "netbox.settings")
+  #          - django.setup()
+  #        options:
+  #          heading_level: 3
+  #          members_order: source
+  #          show_root_heading: true
+  #          show_root_full_path: false
+  #          show_root_toc_entry: false
+  #          show_source: false
 extra:
   social:
     - icon: fontawesome/brands/github
