@@ -51,3 +51,5 @@ markdown_extensions:
       toc_depth: 4
   - tables
   - footnotes
+extra_javascript:
+  - 'https://cdn.jsdelivr.net/npm/@material-icons/iconfont/material-icons.min.js'

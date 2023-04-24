@@ -54,3 +54,13 @@ Outro exemplo é se você quiser mostrar somente os dispositivos que pertençam 
 ```
 {% if obj.device_type.manufacturer.name == 'Cisco' %}Visualizar no NMS{% endif %}
 ```
+
+O link apenas aparecerá ao visualizar dispositivos que a fabricante seja a "Cisco".
+
+## Grupos de Link (Link Groups)
+
+Nomes de grupo podem ser definidos para organizar links em grupos. Links com o mesmo nome de grupo serão renderizados como um menu de lista dropdown abaixo de um botão único com o nome do grupo.
+
+## Tabela de Colunas (Table Columns)
+
+Links customizados podem também ser incluídos na tabela de um objeto ao selecionar os links desejáveis na configuração do formulário da tabela. Quando exibidos, cada link irá renderizar um hyperlink para o objeto correspondente. Quando exportado (via CSV, por exemplo), cada link renderizará somente sua URL.
