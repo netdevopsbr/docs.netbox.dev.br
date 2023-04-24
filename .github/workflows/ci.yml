@@ -34,6 +34,13 @@ jobs:
         run: |
           sudo git add .
           sudo git commit -m "Saves 'site' html pages"
+      - name: Git checkout to 'gh-pages' branch
+        run: |
+          sudo git checkout gh-pages
+          sudo git config --global --edit user.name emersonfelipesp
+          sudo git config --global --edit user.email emersonfelipe.2003@gmail.com
+          sudo git commit --ammend --reset-author
+          sudo git push --set-upstream origin gh-pages
       - name: Change custom domain
         run: |
           sudo git checkout gh-pages
