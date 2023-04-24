@@ -32,7 +32,7 @@ jobs:
         run: sudo mkdocs gh-deploy --force
       - name: Change custom domain
         run: |
-          echo 'docs.netbox.dev.br' > CNAME
-          git add CNAME
-          git commit -m "Change custom domain to 'docs.netbox.dev.br'"
-          git push
+          sudo echo 'docs.netbox.dev.br' > CNAME
+          sudo git add CNAME
+          sudo git commit -m "Change custom domain to 'docs.netbox.dev.br'"
+          sudo git push
