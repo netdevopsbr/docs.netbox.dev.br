@@ -1,0 +1,1 @@
+# Template do Item do Inventário
