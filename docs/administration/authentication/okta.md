@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 This guide explains how to configure single sign-on (SSO) support for NetBox using [Okta](https://www.okta.com/) as an authentication backend.
 

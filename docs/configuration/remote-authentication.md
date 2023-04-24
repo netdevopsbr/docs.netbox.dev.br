@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 The configuration parameters listed here control remote authentication for NetBox. Note that `REMOTE_AUTH_ENABLED` must be true in order for these settings to take effect.
 
