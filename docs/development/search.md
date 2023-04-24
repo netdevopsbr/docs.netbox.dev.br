@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 NetBox v3.4 introduced a new global search mechanism, which employs the `extras.CachedValue` model to store discrete field values from many models in a single table.
 

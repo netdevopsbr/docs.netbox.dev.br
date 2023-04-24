@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 The registry is an in-memory data structure which houses various application-wide parameters, such as the list of enabled plugins. It is not exposed to the user and is not intended to be modified by any code outside of NetBox core.
 

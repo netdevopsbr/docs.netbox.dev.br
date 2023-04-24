@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 Below is a list of tasks to consider when adding a new field to a core model.
 

@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 This cheat sheet serves as a convenient reference for NetBox contributors who already somewhat familiar with using git. For a general introduction to the tooling and workflows involved, please see GitHub's guide [Getting started with git](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git).
 

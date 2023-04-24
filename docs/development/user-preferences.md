@@ -3,7 +3,7 @@
 !!! info
 
     **English (en):** This page was not translated yet!
-    **Portuguese (pt-br): Essa página não foi traduzida ainda!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
 The `users.UserConfig` model holds individual preferences for each user in the form of JSON data. This page serves as a manifest of all recognized user preferences in NetBox.
 
