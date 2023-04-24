@@ -1,6 +1,6 @@
-# A mais completa ferramenta de Network Source of Truth
+![NetBox](netbox_logo.svg "NetBox logo"){style="height: 100px; margin-bottom: 3em"}
 
-![Netbox Logo](./images/netbox_logo.svg)
+# A mais completa ferramenta de Network Source of Truth
 
 !!! warning
 
