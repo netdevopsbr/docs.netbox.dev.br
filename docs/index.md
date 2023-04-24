@@ -46,7 +46,7 @@ Porque o NetBox é uma **aplicação open source** licenciada pela [Apache 2](ht
 ## <i class="material-icons">simple-python</i> Feito em Python
 Netbox é feito pelo framework muito popular **[Django](http://www.djangoproject.com/)** da **linguagem Python**, que já é a linguagem favorita entre os engenheiros de rede. Usuários podem alavancar suas habilidades existentes de criar código em Python para extender as já existentes funcionalidades do NetBox através de **scripts customizados** e **plugins**.
 
-## <i class="material-icons">flag</i> Começando com o Netbox?
+## :::i mateiral-icons flag ::: Começando com o Netbox?
 - Se quer pular a instalação, experimente a [versão demo](https://demo.netbox.dev/) disponível publicamente
 - O [guia de instalação](https://docs.netbox.dev/en/stable/installation/) lhe ajudará a fazer sua própria instalação e torná-la disponível (up and running)
 - Ou tente a [imagem Docker](https://github.com/netbox-community/netbox-docker) feita pela comunidade para uma abordagem "low-touch"
