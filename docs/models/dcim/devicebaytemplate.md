@@ -1,0 +1,1 @@
+# Template da Baía do Dispositivo (Device Bay Template)

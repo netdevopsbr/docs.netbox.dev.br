@@ -1,0 +1,1 @@
+# Contexto Virtual do Dispositivo

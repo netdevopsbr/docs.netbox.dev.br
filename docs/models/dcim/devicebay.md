@@ -1,0 +1,1 @@
+# Baía do Dispositivo (Device Bay)

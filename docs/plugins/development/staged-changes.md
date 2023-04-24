@@ -1,0 +1,1 @@
+# Mudanças Pendentes (Staged Changes)

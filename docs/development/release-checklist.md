@@ -1,0 +1,1 @@
+# Checklist de Versões (Release)

@@ -1,0 +1,1 @@
+# Logging de Mudanças (Change Logging)

@@ -1,0 +1,1 @@
+# Template da Tomada de Energia

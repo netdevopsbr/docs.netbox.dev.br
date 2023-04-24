@@ -1,0 +1,1 @@
+# Função do Item do Inventário
