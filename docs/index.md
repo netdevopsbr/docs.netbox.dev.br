@@ -1,4 +1,4 @@
-![NetBox](netbox_logo.svg "NetBox logo"){style="height: 100px; margin-bottom: 3em"}
+![NetBox](./images/netbox_logo.svg "NetBox logo"){style="height: 100px; margin-bottom: 3em"}
 
 # A mais completa ferramenta de Network Source of Truth
 

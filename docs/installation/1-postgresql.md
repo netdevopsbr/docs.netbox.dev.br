@@ -1,10 +1,5 @@
 # Instalação do Banco de Dados PostgreSQL
 
-!!! info
-
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
-
 Essa seção detalha o processo de configuração e instalação do banco de dados PostgreSQL locamente. Se você já tem um banco de dados PostgreSQL configurado, pode passar para [a próxima seção](2-redis.md).
 
 

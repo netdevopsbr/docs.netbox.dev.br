@@ -1,10 +1,5 @@
 # Instalação do Redis
 
-!!! info
-
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
-
 ## Instalar o Redis
 
 [Redis](https://redis.io/) é armazena os valores no formato chave-valor na memória (in-memory), onde o NetBox utiliza para fins de cache e queuing (enfileiramento). Essa seção descreve a configuração e instalação de uma instância local do Redis. Se você tiver um serviço Redis configurado, pode pular para [a próxima seção](3-netbox.md).
