@@ -1,16 +1,12 @@
 # Instalação do Banco de Dados PostgreSQL
 
-!!! info
+Essa seção detalha o processo de configuração e instalação do banco de dados PostgreSQL locamente. Se você já tem um banco de dados PostgreSQL configurado, pode passar para [a próxima seção](2-redis.md).
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
-This section entails the installation and configuration of a local PostgreSQL database. If you already have a PostgreSQL database service in place, skip to [the next section](2-redis.md).
+!!! warning "PostgreSQL 11 ou maior é necessária"
+    O NetBox exige uma versão igual ou maior a PostgreSQL 11. Note que o MySQL ou outros bancos de dados relacionais **não são** suportados.
 
-!!! warning "PostgreSQL 11 or later required"
-    NetBox requires PostgreSQL 11 or later. Please note that MySQL and other relational databases are **not** supported.
-
-## Installation
+## Instalação
 
 === "Ubuntu"
 
@@ -26,35 +22,35 @@ This section entails the installation and configuration of a local PostgreSQL da
     sudo postgresql-setup --initdb
     ```
 
-    CentOS configures ident host-based authentication for PostgreSQL by default. Because NetBox will need to authenticate using a username and password, modify `/var/lib/pgsql/data/pg_hba.conf` to support MD5 authentication by changing `ident` to `md5` for the lines below:
+    CentOS configura a autenticação baseada em host com ident para o PostgreSQL por padrão. Porque o NetBox irá precisar autenticar com o usuário e senha, modifique `/var/lib/pgsql/data/pg_hba.conf` para suportar a autenticação MD5 ao mudar `ident` to `md5` seguindo as linhas abaixo:
 
     ```no-highlight
     host    all             all             127.0.0.1/32            md5
     host    all             all             ::1/128                 md5
     ```
 
-Once PostgreSQL has been installed, start the service and enable it to run at boot:
+Uma vez que o PostgreSQL foi instalado, inicie (start) o serviço e habilite-o para iniciar no boot:
 
 ```no-highlight
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
 ```
 
-Before continuing, verify that you have installed PostgreSQL 11 or later:
+Antes de continuar, verifique que você tenha instalado a versão 11 do PostgreSQL ou uma maior:
 
 ```no-highlight
 psql -V
 ```
 
-## Database Creation
+## Criação do Banco de Dados
 
-At a minimum, we need to create a database for NetBox and assign it a username and password for authentication. Start by invoking the PostgreSQL shell as the system Postgres user.
+No mínimo, nós preciamos criar um banco de dados para o NetBox e associar o usuário e senha para autenticação. Comece com o shell do PostgreSQL como o usuário de sistema do Postgres.
 
 ```no-highlight
 sudo -u postgres psql
 ```
 
-Within the shell, enter the following commands to create the database and user (role), substituting your own value for the password:
+Dentro do shell, utilize os seguintes comandos para criar o banco de dados e usuario (função / role), substituindo seu próprio valor pela senha:
 
 ```postgresql
 CREATE DATABASE netbox;
@@ -63,13 +59,13 @@ ALTER DATABASE netbox OWNER TO netbox;
 ```
 
 !!! danger "Use a strong password"
-    **Do not use the password from the example.** Choose a strong, random password to ensure secure database authentication for your NetBox installation.
+    **Não use a senha desse exemplo.** Escolhe uma senha forte e aleatório para garantir uma autenticação segura do banco de dados para a instalação do seu NetBox.
 
-Once complete, enter `\q` to exit the PostgreSQL shell.
+Uma vez completa, pressione `\q` para sair do shell do PostgreSQL.
 
-## Verify Service Status
+## Verifique o Status do Serviço
 
-You can verify that authentication works by executing the `psql` command and passing the configured username and password. (Replace `localhost` with your database server if using a remote database.)
+Você pode verificar que a autenticação funciona ao executar o comando `psql` passando o usuário e senha configurados. (Substitua `localhost` com o banco de dados do servidor se você estiver utilizando um banco de dados remoto.)
 
 ```no-highlight
 $ psql --username netbox --password --host localhost netbox
@@ -84,4 +80,4 @@ SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, co
 netbox=> \q
 ```
 
-If successful, you will enter a `netbox` prompt. Type `\conninfo` to confirm your connection, or type `\q` to exit.
+Se tiver sucesso, você pode executar `netbox` no prompt. Escreva `\conninfo` para confirmar sua conexão, ou `\q` para sair.

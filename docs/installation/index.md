@@ -9,18 +9,18 @@ The installation instructions provided here have been tested to work on Ubuntu 2
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_y5JRiW_PLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-The following sections detail how to set up a new instance of NetBox:
+As seções abaixo detalham como configurar uma instância nova do NetBox:
 
-1. [PostgreSQL database](1-postgresql.md)
+1. [Banco de Dados PostgreSQL](1-postgresql.md)
 1. [Redis](2-redis.md)
-3. [NetBox components](3-netbox.md)
+3. [Componentes do NetBox](3-netbox.md)
 4. [Gunicorn](4-gunicorn.md)
-5. [HTTP server](5-http-server.md)
-6. [LDAP authentication](6-ldap.md) (optional)
+5. [Servidor HTTP](5-http-server.md)
+6. [Autenticação via LDAP](6-ldap.md) (optional)
 
 ## Requirements
 
-| Dependency | Minimum Version |
+| Dependência | Versão Mínima  |
 |------------|-----------------|
 | Python     | 3.8             |
 | PostgreSQL | 11              |

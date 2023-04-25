@@ -1,17 +1,12 @@
 # Instalação do NetBox
 
-!!! info
+## Instale os Pacotes do Sistema
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
-This section of the documentation discusses installing and configuring the NetBox application itself.
+Comece instalando todos os pacotes do sistema exigidos pelo NetBox e suas dependências.
 
-## Install System Packages
+!!! warning "Python 3.8 ou maior é necessário!"
 
-Begin by installing all system packages required by NetBox and its dependencies.
-
-!!! warning "Python 3.8 or later required"
-    NetBox requires Python 3.8, 3.9, 3.10 or 3.11.
+    NetBox requer a versão 3.8, 3.9, 3.10 ou 3.11 do Python.
 
 === "Ubuntu"
 
@@ -25,7 +20,7 @@ Begin by installing all system packages required by NetBox and its dependencies.
     sudo yum install -y gcc libxml2-devel libxslt-devel libffi-devel libpq-devel openssl-devel redhat-rpm-config
     ```
 
-Before continuing, check that your installed Python version is at least 3.8:
+Antes de continuar, verifique que você instalou uma versão do Python ao menos na v3.8:
 
 ```no-highlight
 python3 -V
@@ -33,11 +28,11 @@ python3 -V
 
 ## Download NetBox
 
-This documentation provides two options for installing NetBox: from a downloadable archive, or from the git repository. Installing from a package (option A below) requires manually fetching and extracting the archive for every future update, whereas installation via git (option B) allows for seamless upgrades by re-pulling the `master` branch.
+Essa documentação forn+ece duas opções de instalação do NetBox: pelo download de um arquivo ou de um repositório git. Instalar pelo pacote (opção A abaixo) requer um fetching (sincronização) manual e download do arquivo para todos os updates e atualizações, enquanto que a opção de instalação pelo git (opção B) permite um upgrade ininterrupto ao simplesmente dar um pull (fazer o download) novamente do ramo (branch) `master`.
 
-### Option A: Download a Release Archive
+### Opção A: Realizar o Download do Arquivo com a versão desejada
 
-Download the [latest stable release](https://github.com/netbox-community/netbox/releases) from GitHub as a tarball or ZIP archive and extract it to your desired path. In this example, we'll use `/opt/netbox` as the NetBox root.
+Faça o download dá [última versão estável](https://github.com/netbox-community/netbox/releases) do GitHub como um arquivo tarball ou ZIP e extraia-o para o caminho (local) desejado. Nesse exemplo, nós vamos usar o `/opt/netbox` como root do NetBox.
 
 ```no-highlight
 sudo wget https://github.com/netbox-community/netbox/archive/refs/tags/vX.Y.Z.tar.gz
@@ -45,19 +40,20 @@ sudo tar -xzf vX.Y.Z.tar.gz -C /opt
 sudo ln -s /opt/netbox-X.Y.Z/ /opt/netbox
 ```
 
-!!! note
-    It is recommended to install NetBox in a directory named for its version number. For example, NetBox v3.0.0 would be installed into `/opt/netbox-3.0.0`, and a symlink from `/opt/netbox/` would point to this location. (You can verify this configuration with the command `ls -l /opt | grep netbox`.) This allows for future releases to be installed in parallel without interrupting the current installation. When changing to the new release, only the symlink needs to be updated.
+!!! note Observação
 
-### Option B: Clone the Git Repository
+    É recomendado instalr o NetBox em um diretório nomeado com seu número de versão. Por exemplo, NetBox v3.0.0 seria instalado em `/opt/netbox-3.0.0`, e um link simbólico (symlink) de `/opt/netbox` apontaria para essa localização. (Você pode verificar essa configuração com o comando `ls -l /opt | grep netbox`.) Isso permite que versões futuras possam ser instaladas em paralelo sem interromper a instalação atual. Ao mudar para uma versão nova, apenas atualize o link simbólico.
 
-Create the base directory for the NetBox installation. For this guide, we'll use `/opt/netbox`.
+### Opção B: Clone o repositório Git
+
+Criar um diretório base para a instalação do NetBox. Para esse guia, nós iremos utilizar `/opt/netbox`.
 
 ```no-highlight
 sudo mkdir -p /opt/netbox/
 cd /opt/netbox/
 ```
 
-If `git` is not already installed, install it:
+Se o `git` não estiver instalado, instale-o:
 
 === "Ubuntu"
 
@@ -71,16 +67,16 @@ If `git` is not already installed, install it:
     sudo yum install -y git
     ```
 
-Next, clone the **master** branch of the NetBox GitHub repository into the current directory. (This branch always holds the current stable release.)
+Agora, clone o ramo (branch) **master** do repositório do NetBox no GitHub para o diretório atual. (Essa branch sempre terá a versão estável atual.)
 
 ```no-highlight
 sudo git clone -b master --depth 1 https://github.com/netbox-community/netbox.git .
 ```
 
-!!! note
-    The `git clone` command above utilizes a "shallow clone" to retrieve only the most recent commit. If you need to download the entire history, omit the `--depth 1` argument.
+!!! note Observação
+    O comando `git clone` acima utiliza um "shadow clone" para obter somente o commit mais recente. Se você precisa fazer o downlaod do histórico inteiro, omita o argumento `--depth 1`.
 
-The `git clone` command should generate output similar to the following:
+O comando `git clone` deve gerar uma saída (output) similar conforme a seguinte:
 
 ```
 Cloning into '.'...
@@ -92,12 +88,12 @@ Receiving objects: 100% (996/996), 4.26 MiB | 9.81 MiB/s, done.
 Resolving deltas: 100% (148/148), done.
 ```
 
-!!! note
-    Installation via git also allows you to easily try out different versions of NetBox. To check out a [specific NetBox release](https://github.com/netbox-community/netbox/releases), use the `git checkout` command with the desired release tag. For example, `git checkout v3.0.8`.
+!!! note Observação
+    Instalação através do git também permite que você facilmente tente diferentes versões do NetBox. Para verificar [uma versão específica do NetBox](https://github.com/netbox-community/netbox/releases), utilize o comando `git checkout` com a tag de versão desejada. Por exemplo, `git checkout v3.0.8`.
 
-## Create the NetBox System User
+## Crie o Usuário de Sistema do NetBox
 
-Create a system user account named `netbox`. We'll configure the WSGI and HTTP services to run under this account. We'll also assign this user ownership of the media directory. This ensures that NetBox will be able to save uploaded files.
+Crie a conta do usuário do sistema nomeado de `netbox`. Nós iremos configurar os serviços WSGI e HTTP para rodar em cima desta conta. Nós vamos associar o usuário para ser dono do diretório media. Isso garante que o NetBox irá poder salvar os arquivos que foram feito upload ao NetBox.
 
 === "Ubuntu"
 
@@ -114,9 +110,9 @@ Create a system user account named `netbox`. We'll configure the WSGI and HTTP s
     sudo chown --recursive netbox /opt/netbox/netbox/media/
     ```
 
-## Configuration
+## Configuração
 
-Move into the NetBox configuration directory and make a copy of `configuration_example.py` named `configuration.py`. This file will hold all of your local configuration parameters.
+Mova o diretório de configuração do NetBox e faça uma cópia de `configuration_example.py` para `configuration.py`. Esse arquivo irá conter todos os parâmetros de configuração da sua instância local do NetBox.
 
 ```no-highlight
 cd /opt/netbox/netbox/netbox/
@@ -132,13 +128,14 @@ Open `configuration.py` with your preferred editor to begin configuring NetBox. 
 
 ### ALLOWED_HOSTS
 
-This is a list of the valid hostnames and IP addresses by which this server can be reached. You must specify at least one name or IP address. (Note that this does not restrict the locations from which NetBox may be accessed: It is merely for [HTTP host header validation](https://docs.djangoproject.com/en/3.0/topics/security/#host-headers-virtual-hosting).)
+
+É uma lista dos hostnames válidos e endereço IP que o servidor pode ser alcançado. Você deve especificar ao menos um ou mais nomes ou endereços IP. (Observe que isso não restringe os locais que o NetBox pode ser acessado: é meramente [utilizado para a validação de host no cabeçalho do HTTP](https://docs.djangoproject.com/en/3.0/topics/security/#host-headers-virtual-hosting))
 
 ```python
 ALLOWED_HOSTS = ['netbox.example.com', '192.0.2.123']
 ```
 
-If you are not yet sure what the domain name and/or IP address of the NetBox installation will be, you can set this to a wildcard (asterisk) to allow all host values:
+Se você ainda não tem certeza do nome de domínio ou endereço IP que a instalação do NetBox irá utilizar, você pode definir um wildcard (asterisco) para permitir todos os valores de host:
 
 ```python
 ALLOWED_HOSTS = ['*']
@@ -146,7 +143,8 @@ ALLOWED_HOSTS = ['*']
 
 ### DATABASE
 
-This parameter holds the database configuration details. You must define the username and password used when you configured PostgreSQL. If the service is running on a remote host, update the `HOST` and `PORT` parameters accordingly. See the [configuration documentation](../configuration/required-parameters.md#database) for more detail on individual parameters.
+Esse parâmetro armazena os detalhes de configuração do banco de dados. Você deve definir o usuário e senha utilizados quando você configurou o PostgreSQL. Se o serviço está rodando em um host remoto, atualize os parâmetros `HOST` e `PORT` para estarem de acordo. Veja a [documentação da configuração](../configuration/required-parameters.md#database) para ter mais detalhes de parâmetros individuais.
+
 
 ```python
 DATABASE = {
@@ -161,24 +159,24 @@ DATABASE = {
 
 ### REDIS
 
-Redis is a in-memory key-value store used by NetBox for caching and background task queuing. Redis typically requires minimal configuration; the values below should suffice for most installations. See the [configuration documentation](../configuration/required-parameters.md#redis) for more detail on individual parameters.
+O Rediz armazena valores no formato chave-valor dentro da memória (e somente nela) e é utilizado pelo NetBox para caching e tasks de background enfileiradas. Redis tipicamente requer configurações mínimas; os valores abaixo são suficientes para a maioria das instalações. Acesse [a documentação da configuração](../configuration/required-parameters.md#redis) para mais detalhes sobre parâmetros individuais.
 
-Note that NetBox requires the specification of two separate Redis databases: `tasks` and `caching`. These may both be provided by the same Redis service, however each should have a unique numeric database ID.
+Observe que o NetBox exige uma especificação de dois bancos de dados separados do Redis: `tasks` e `caching`. Esses são ambos fornecidos pelo mesmo serviço de Redis, no entanto cada um deve ter um único ID número do banco de dados.
 
 ```python
 REDIS = {
     'tasks': {
-        'HOST': 'localhost',      # Redis server
-        'PORT': 6379,             # Redis port
-        'PASSWORD': '',           # Redis password (optional)
+        'HOST': 'localhost',      # Servidor Redis
+        'PORT': 6379,             # Porta do Redis
+        'PASSWORD': '',           # Senha do Redis (opcional)
         'DATABASE': 0,            # Database ID
-        'SSL': False,             # Use SSL (optional)
+        'SSL': False,             # Usar SSL (opcional)
     },
     'caching': {
         'HOST': 'localhost',
         'PORT': 6379,
         'PASSWORD': '',
-        'DATABASE': 1,            # Unique ID for second database
+        'DATABASE': 1,            # ID único para o segundo banco de dados
         'SSL': False,
     }
 }
@@ -188,104 +186,112 @@ REDIS = {
 
 This parameter must be assigned a randomly-generated key employed as a salt for hashing and related cryptographic functions. (Note, however, that it is _never_ directly used in the encryption of secret data.) This key must be unique to this installation and is recommended to be at least 50 characters long. It should not be shared outside the local system.
 
-A simple Python script named `generate_secret_key.py` is provided in the parent directory to assist in generating a suitable key:
+Esse parâmetro deve ser associado com uma chave (key) randômicamente gerada e é utilizada como um salt para hashing e funções de criptografia relacionados. (Note, no entanto, que isso _nunca_ deve ser utilizada na encriptação de dados secretos.) Essa chave deve ser única para a instalação e é recomendado que tenha ao menos 50 caracteres. Não deve ser compartilhada fora do sistema local.
+
+Um simples script em Python com o nome de `generate_secret_key.py` é fornecido no diretório pai para auxiliar na geração desta key:
 
 ```no-highlight
 python3 ../generate_secret_key.py
 ```
 
 !!! warning "SECRET_KEY values must match"
-    In the case of a highly available installation with multiple web servers, `SECRET_KEY` must be identical among all servers in order to maintain a persistent user session state.
 
-When you have finished modifying the configuration, remember to save the file.
+    No caso de uma instalação com alta disponibilidade com diferentes servidores web, `SECRET_KEY` deve ser idêntico entre os servidores para manter uma persistência de estado da sessão do usuário.
 
-## Optional Requirements
+Quando você terminar de modificar a configuração, lembre de salvar o arquivo.
 
-All Python packages required by NetBox are listed in `requirements.txt` and will be installed automatically. NetBox also supports some optional packages. If desired, these packages must be listed in `local_requirements.txt` within the NetBox root directory.
+## Pacotes e Dependências Opcionais
+
+Todos os pacotes Python exigidos pelo NetBox estão listados em `requirements.txt` e serão instalados automaticamente. NetBox também suporta pacotes opcionais. Se desejar, esses pacotes devem ser listados em `local_requirements.txt` dentro do diretório root do NetBox.
 
 ### NAPALM
 
-Integration with the [NAPALM automation](../integrations/napalm.md) library allows NetBox to fetch live data from devices and return it to a requester via its REST API. The `NAPALM_USERNAME` and `NAPALM_PASSWORD` configuration parameters define the credentials to be used when connecting to a device.
+A integração com a [biblioteca de automação via NAPALM](../integrations/napalm.md) permite que o NetBox obtenha dados de produção e atuais dos dispositivos e retorne para o requisitor através de API REST. A configuração dos parâmetros `NAPALM_USERNAME` e `NAPALM_PASSWORD` definem as credenciais para serem utilizadas ao se conectar com o dispositivo.
 
 ```no-highlight
 sudo sh -c "echo 'napalm' >> /opt/netbox/local_requirements.txt"
 ```
 
-### Remote File Storage
+### Armazenamento de Arquivos (Storage) Remoto
 
-By default, NetBox will use the local filesystem to store uploaded files. To use a remote filesystem, install the [`django-storages`](https://django-storages.readthedocs.io/en/stable/) library and configure your [desired storage backend](../configuration/system.md#storage_backend) in `configuration.py`.
+Por padrão, o NetBox irá utilizar o sistema de arquivos local para realizar o upload de arquivos. Para utilizar um sistema de arquivos remoto, instale a biblioteca [`django-storages`](https://django-storages.readthedocs.io/en/stable/) e configure seu [backend de armazenamento desejado](../configuration/system.md#storage_backend) dentro de `configuration.py`.
+
 
 ```no-highlight
 sudo sh -c "echo 'django-storages' >> /opt/netbox/local_requirements.txt"
 ```
 
-## Run the Upgrade Script
+## Rodando o Script de Upgrade
 
-Once NetBox has been configured, we're ready to proceed with the actual installation. We'll run the packaged upgrade script (`upgrade.sh`) to perform the following actions:
+Uma vez que o NetBox foi configurado, estamos prontos para prosseguir com a instalação em si. Nós iremos rodar o script de upgrade (`upgrade.sh`) para realizar as seguintes ações:
 
-* Create a Python virtual environment
-* Installs all required Python packages
-* Run database schema migrations
-* Builds the documentation locally (for offline use)
-* Aggregate static resource files on disk
+* Criar um ambiente virtual do Python (virtual environment)
+* Instala todos os pacote do Python necessários
+* Roda as migrações de esquema (schema) do banco de dados
+* Faz o build da documentação localmente (para uso offline)
+* Agrega os recursos de arquivos no disco
 
 !!! warning
-    If you still have a Python virtual environment active from a previous installation step, disable it now by running the `deactivate` command. This will avoid errors on systems where `sudo` has been configured to preserve the user's current environment.
+    
+     Se você ainda tiver um ambiente virtual do Python ativo do passo de instalação anterior, desabilite-o rodando o comando `deactivate`. Esse comando evita erros no sistema onde o `sudo` foi configurado para preservar o ambiente atual do usuário.
 
 ```no-highlight
 sudo /opt/netbox/upgrade.sh
 ```
 
-Note that **Python 3.8 or later is required** for NetBox v3.2 and later releases. If the default Python installation on your server is set to a lesser version,  pass the path to the supported installation as an environment variable named `PYTHON`. (Note that the environment variable must be passed _after_ the `sudo` command.)
+Observe que o **Python 3.8 ou maior é necessário** para o NetBox v3.2 ou versões maiores. Se a instalação padrão do Python no seu servidor for uma menor que a exigida, passe o caminho (path) para a instalação suportada como uma variável de ambiente com o nome de `PYTHON`. (Note que a variável de ambiente deve ser passada _depois_ depois do comando `sudo`.)
 
 ```no-highlight
 sudo PYTHON=/usr/bin/python3.8 /opt/netbox/upgrade.sh
 ```
 
-!!! note
-    Upon completion, the upgrade script may warn that no existing virtual environment was detected. As this is a new installation, this warning can be safely ignored.
+!!! note Observação
 
-## Create a Super User
+    Uma vez completa, o script de upgrade pode retornar um aviso que existe um ambiente virtual detectado. Como é uma instalação nova, esse aviso pode ser seguramente ignorado.
 
-NetBox does not come with any predefined user accounts. You'll need to create a super user (administrative account) to be able to log into NetBox. First, enter the Python virtual environment created by the upgrade script:
+## Criar um Usuário Super
+
+O NetBox não vem com contas de usuários pré-definidas. Você vai precisar criar um usuário super (conta administrativa) para habilitar o login ao NetBox. Primeiro, entre no ambiente virtual do Python (venv) criado pelo script de upgrade:
 
 ```no-highlight
 source /opt/netbox/venv/bin/activate
 ```
 
-Once the virtual environment has been activated, you should notice the string `(venv)` prepended to your console prompt.
+Uma vez que o ambiente virtual foi ativado, você vai notar que o texto `(venv)` vai estar no início (prefixo) do prompt do console.
 
-Next, we'll create a superuser account using the `createsuperuser` Django management command (via `manage.py`). Specifying an email address for the user is not required, but be sure to use a very strong password.
+Agora, vamos criar uma conta de superuser (usuário super) utilizando o comando de gerência do Django `createsuperuser` (através do `manage.py`). Especificando um endereço de email para o usuário não é obrigatório, mas tenha certeza de usar uma senha forte.
 
 ```no-highlight
 cd /opt/netbox/netbox
 python3 manage.py createsuperuser
 ```
 
-## Schedule the Housekeeping Task
+## Agendar uma Tarefa de Housekeeping
 
-NetBox includes a `housekeeping` management command that handles some recurring cleanup tasks, such as clearing out old sessions and expired change records. Although this command may be run manually, it is recommended to configure a scheduled job using the system's `cron` daemon or a similar utility.
+O NetBox inclui um comando de gerência de `housekeeping` que lida com algumas tarefas recorrentes de limpeza, como limpar as sessões velhas ou expiradas de registros de mudanças. Embora esse comando pode ser rodado manualmente, é recomendado configurar uma tarefa agendada utilizando o daemon do sistema `cron` ou uma ferramenta similar.
 
-A shell script which invokes this command is included at `contrib/netbox-housekeeping.sh`. It can be copied to or linked from your system's daily cron task directory, or included within the crontab directly. (If installing NetBox into a nonstandard path, be sure to update the system paths within this script first.)
+O script em shell que invoca esse comando está em `contrib/netbox-housekeeping.sh` Ele pode ser copiado ou linkado do seu diretório de tarefas diárias do cron, ou incluso dentro do diretório do crontab diretamente. (Se estiver instalando o NetBox em um caminho não padrão (nonstandard path), certifique-se de atualizar os caminhos (paths) do sistema dentro do script primeiro.)
 
 ```shell
 sudo ln -s /opt/netbox/contrib/netbox-housekeeping.sh /etc/cron.daily/netbox-housekeeping
 ```
 
-See the [housekeeping documentation](../administration/housekeeping.md) for further details.
+Olhe a [documentação de housekeeping](../administration/housekeeping.md) para mais detalhes.
 
-## Test the Application
+## Testar a Aplicação
 
 At this point, we should be able to run NetBox's development server for testing. We can check by starting a development instance locally.
 
-!!! tip
-    Check that the Python virtual environment is still active before attempting to run the server.
+Neste ponto, nós deveríamos ser capazes de rodar o servidor de desenvolvimento para testes. Nós podemos verificar ao iniciar a instância de desenvolvimento localmente. 
+!!! tip Dica
+
+    Verifique que o ambiente virtual do Python ainda está ativo antes de tentar rodar o servidor.
 
 ```no-highlight
 python3 manage.py runserver 0.0.0.0:8000 --insecure
 ```
 
-If successful, you should see output similar to the following:
+Se houver sucesso, você deve ter uma saída (output) similar ao:
 
 ```no-highlight
 Watching for file changes with StatReloader
@@ -300,17 +306,22 @@ Quit the server with CONTROL-C.
 
 Next, connect to the name or IP of the server (as defined in `ALLOWED_HOSTS`) on port 8000; for example, <http://127.0.0.1:8000/>. You should be greeted with the NetBox home page. Try logging in using the username and password specified when creating a superuser.
 
-!!! note
-    By default RHEL based distros will likely block your testing attempts with firewalld. The development server port can be opened with `firewall-cmd` (add `--permanent` if you want the rule to survive server restarts):
+Agora, conecte-se ao nome ou endereço IP do servidor (como foi definido em `ALLOWED_HOSTS`) na porta 8000; por exemplo <http://127.0.0.1:8000>. Você deve ser recebido com uma mensagem de boas-vindas da página inicial do NetBox. Tente logar com o usuário e senha especificados ao criar o usuário super (superuser).
+
+!!! note Observação
+
+    Por padrão, distribuições baseadas no RHEL vão provavelmente bloquear suas tentativas de teste com o **firewalld**. A porta de desenvolvimento do servidor pode ser aberta com `firewall-cmd` (adicione `--permanent` se você quiser que a regra se mantenha após o servidor ser reiniciado)
 
     ```no-highlight
     firewall-cmd --zone=public --add-port=8000/tcp
     ```
 
-!!! danger "Not for production use"
-    The development server is for development and testing purposes only. It is neither performant nor secure enough for production use. **Do not use it in production.**
+!!! danger Não utilize em produção!
 
-!!! warning
-    If the test service does not run, or you cannot reach the NetBox home page, something has gone wrong. Do not proceed with the rest of this guide until the installation has been corrected.
+    O servidor de desenvolvimento deve ser utilizando somente para desenvolvimento e testes. Não é nem perfomático ou seguro suficiente para ser utilizado em produção. **Não utilize-o em produção!**
 
-Type `Ctrl+c` to stop the development server.
+!!! warning Aviso
+
+    Se o serviço de teste não funcionar, ou você não conseguiu acessar a página inicial (homepage) do NetBox, alguma coisa deu errado. Não siga com o resto guia até que a instalação tenha sido corrigida.
+
+Escreva `Ctrl+C` para parar com o servidor de desenvolvimento.
