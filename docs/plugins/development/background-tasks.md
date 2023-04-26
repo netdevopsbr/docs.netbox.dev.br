@@ -20,12 +20,13 @@ class MyPluginConfig(PluginConfig):
     ]
 ```
 
-O class `PluginConfig` acima cria duas filas (queues) customizadas com os seguintes nomes `meu_plugin.foo` e `meu_plugin.bar`. (O nome do plugin é salvo como um prefixo em cada fila para evitar conflito entre diferentes plugins.)
+A classe `PluginConfig` acima cria duas filas (queues) customizadas com os seguintes nomes `meu_plugin.foo` e `meu_plugin.bar`. (O nome do plugin é salvo como um prefixo em cada fila para evitar conflito entre diferentes plugins.)
 
 
-!!! warning "Configuring the RQ worker process"
-    By default, NetBox's RQ worker process only services the high, default, and low queues. Plugins which introduce custom queues should advise users to either reconfigure the default worker, or run a dedicated worker specifying the necessary queues. For example:
-    
+!!! warning Configurando processo de RQ workers
+
+    Por padrão, os processos RQ worker do Netbox apenas servem as filas high, default e low. Plugins que queiram introduzir filas customizadas devem orientar seus usuários para tanto reconfigurar o worker padrão, ou odar um worker dedicado especificando as filas necessárias. Por exemplo:
+
     ```
     python manage.py rqworker my_plugin.foo my_plugin.bar
     ```
