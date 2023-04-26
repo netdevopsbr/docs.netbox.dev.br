@@ -1,10 +1,5 @@
 # Gunicorn
 
-!!! info
-
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
-
 Como a maioria das aplicações Django, o NetBox roda como uma [aplicação WSGI](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface). Essa documentação mostra como instalar e configurar o [gunicorn](https://gunicorn.org/) (que é automaticamente instalado com o NetBox) para ese papel, no entanto outros servidores WSGI estão disponíveis e devem funcionar de forma similar. [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) é alternativa mais popular.
 
 ## Configuração
