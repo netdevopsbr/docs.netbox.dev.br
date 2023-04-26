@@ -304,8 +304,6 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-Next, connect to the name or IP of the server (as defined in `ALLOWED_HOSTS`) on port 8000; for example, <http://127.0.0.1:8000/>. You should be greeted with the NetBox home page. Try logging in using the username and password specified when creating a superuser.
-
 Agora, conecte-se ao nome ou endereço IP do servidor (como foi definido em `ALLOWED_HOSTS`) na porta 8000; por exemplo <http://127.0.0.1:8000>. Você deve ser recebido com uma mensagem de boas-vindas da página inicial do NetBox. Tente logar com o usuário e senha especificados ao criar o usuário super (superuser).
 
 !!! note Observação
