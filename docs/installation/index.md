@@ -26,10 +26,10 @@ As seções abaixo detalham como configurar uma instância nova do NetBox:
 | PostgreSQL | 11              |
 | Redis      | 4.0             |
 
-Below is a simplified overview of the NetBox application stack for reference:
+Abaixo está uma visão geral simplificada da stack de aplicações do NetBox para referência:
 
-![NetBox UI as seen by a non-authenticated user](../media/installation/netbox_application_stack.png)
+![Interface web do NetBox vista por um usuário não autenticado](../media/installation/netbox_application_stack.png)
 
-## Upgrading
+## Fazendo o Upgrade
 
-If you are upgrading from an existing installation, please consult the [upgrading guide](upgrading.md).
+Se você estiver fazendo o upgrade de uma instalação existente, por gentileza consulte o [Guia de Upgrade](upgrading.md).
