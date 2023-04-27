@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 # Release Notes
+=======
+# Descrição das Versões (Release Notes)
+
+!!! info
+
+    **English (en):** This page was not translated yet!
+    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+>>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 NetBox releases are numbered as major, minor, and patch releases. For example, version 3.1.0 is a minor release, and v3.1.5 is a patch release. Briefly, these can be described as follows:
 
@@ -151,4 +160,8 @@ This page contains a history of all major and minor releases since NetBox v2.0. 
 * API 2.0 ([#113](https://github.com/netbox-community/netbox/issues/113))
 * Image Attachments ([#152](https://github.com/netbox-community/netbox/issues/152))
 * Global Search ([#159](https://github.com/netbox-community/netbox/issues/159))
+<<<<<<< HEAD
 * Rack Elevations View ([#951](https://github.com/netbox-community/netbox/issues/951))
+=======
+* Rack Elevations View ([#951](https://github.com/netbox-community/netbox/issues/951))
+>>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
