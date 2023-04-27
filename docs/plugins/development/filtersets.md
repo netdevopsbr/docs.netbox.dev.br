@@ -1,10 +1,11 @@
-# Filters & Filter Sets
+# Filtros e Grupos de Filtro (Filter Sets)
 
-Filter sets define the mechanisms available for filtering or searching through a set of objects in NetBox. For instance, sites can be filtered by their parent region or group, status, facility ID, and so on. The same filter set is used consistently for a model whether the request is made via the UI, REST API, or GraphQL API. NetBox employs the [django-filters2](https://django-tables2.readthedocs.io/en/latest/) library to define filter sets.
+Grupos de filtros definem os mecanismos disponíveis para filtrar ou pesquisar um grupo de objetos no NetBox. Por exemplo, sites (locais) podem ser filtradas pela região ou grupo pai (parent), status, ID da instalação (facility) e por aí vai. O mesmo grupo de filtro deve ser usado de forma consistente para um modelo seja em uma requisição feita pela interface web, API REST, ou uma API GraphQL. NetBox utiliza a biblioteca [django-filters2](https://django-tables2.readthedocs.io/en/latest/) para definir os grupos de filtros.
 
-## FilterSet Classes
+## Classes de FilterSets (Grupos de Filtro)
 
-To support additional functionality standard to NetBox models, such as tag assignment and custom field support, the `NetBoxModelFilterSet` class is available for use by plugins. This should be used as the base filter set class for plugin models which inherit from `NetBoxModel`. Within this class, individual filters can be declared as directed by the `django-filters` documentation. An example is provided below.
+Para suportar funcionalidades adicionais às padrões dos modelos do NetBox, como a associação de tag e suporte a campos customizadas, a classe `NetBoxModelFilterSe` está disponível para uso dos plugins. Isso deve ser usado pela classe base de grupos de filtros para os modelos (models) do plugin que herdam `NetBoxModel`. Dentro dessa clase, filtros individuais podem ser declaradas diretamente conforme documentação do `django-filters`. Um exemplo abaixo é fornecido.
+
 
 ```python
 # filtersets.py
@@ -27,9 +28,9 @@ class MyFilterSet(NetBoxModelFilterSet):
         fields = ('some', 'other', 'fields')
 ```
 
-### Declaring Filter Sets
+### Declarando Grupos de Filtro (Filter Sets)
 
-To utilize a filter set in a subclass of one of NetBox's generic views (such as `ObjectListView` or `BulkEditView`), define the `filterset` attribute on the view class:
+Para utilizar grupos de filtro em uma subclasse de uma visualização genérica do NetBox (como `ObjectListView` ou `BulkEditView`), defina o atributo `filterset` na classe de visualização (view class):
 
 ```python
 # views.py
@@ -42,7 +43,7 @@ class MyModelListView(ObjectListView):
     filterset = MyModelFilterSet
 ```
 
-To enable a filter set on a  REST API endpoint, set the `filterset_class` attribute on the API view:
+Para habilitar um grupo de filtro no endpoint da API REST, configure o atributo `filterset_class` na visualização (view) da API:
 
 ```python
 # api/views.py
@@ -55,11 +56,11 @@ class MyModelViewSet(...):
     filterset_class = filtersets.MyModelFilterSet
 ```
 
-## Filter Classes
+## Classes de Filtro
 
 ### TagFilter
 
-The `TagFilter` class is available for all models which support tag assignment (those which inherit from `NetBoxModel` or `TagsMixin`). This filter subclasses django-filter's `ModelMultipleChoiceFilter` to work with NetBox's `TaggedItem` class.
+A classe `TagFilter` está disponível para todosos modelos que suportam associação de tag (os que herdam de `NetBoxModel` ou `TagsMixin`). Esse filtro cria uma subclasse do `ModelMultipleChoiceFilter` para trabalhar com a classe `TaggedItem`.
 
 ```python
 from django_filters import FilterSet
