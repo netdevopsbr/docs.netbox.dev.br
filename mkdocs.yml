@@ -153,22 +153,22 @@ nav:
         - NAPALM (em Inglês ainda): 'integrations/napalm.md'
         - Métricas do Prometheus (em Inglês ainda): 'integrations/prometheus-metrics.md'
     - Plugins (em Inglês ainda):
-        - Usando Plugins (em Inglês ainda): 'plugins/index.md'
-        - Desenvolvendo Plugins (em Inglês ainda):
-            - Começando (em Inglês ainda): 'plugins/development/index.md'
+        - Usando Plugins: 'plugins/index.md'
+        - Desenvolvendo Plugins:
+            - Começando: 'plugins/development/index.md'
             - Modelos (em Inglês ainda): 'plugins/development/models.md'
             - Visualizações (Views) - em Inglês ainda: 'plugins/development/views.md'
             - Navegação (em Inglês ainda): 'plugins/development/navigation.md'
             - Templates (em Inglês ainda): 'plugins/development/templates.md'
             - Tabelas (em Inglês ainda): 'plugins/development/tables.md'
-            - Formulários (em Inglês ainda): 'plugins/development/forms.md'
-            - Filtros & Grupos de Filtro (em Inglês ainda): 'plugins/development/filtersets.md'
+            - Formulários: 'plugins/development/forms.md'
+            - Filtros & Grupos de Filtro: 'plugins/development/filtersets.md'
             - Pesquisa (Search) - em Inglês ainda: 'plugins/development/search.md'
             - API REST (em Inglês ainda): 'plugins/development/rest-api.md'
-            - API GraphQL (em Inglês ainda): 'plugins/development/graphql-api.md'
-            - Tarefas de Fundo (Background) - em Inglês ainda: 'plugins/development/background-tasks.md'
+            - API GraphQL: 'plugins/development/graphql-api.md'
+            - Tarefas de Fundo (Background): 'plugins/development/background-tasks.md'
             - Mudanças Pendentes (Staged) - em Inglês ainda: 'plugins/development/staged-changes.md'
-            - Exceções (em Inglês ainda): 'plugins/development/exceptions.md'
+            - Exceções: 'plugins/development/exceptions.md'
     - Administração (em Inglês ainda):
         - Autenticação (em Inglês ainda):
             - Visão Geral (em Inglês ainda): 'administration/authentication/overview.md'
