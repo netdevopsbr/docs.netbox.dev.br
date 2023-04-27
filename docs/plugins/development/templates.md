@@ -1,10 +1,13 @@
 # Templates
 
+<<<<<<< HEAD
+=======
 !!! info
 
     **English (en):** This page was not translated yet!
     **Portuguese (pt-br):** Essa página não foi traduzida ainda!
 
+>>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 Templates are used to render HTML content generated from a set of context data. NetBox provides a set of built-in templates suitable for use in plugin views. Plugin authors can extend these templates to minimize the work needed to create custom templates while ensuring that the content they produce matches NetBox's layout and style. These templates are all written in the [Django Template Language (DTL)](https://docs.djangoproject.com/en/stable/ref/templates/language/).
 
 ## Template File Structure

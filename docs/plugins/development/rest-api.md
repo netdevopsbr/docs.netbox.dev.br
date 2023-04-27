@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+# REST API
+=======
 # API REST
 
 !!! info
 
     **English (en):** This page was not translated yet!
     **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+>>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 Plugins can declare custom endpoints on NetBox's REST API to retrieve or manipulate models or other data. These behave very similarly to views, except that instead of rendering arbitrary content using a template, data is returned in JSON format using a serializer.
 

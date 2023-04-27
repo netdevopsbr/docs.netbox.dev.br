@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+# Staged Changes
+=======
 # Mudanças Pendentes (Staged Changes)
 
 !!! info
 
     **English (en):** This page was not translated yet!
     **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+>>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 !!! danger "Experimental Feature"
     This feature is still under active development and considered experimental in nature. Its use in production is strongly discouraged at this time.

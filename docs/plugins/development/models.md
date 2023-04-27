@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+# Database Models
+=======
 # Modelos do Banco de Dados
 
 !!! info
 
     **English (en):** This page was not translated yet!
     **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+>>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 ## Creating Models
 
