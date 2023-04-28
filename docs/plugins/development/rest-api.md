@@ -1,21 +1,12 @@
-<<<<<<< HEAD
 # REST API
-=======
-# API REST
 
-!!! info
+Os plugins podem declarar endpoints customizados da API REST do NetBox para obter e manipular modelos ou outros dados. Esse com compartamento é bem similar às visualizações (views), exceto que ao invés de renderizar um conteúdo arbitrário usando um template, os dados são retornados no formato JSON utilizando um serializador (serializer).
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
+Falando de forma geral, não há muitos componentes específicos do NetBox para impletar a funcionalidade de API REST e mum Plugin. O NetBox utiliza o [Django REST Framework](https://www.django-rest-framework.org/) (DRF) para sua API REST, enquanto que os autores de plugin podem replicar facilmente os padrões encontrados na implementação do NetBox. Alguns breves exemplos são incluídos abaixo para referência.
 
-Plugins can declare custom endpoints on NetBox's REST API to retrieve or manipulate models or other data. These behave very similarly to views, except that instead of rendering arbitrary content using a template, data is returned in JSON format using a serializer.
+## Layout do Código
 
-Generally speaking, there aren't many NetBox-specific components to implementing REST API functionality in a plugin. NetBox employs the [Django REST Framework](https://www.django-rest-framework.org/) (DRF) for its REST API, and plugin authors will find that they can largely replicate the same patterns found in NetBox's implementation. Some brief examples are included here for reference.
-
-## Code Layout
-
-The recommended approach is to separate API serializers, views, and URLs into separate modules under the `api/` directory to keep things tidy, particularly for larger projects. The file at `api/__init__.py` can import the relevant components from each submodule to allow import all API components directly from elsewhere. However, this is merely a convention and not strictly required.
+A abordagem recomendada é separar a API dos serializadores (serializers), visualizações (views), e URLs em módulos separados sobre o diretório `/api` para manter as coisas limpas, particularmente para projetos maiores. O arquivo `api/__init__.py` pode importar componentes relevantes de cada submódulo para permitir todos os componentes doa API diretamente de qualquer lugar. No entanto, isso é meramente uma conveção e não é estritamente obrigatória.
 
 ```no-highlight
 project-name/
@@ -28,15 +19,15 @@ project-name/
     ...
 ```
 
-## Serializers
+## Serializador (Serializers)
 
-### Model Serializers
+### Serializadores de Modelos (Model Serializers)
 
-Serializers are responsible for converting Python objects to JSON data suitable for conveying to consumers, and vice versa. NetBox provides the `NetBoxModelSerializer` class for use by plugins to handle the assignment of tags and custom field data. (These features can also be included ad hoc via the `CustomFieldModelSerializer` and `TaggableModelSerializer` classes.)
+Serializadores são responsáveis por converter objetos Python em dados JSON de forma conveniente aos consumidores (usuários) e vice-versa. O NetBox fornece a classe `NetBoxModelSerializer` para ser utilizada pelo plugin para lidar com a associação de tags e dados de campos customizados. (As características e funções disponíveis podem ser inclusas da mesma forma nas classes `CustomFieldModelSerializer` e `TaggableModelSerializer`.)
 
-#### Example
+#### Exemplo
 
-To create a serializer for a plugin model, subclass `NetBoxModelSerializer` in `api/serializers.py`. Specify the model class and the fields to include within the serializer's `Meta` class. It is generally advisable to include a `url` attribute on each serializer. This will render the direct link to access the object being rendered.
+Para criar um serializador (serializer) para o modelo do plugin, faça uma subclasse do `NetBoxModelSerializer` em `api/serializer.py`. Especifique a classe do modelo e os campos a serem inclusos dentro da classe de serializador `Meta`. É geralmente indicado a incluir o atributo `url` em cada serializador. Irá renderizar o link diretamente para acessar o objeto sendo renderizado.
 
 ```python
 # api/serializers.py
@@ -54,16 +45,16 @@ class MyModelSerializer(NetBoxModelSerializer):
         fields = ('id', 'foo', 'bar', 'baz')
 ```
 
-### Nested Serializers
+### Serializadores Aninhados (Nested Serializer)
 
-There are two cases where it is generally desirable to show only a minimal representation of an object:
+Há dois casos que torna-se geralmente desejado mostrar apenas uma mínima representação do objeto:
 
-1. When displaying an object related to the one being viewed (for example, the region to which a site is assigned)
-2. Listing many objects using "brief" mode
+1. Ao mostrar um objeto relacionado ao que está sendo visto (por exemplo, a região que o site está associado)
+2. Ao listar vários objetos utilizando o modo "brief" (resumido)
 
-To accommodate these, it is recommended to create nested serializers accompanying the "full" serializer for each model. NetBox provides the `WritableNestedSerializer` class for just this purpose. This class accepts a primary key value on write, but displays an object representation for read requests. It also includes a read-only `display` attribute which conveys the string representation of the object.
+Para acomodá-los, é recomendado criar um serializador aninhado acompanhado do serializador completo de cada modelo. O NetBox fornece a classe `WritableNestedSerializer` para somente esse propósito. Essa classe aceita o valor de primary key na escrita, mas mostra a representação do objeto para ser lido pelas requisições. Inclui também uma tributo de leitura chamado `display` que expressa a representação do objeto.
 
-#### Example
+#### Exemplo
 
 ```python
 # api/serializers.py
@@ -81,15 +72,15 @@ class NestedMyModelSerializer(WritableNestedSerializer):
         fields = ('id', 'display', 'foo')
 ```
 
-## Viewsets
+## Viewsets (Grupos de Visualizações)
 
-Just as in the user interface, a REST API view handles the business logic of displaying and interacting with NetBox objects. NetBox provides the `NetBoxModelViewSet` class, which extends DRF's built-in `ModelViewSet` to handle bulk operations and object validation.
+Como é na interface do usuário, a visualização de uma API REST lida com a lógica de mostrar e interagir com os objetos NetBox. O NetBox fornece a classe `NetBoxModelViewSet` que extende a classe `ModelViewSet` nativa da DRF para lidar com operações em grupo (bulk) e validação de objeto.
 
-Unlike the user interface, typically only a single view set is required per model: This view set handles all request types (`GET`, `POST`, `DELETE`, etc.).
+Diferente da interface do usuário, normalmente apenas um grupo de visualização (view set) é exigida por modelo: Essa visualização lida com todos os tipos de requisição (`GET`, `POST`, `DELETE`, etc.).
 
-### Example
+### Exemplo
 
-To create a viewset for a plugin model, subclass `NetBoxModelViewSet` in `api/views.py`, and define the `queryset` and `serializer_class` attributes.
+Para criar um grupo de visualização (viewset) para o modelo de um plugin, crie uma subclasse de `NetBoxModelViewSet` em `api/views.py` e defina os atributos `queryset` e `serializer_class`.
 
 ```python
 # api/views.py
@@ -102,13 +93,13 @@ class MyModelViewSet(ModelViewSet):
     serializer_class = MyModelSerializer
 ```
 
-## Routers
+## Roteadores (Routers)
 
-Routers map URLs to REST API views (endpoints). NetBox does not provide any custom components for this; the [`DefaultRouter`](https://www.django-rest-framework.org/api-guide/routers/#defaultrouter) class provided by DRF should suffice for most use cases.
+Roteadores mapeiam a URL com as visualizações da API REST (endpoints). O NetBox não fornece qualquer componente customizado para isso; a classe [`DefaultRouter`](https://www.django-rest-framework.org/api-guide/routers/#defaultrouter) fornecida pelo DRF deve ser suficiente para a maioria dos casos.
 
-Routers should be exposed in `api/urls.py`. This file **must** define a variable named `urlpatterns`.
+Roteadores podem ser expostas em `api/urls.py`. Esse arquivo **deve** definir uma variável nomeada de `urlpatterns`.
 
-### Example
+### Exemplo
 
 ```python
 # api/urls.py
@@ -120,7 +111,8 @@ router.register('my-model', MyModelViewSet)
 urlpatterns = router.urls
 ```
 
-This will make the plugin's view accessible at `/api/plugins/my-plugin/my-model/`.
+Isso irá fazer a visualização (view) do plugin acessível por `/api/plugins/my-plugin/my-model/`.
 
-!!! warning
-    The examples provided here are intended to serve as a minimal reference implementation only. This documentation does not address authentication, performance, or myriad other concerns that plugin authors may need to address.
+!!! warning Aviso
+
+    Os exemplos fornecidos aqui tem a intenção de servir uma referência mínima de implementação. A documentação não inclui autenticação, performance, ou uma variedade de outras preocupações que o autor de um plugin pode ter que resolver.
