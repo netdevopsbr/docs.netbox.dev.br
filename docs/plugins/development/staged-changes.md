@@ -1,23 +1,16 @@
-<<<<<<< HEAD
-# Staged Changes
-=======
-# Mudanças Pendentes (Staged Changes)
+# Mudanças Pendentes
 
-!!! info
+!!! danger Característica Experimental
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
+    Essa característica está sob desenvolvimento ativo e é considerada experimental em sua natureza. Seu uso em produção é fortemente não recomendada neste momento.
 
-!!! danger "Experimental Feature"
-    This feature is still under active development and considered experimental in nature. Its use in production is strongly discouraged at this time.
+!!! note Observação
 
-!!! note
-    This feature was introduced in NetBox v3.4.
+    Essa característica foi introduzida na versão v3.4.
 
-NetBox provides a programmatic API to stage the creation, modification, and deletion of objects without actually committing those changes to the active database. This can be useful for performing a "dry run" of bulk operations, or preparing a set of changes for administrative approval, for example.
+O NetBox fornece uma API programática para permitir a criação, modificação e remoção de objetos sem realmente salvar (fazer o commit) dessas mudanças pro banco de dados ativo. Isso pode ser utilizado para performar um conjunto de operações em grupo do tipo "dry run", ou preparar um grupo de mudanças para aprovação administrativa, por exemplo.
 
-To begin staging changes, first create a [branch](../../models/extras/branch.md):
+Para começar com mudanças pendentes (staging changes), primeiro crie uma [branch](../../models/extras/branch.md) (ramo):
 
 ```python
 from extras.models import Branch
@@ -25,7 +18,7 @@ from extras.models import Branch
 branch1 = Branch.objects.create(name='branch1')
 ```
 
-Then, activate the branch using the `checkout()` context manager and begin making your changes. This initiates a new database transaction.
+Então, ative a branch usando o gerenciador de contexto `checkout()` e comece suas mudanças. Isso inicia uma nova transação no banco de dados.
 
 ```python
 from extras.models import Branch
@@ -37,9 +30,9 @@ with checkout(branch1):
     # ...
 ```
 
-Upon exiting the context, the database transaction is automatically rolled back and your changes recorded as [staged changes](../../models/extras/stagedchange.md). Re-entering a branch will trigger a new database transaction and automatically apply any staged changes associated with the branch.
+Ao sair do contexto, a transação do banco de dados é automaticamente revertida (rolled back) se suas mudanças gravadas como [staged changes](../../models/extras/stagedchange.md) são revertidas. Entrar novamente na branch, irá criar uma nova transação do banco de dados e automaticamente aplicará qualquer mudança pendente associada com essa branch.
 
-To apply the changes within a branch, call the branch's `commit()` method:
+Para aplicar as mudanças dentro da branch, chame o método da branch `commit()`:
 
 ```python
 from extras.models import Branch
@@ -48,4 +41,4 @@ branch1 = Branch.objects.get(name='branch1')
 branch1.commit()
 ```
 
-Committing a branch is an all-or-none operation: Any exceptions will revert the entire set of changes. After successfully committing a branch, all its associated StagedChange objects are automatically deleted (however the branch itself will remain and can be reused).
+Salvar (commiting) uma branch é uma operação all-or-none (tudo ou nada): qualquer exceção irá reverter o grupo inteiro de mudanças. Depois de salvar (realizar o commit) com sucesso de uma branch, todos os objetos `StagedChanges` serão automaticamente deletados (no entanto, a branch em si permanecerá e poderá ser reutilizada).
