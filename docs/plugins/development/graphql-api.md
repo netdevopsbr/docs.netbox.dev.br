@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # GraphQL API
 
 ## Definindo o Esquema da Classe (Schema Class)
@@ -7,20 +6,6 @@ Um plugin pode extender a API do GraphQL do NetBox registrando sua própria clas
 A plugin can extend NetBox's GraphQL API by registering its own schema class. By default, NetBox will attempt to import `graphql.schema` from the plugin, if it exists. This path can be overridden by defining `graphql_schema` on the PluginConfig instance as the dotted path to the desired Python class. This class must be a subclass of `graphene.ObjectType`.
 
 ### Exemplo
-=======
-# API GraphQL
-
-!!! info
-
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
-
-## Defining the Schema Class
-
-A plugin can extend NetBox's GraphQL API by registering its own schema class. By default, NetBox will attempt to import `graphql.schema` from the plugin, if it exists. This path can be overridden by defining `graphql_schema` on the PluginConfig instance as the dotted path to the desired Python class. This class must be a subclass of `graphene.ObjectType`.
-
-### Example
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 ```python
 # graphql.py
@@ -43,15 +28,9 @@ class MyQuery(graphene.ObjectType):
 schema = MyQuery
 ```
 
-<<<<<<< HEAD
 ## Objetos GraphQL
 
 O NetBox fornece dois tipos de classes de objeto para serem utilizadas pelos plugins:
-=======
-## GraphQL Objects
-
-NetBox provides two object type classes for use by plugins.
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 ::: netbox.graphql.types.BaseObjectType
     options:
@@ -61,15 +40,9 @@ NetBox provides two object type classes for use by plugins.
     options:
       members: false
 
-<<<<<<< HEAD
 ## Campos GraphQL
 
 O NetBox fornece duas classes de campos para serem utilizadas pelos plugins:
-=======
-## GraphQL Fields
-
-NetBox provides two field classes for use by plugins.
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
 
 ::: netbox.graphql.fields.ObjectField
     options:

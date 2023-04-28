@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-# Database Models
-=======
-# Modelos do Banco de Dados
+# Modelos da Banco de Dados
 
-!!! info
+## Criando Modelos (Models)
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
+Se o seu plugin for introduzir um novo tipo de objet ono NetBox, você provável vai querer criar um [modelo Django](https://docs.djangoproject.com/en/stable/topics/db/models/) para isso. Um modelo é essencialmente a representação de uma tabela do banco de dados, com atributos que representam colunas individuais. Instâncias do modelo (objetos) podem ser criados, manipulados e deletados utilizando [queries](https://docs.djangoproject.com/en/stable/topics/db/queries/). Modelos devem ser definidos dentro do arquivo chamado de `models.py`.
 
-## Creating Models
-
-If your plugin introduces a new type of object in NetBox, you'll probably want to create a [Django model](https://docs.djangoproject.com/en/stable/topics/db/models/) for it. A model is essentially a Python representation of a database table, with attributes that represent individual columns. Instances of a model (objects) can be created, manipulated, and deleted using [queries](https://docs.djangoproject.com/en/stable/topics/db/queries/). Models must be defined within a file named `models.py`.
-
-Below is an example `models.py` file containing a model with two character (text) fields:
+Abaxo está um exemplo do arquivo `models.py` contendo o modelo com dois campos de texto (caracteres):
 
 ```python
 from django.db import models
@@ -26,27 +17,27 @@ class MyModel(models.Model):
         return f'{self.foo} {self.bar}'
 ```
 
-Every model includes by default a numeric primary key. This value is generated automatically by the database, and can be referenced as `pk` or `id`.
+Todo modelo inclui por padrão uma chave primária numérica (primary key). Esse valor é gerado automaticamente pelo banco de dados, e pode ser referenciado como `pk` ou `id`.
 
-## Enabling NetBox Features
+## Habilitando as Funções do NetBox
 
-Plugin models can leverage certain NetBox features by inheriting from NetBox's `NetBoxModel` class. This class extends the plugin model to enable features unique to NetBox, including:
+Os podemos do plugin podem fazer utilizar certas características e funções do NetBox ao herdar a classe `NetBoxModel` do NetBox. Essa classe extende o modelo do plugin para habilitar essas características únicas ao NetBox, incluindo:
 
-* Change logging
-* Custom fields
-* Custom links
-* Custom validation
-* Export templates
+* Registro de Log (Change Logging)
+* Campos Customizados
+* Links Customizados
+* Validação Customizada
+* Exportação de Templates
 * Journaling
 * Tags
 * Webhooks
 
-This class performs two crucial functions:
+Essa classe performa duas funções cruciais:
 
-1. Apply any fields, methods, and/or attributes necessary to the operation of these features
-2. Register the model with NetBox as utilizing these features
+1. Aplica qualquer campo, método e/ou atributos necessários para a operação destas funções e características.
+2. Registra o modelo no NetBox para utilizar essas funções e características.
 
-Simply subclass NetBoxModel when defining a model in your plugin:
+Simplesmente crie uma subclasse do `NetBoxModel` quando for definir um modelo dentro do seu plugin:
 
 ```python
 # models.py
@@ -58,17 +49,18 @@ class MyModel(NetBoxModel):
     ...
 ```
 
-### NetBoxModel Properties
+### Propriedades do NetBoxModel
 
 #### `docs_url`
 
-This attribute specifies the URL at which the documentation for this model can be reached. By default, it will return `/static/docs/models/<app_label>/<model_name>/`. Plugin models can override this to return a custom URL. For example, you might direct the user to your plugin's documentation hosted on [ReadTheDocs](https://readthedocs.org/).
+Esse atributo especifica a URL pela a qual a documentação deste modelo pode ser alcançada. Por padrão, ela retornará `/static/docs/models/<app_label>/<model_name>/`. Modelos de Plugin podem sobrepor isso com uma URL customizada. Por exemplo, você pode querer direcionar o usuário para a sua própria documentação hospedada em [ReadTheDocs](https://readthedocs.org/).
 
-### Enabling Features Individually
+### Habilitando as Funções e Características Individualmente
 
-If you prefer instead to enable only a subset of these features for a plugin model, NetBox provides a discrete "mix-in" class for each feature. You can subclass each of these individually when defining your model. (Your model will also need to inherit from Django's built-in `Model` class.)
+Se você preferir, ao invés, habilitar somente um subgrupo dessas características do modelo do plugim o NetBox fornece uma classe "mix-in" para cada característica. Você pode criar uma subclasse de cada uma individualmente ao definir um modelo. (Seu modelo também precisará herdar a classe nativa do Django `Model`.)
 
-For example, if we wanted to support only tags and export templates, we would inherit from NetBox's `ExportTemplatesMixin` and `TagsMixin` classes, and from Django's `Model` class. (Inheriting _all_ the available mixins is essentially the same as subclassing `NetBoxModel`.)
+Por exemplo, se você quiser suportar somente tags e templates de exportação, nós herdamos as classes `ExportTemplateMixin` e `TagsMixin`, e classe `Model` do Django. (Herdar __todas__ os mixins é mesma coisa que criar uma subclasse de `NetBoxModel`.)
+
 
 ```python
 # models.py
@@ -80,12 +72,13 @@ class MyModel(ExportTemplatesMixin, TagsMixin, models.Model):
     ...
 ```
 
-## Database Migrations
+## Migrações do Banco de Dados
 
-Once you have completed defining the model(s) for your plugin, you'll need to create the database schema migrations. A migration file is essentially a set of instructions for manipulating the PostgreSQL database to support your new model, or to alter existing models. Creating migrations can usually be done automatically using Django's `makemigrations` management command. (Ensure that your plugin has been installed and enabled first, otherwise it won't be found.)
+Uma vez que você tenha completado de definir os modelos do seu plugin, você precisará criar um esquema de migração do banco de dados. Um arquivo de migração é essencialmente um grupo de instruções para manipular o banco de dados do PostgreSQL para suportar seu novo modelo, ou altera um modelo existente. Criar migrações podem normalmente serem feitas automaticamente pelo comando de gerência `makemigrations` do Django. (Certifique-se de seu plugin foi instalado e habilite-o, de outra forma, não será encontrado.)
 
-!!! note Enable Developer Mode
-    NetBox enforces a safeguard around the `makemigrations` command to protect regular users from inadvertently creating erroneous schema migrations. To enable this command for plugin development, set `DEVELOPER=True` in `configuration.py`.
+!!! note Habilitando o Modo de Desenvolvedor
+
+    O NetBox força uma medidade segurança sobre o comando `makemigrations` para proteger que os usuários regulares (normais) criem um esquema de migração errado. Para habilitar esse comando no desenvolvimento de plugins, configure `DEVELOPER=True` no arquivo do NetBox `configuration.py`.
 
 ```no-highlight
 $ ./manage.py makemigrations my_plugin 
@@ -94,7 +87,7 @@ Migrations for 'my_plugin':
     - Create model MyModel
 ```
 
-Next, we can apply the migration to the database with the `migrate` command:
+Agora, nós podemos aplicação a mgiração do banco de dados com o comando `migrate`:
 
 ```no-highlight
 $ ./manage.py migrate my_plugin
@@ -104,12 +97,13 @@ Running migrations:
   Applying my_plugin.0001_initial... OK
 ```
 
-For more information about database migrations, see the [Django documentation](https://docs.djangoproject.com/en/stable/topics/migrations/).
+Para mais informações sobre a migração do banco de dados, veja a [documentação do Django](https://docs.djangoproject.com/en/stable/topics/migrations/).
 
-## Feature Mixins Reference
+## Referência das Funções dos Mixins
 
-!!! warning
-    Please note that only the classes which appear in this documentation are currently supported. Although other classes may be present within the `features` module, they are not yet supported for use by plugins.
+!!! warning Aviso
+
+    Note que somente a classe que aparece na documentação que é suportada. Embora outras classes possam estar presentes dentro do módulo `features`, eles não são suportados para uso dos plugins.
 
 ::: netbox.models.features.ChangeLoggingMixin
 
@@ -129,24 +123,26 @@ For more information about database migrations, see the [Django documentation](h
 
 ::: netbox.models.features.WebhooksMixin
 
-## Choice Sets
+## Grupos de Escolha (Choice Sets)
 
-For model fields which support the selection of one or more values from a predefined list of choices, NetBox provides the `ChoiceSet` utility class. This can be used in place of a regular choices tuple to provide enhanced functionality, namely dynamic configuration and colorization. (See [Django's documentation](https://docs.djangoproject.com/en/stable/ref/models/fields/#choices) on the `choices` parameter for supported model fields.)
+Para que cada campo do modelo de seção suporte um ou mais valores com uma lista de escolhas pré-definidas, NetBox fornece a classe de utilidades `ChoiceSet`. Pode ser usado no lugar de um tuple de escolhas regular para fornecer funcionalidades melhoradas, como configuração dinâmica e coloração. (Veja a [documentação do Django](https://docs.djangoproject.com/en/stable/ref/models/fields/#choices) sobre o parâmetro `choices` para os campos de modelo suportados.)
 
 To define choices for a model field, subclass `ChoiceSet` and define a tuple named `CHOICES`, of which each member is a two- or three-element tuple. These elements are:
+Para definir as escolhas de um campo do modelo, crie uma subclasse de `ChoiceSet` e defina uma tuple com o nome de `CHOICES`, na qual cada membro é uma tupla de dois ou três elementos. Esses elementos são:
 
-* The database value
-* The corresponding human-friendly label
-* The assigned color (optional)
+* O valor do banco de dados
+* Uma tag (label) correspondente para ser lida por humanos
+* Uma cor associada (opcional)
 
-A complete example is provided below.
+Um exemplo completo é fornecido abaixo.
 
-!!! note
-    Authors may find it useful to declare each of the database values as constants on the class, and reference them within `CHOICES` members. This convention allows the values to be referenced from outside the class, however it is not strictly required.
+!!! note Observação
 
-### Dynamic Configuration
+    Autores podem achar útil declarar cada um dos valores do banco de dados como uma constante dentro da classe e referenciá-las dentro dos membros de `CHOICES`. Essa convenção permite que os valores sejam referenciados fora da classe, no entanto não é estritamente obrigatório.
 
-Some model field choices in NetBox can be configured by an administrator. For example, the default values for the Site model's `status` field can be replaced or supplemented with custom choices. To enable dynamic configuration for a ChoiceSet subclass, define its `key` as a string specifying the model and field name to which it applies. For example:
+### Configuração Dinâmica
+
+Algumas escolhas de campos do mudelo podem ser configurados pelo administrador. Por exemplo, os valores padrões do campo do modelo do Site `status` pode ser substituído ou suplementado com escolhas customizadas. Para habilitar a configuração dinâmica para a subclasse de um ChoiceSet, defina a `key` como um texto (string) especificando o modelo e o nome do campo ao qual se aplica. Por exemplo:
 
 ```python
 from utilities.choices import ChoiceSet
@@ -155,17 +151,17 @@ class StatusChoices(ChoiceSet):
     key = 'MyModel.status'
 ```
 
-To extend or replace the default values for this choice set, a NetBox administrator can then reference it under the [`FIELD_CHOICES`](../../configuration/data-validation.md#field_choices) configuration parameter. For example, the `status` field on `MyModel` in `my_plugin` would be referenced as:
+Para extender ou substituir os valores padrões para o grupo de escolhas, o administrador do NetBox pode referenciá-lo no parâmetro de configuração em [`FIELD_CHOICES`](../../configuration/data-validation.md#field_choices). Por exemplo, o campo de `status` no `MyModel` dentro de `my_plugin` iria ser referenciado como:
 
 ```python
 FIELD_CHOICES = {
     'my_plugin.MyModel.status': (
-        # Custom choices
+        # Escolhas customizadas
     )
 }
 ```
 
-### Example
+### Exemplo
 
 ```python
 # choices.py
@@ -185,8 +181,9 @@ class StatusChoices(ChoiceSet):
     ]
 ```
 
-!!! warning
-    For dynamic configuration to work properly, `CHOICES` must be a mutable list, rather than a tuple.
+!!! warning Aviso
+
+    Para configuração dinâmica funcionar corretamente, `CHOICES` devem ser uma lista mutáveis, no lugar de uma tuple.
 
 ```python
 # models.py
