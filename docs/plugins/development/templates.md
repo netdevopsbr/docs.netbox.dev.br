@@ -1,54 +1,47 @@
 # Templates
 
-<<<<<<< HEAD
-=======
-!!! info
+Templates são utilizados para renderizar o conteúdo HTML gerados pelo grupo de dados de contexto. O NetBox fornece um grupo de templates nativos para ser utilizados pelas visualizações (views) do plugin. Os autores de plugins podem extender esses templates para minimar o trabalho necessário para criar templates customizados enquanto que garante que o conteúdo produzido pelo plugin esteja de acordo com o layout e estilo do NetBox. Esses templates são escritos em [Django Template Language (DTL)](https://docs.djangoproject.com/en/stable/ref/templates/language/).
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+## Template File Structure Estrutura de Arquivos do Template
 
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
-Templates are used to render HTML content generated from a set of context data. NetBox provides a set of built-in templates suitable for use in plugin views. Plugin authors can extend these templates to minimize the work needed to create custom templates while ensuring that the content they produce matches NetBox's layout and style. These templates are all written in the [Django Template Language (DTL)](https://docs.djangoproject.com/en/stable/ref/templates/language/).
+Os templates do plugin devem estar dentro do caminho do arquivo `templates/<plugin-name>` dentro do root do plugin. Por exemplo, se o nome do seu plugin `my_plugin` e cria um template nomeado de `foo.html`, deve ser salvo como `templates/my_plugin/foo.html`. (Você com certeza pode utilizar sub diretórios abaixo desse ponto também). Isso garante que a engine de template possa localizar o template para renderização.
 
-## Template File Structure
+## Blocos Padrões (Standard Blocks)
 
-Plugin templates should live in the `templates/<plugin-name>/` path within the plugin root. For example if your plugin's name is `my_plugin` and you create a template named `foo.html`, it should be saved to `templates/my_plugin/foo.html`. (You can of course use subdirectories below this point as well.) This ensures that Django's template engine can locate the template for rendering.
+Os blocos de templates abaixo estão disponíveis em todos os templates.
 
-## Standard Blocks
+| Nome           | Obrigatório | Descrição                                                                  |
+|----------------|-------------|----------------------------------------------------------------------------|
+| `title`        | Sim         | Título da página                                                           |
+| `content`      | Sim         | Conteúdo da págiina                                                        |
+| `head`         | -           | Conteúdo para incluir o elemento `<head>` no HTML                          |
+| `footer`       | -           | Conteúdo do rodapé (footer) da página                                      |
+| `footer_links` | -           | Seção de links do rodapé da página                                         |
+| `javascript`   | -           | Conteúdo JavaScript para ser incluso no final do elemento `<body>` do HTML |
 
-The following template blocks are available on all templates.
+!!! note Observação
 
-| Name           | Required | Description                                                         |
-|----------------|----------|---------------------------------------------------------------------|
-| `title`        | Yes      | Page title                                                          |
-| `content`      | Yes      | Page content                                                        |
-| `head`         | -        | Content to include in the HTML `<head>` element                     |
-| `footer`       | -        | Page footer content                                                 |
-| `footer_links` | -        | Links section of the page footer                                    |
-| `javascript`   | -        | Javascript content included at the end of the HTML `<body>` element |
+    Para mais informações em como o blocos de templates funcionam, consulte a [documentação do Django](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#block).
 
-!!! note
-    For more information on how template blocks work, consult the [Django documentation](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#block).
-
-## Base Templates
+## Templates Base
 
 ### layout.html
 
-Path: `base/layout.html`
+Caminho (path): `base/layout.html`
 
-NetBox provides a base template to ensure a consistent user experience, which plugins can extend with their own content. This is a general-purpose template that can be used when none of the function-specific templates below are suitable.
+O NetBox fornece um template base para garantir uma experiência do usuário consistente, que os plugins podem extender seu próprio conteúdo. Esse template é utilizado por um propósito geral que pode ser utilizado quando uma função específica do template abaixo são suportados.
 
-#### Blocks
+#### Blocos (Blocks)
 
-| Name      | Required | Description                |
-|-----------|----------|----------------------------|
-| `header`  | -        | Page header                |
-| `tabs`    | -        | Horizontal navigation tabs |
-| `modals`  | -        | Bootstrap 5 modal elements |
+| Nome      | Obrigatório | Descrição                               |
+|-----------|----------|--------------------------------------------|
+| `header`  | -        | Cabeçalho da Página                        |
+| `tabs`    | -        | Tabs de navegação horizontais              |
+| `modals`  | -        | Elementos de modelo (modal) do Bootstrap 5 |
 
-#### Example
+#### Exemplo
 
-An example of a plugin template which extends `layout.html` is included below.
+Um exemplo do template do plugin que extende o `layout.html` está incluso abaixo.
 
 ```jinja2
 {% extends 'base/layout.html' %}
@@ -62,162 +55,164 @@ An example of a plugin template which extends `layout.html` is included below.
 {% endblock content %}
 ```
 
-The first line of the template instructs Django to extend the NetBox base template, and the `block` sections inject our custom content within its `header` and `content` blocks.
+A primeira linha do template instrui o Django a extender o template base do NetBox, e as seções `block` injetam nosso conteúdo customizado dentro dos blocos `header` e `content`.
 
-!!! note
-    Django renders templates with its own custom [template language](https://docs.djangoproject.com/en/stable/topics/templates/#the-django-template-language). This is very similar to Jinja2, however there are some important distinctions of which authors should be aware. Be sure to familiarize yourself with Django's template language before attempting to create new templates.
+!!! note Observação
 
-## Generic View Templates
+    O Django renderiza os templates com sua própria [linguagem customizada](https://docs.djangoproject.com/en/stable/topics/templates/#the-django-template-language). Isso é muito similar ao Jinja2, no entanto há distinções importantes as quais os autores devem estar cientes. Certifique-se de se familiarizar com a linguagem template do Django antes de tentar criar seus novos templates.
+
+## Templates Genéricos da Visualização (Generic View Templates)
 
 ### object.html
 
-Path: `generic/object.html`
+Caminho (path): `generic/object.html`
 
-This template is used by the `ObjectView` generic view to display a single object.
+Esse template é usado pela visualização genérica `ObjectView` (generic view) para exibir apenas um objeto.
 
-#### Blocks
+#### Blocos (Blocks)
 
-| Name                | Required | Description                                  |
-|---------------------|----------|----------------------------------------------|
-| `breadcrumbs`       | -        | Breadcrumb list items (HTML `<li>` elements) |
-| `object_identifier` | -        | A unique identifier (string) for the object  |
-| `extra_controls`    | -        | Additional action buttons to display         |
-| `extra_tabs`        | -        | Additional tabs to include                   |
+| Nome                | Obrigatório | Descrição                                        |
+|---------------------|-------------|-----------------------------------------------------| 
+| `breadcrumbs`       | -           | Breadcumb da lista de items (elementos `<li>` HTML) | 
+| `object_identifier` | -           | Um indentificador único (string) do objeto          | 
+| `extra_controls`    | -           | Botões de ações adicionais para serem exibidos      | 
+| `extra_tabs`        | -           | Tabs adicionais para serem inclusas                 | 
 
-#### Context
+#### Contexto (Context)
 
-| Name     | Required | Description                      |
-|----------|----------|----------------------------------|
-| `object` | Yes      | The object instance being viewed |
+| Nome     | Obrigatório | Descrição                               |
+|----------|-------------|-----------------------------------------|
+| `object` | Sim         | A instância do objeto sendo visualizada | 
 
 ### object_edit.html
 
-Path: `generic/object_edit.html`
+Caminho (path): `generic/object_edit.html`
 
-This template is used by the `ObjectEditView` generic view to create or modify a single object.
+Esse template é utilizado pela visualização genérica (generic view) para criar ou modificar um único objeto.
 
-#### Blocks
+#### Blocos (Blocks)
+ 
+| Nome      | Obrigatório | Descrição                                                             |
+|-----------|-------------|-----------------------------------------------------------------------|
+| `form`    | -           | Conteúdo de formulário customizado (dentro do elemento HTML `<form>`) |
+| `buttons` | -           | Botões do formulário para submetê-lo                                  | 
 
-| Name             | Required | Description                                           |
-|------------------|----------|-------------------------------------------------------|
-| `form`           | -        | Custom form content (within the HTML `<form>` element |
-| `buttons`        | -        | Form submission buttons                               |
+#### Contexto (Context)
 
-#### Context
-
-| Name         | Required | Description                                                     |
-|--------------|----------|-----------------------------------------------------------------|
-| `object`     | Yes      | The object instance being modified (or none, if creating)       |
-| `form`       | Yes      | The form class for creating/modifying the object                |
-| `return_url` | Yes      | The URL to which the user is redirect after submitting the form |
+| Nome         | Obrigatório | Descrição                                                        |
+|--------------|----------|---------------------------------------------------------------------|
+| `object`     | Sim      | A instância do objeto sendo modificada (none, se estiver criando)   | 
+| `form`       | Sim      | A classe do formulário do objeto sendo criada/modificada            | 
+| `return_url` | Sim      | A URL que o usuário é redirecionado depois de submeter o formulário | 
 
 ### object_delete.html
 
-Path: `generic/object_delete.html`
+Caminho (path): `generic/object_delete.html`
 
-This template is used by the `ObjectDeleteView` generic view to delete a single object.
+Esse template é utilizado pela visualização genérica (generic view) `ObjectDeleteView` para deletar um objeto único.
 
-#### Blocks
+#### Blocos (Blocks)
 
 None
 
-#### Context
+#### Contexto (Context)
 
-| Name         | Required | Description                                                     |
-|--------------|----------|-----------------------------------------------------------------|
-| `object`     | Yes      | The object instance being deleted                               |
-| `form`       | Yes      | The form class for confirming the object's deletion             |
-| `return_url` | Yes      | The URL to which the user is redirect after submitting the form |
+| Nome         | Obrigatório | Descrição                                                                    |
+|--------------|-------------|------------------------------------------------------------------------------|
+| `object`     | Sim         | A instância do objeto sendo deletada                                         | 
+| `form`       | Sim         | A classe do formulário confirmando a remoção do objeto                       | 
+| `return_url` | Sim         | A URL que o usuário está sendo redirecionado depois de submeter o formulário | 
 
 ### object_list.html
 
-Path: `generic/object_list.html`
+Caminho (path): `generic/object_list.html`
 
-This template is used by the `ObjectListView` generic view to display a filterable list of multiple objects.
+O template sendo utilizado pela visualização genérica `ObjetListView` para ser exibida em uma lista filtrável de objetos múltiplos.
 
-#### Blocks
+#### Blocos (Blocks)
 
-| Name             | Required | Description                                                        |
-|------------------|----------|--------------------------------------------------------------------|
-| `extra_controls` | -        | Additional action buttons                                          |
-| `bulk_buttons`   | -        | Additional bulk action buttons to display beneath the objects list |
+| Nome              | Obrigatório | Descrição                                                                                          |
+|------------------|--------------|----------------------------------------------------------------------------------------------------|
+| `extra_controls` | -            | Botões de ações adicionais                                                                         | 
+| `bulk_buttons`   | -            | Grupo de ações (bulk actions) de botões adicionais para serem exibidos  abaixo da lista de objetos | 
 
-#### Context
+#### Contexto (Context)
 
-| Name          | Required | Description                                                                                 |
-|---------------|----------|---------------------------------------------------------------------------------------------|
-| `model`       | Yes      | The object class                                                                            |
-| `table`       | Yes      | The table class used for rendering the list of objects                                      |
-| `permissions` | Yes      | A mapping of add, change, and delete permissions for the current user                       |
-| `actions`     | Yes      | A list of buttons to display (`add`, `import`, `export`, `bulk_edit`, and/or `bulk_delete`) |
-| `filter_form` | -        | The bound filterset form for filtering the objects list                                     |
-| `return_url`  | -        | The return URL to pass when submitting a bulk operation form                                |
+| Nome          | Obrigatório | Descrição                                                                                         |
+|---------------|-------------|---------------------------------------------------------------------------------------------------|
+| `model`       | Sim         | A classe do objeto                                                                                |
+| `table`       | Sim         | A classe da tabela utilizada para renderizar a lista de objetos                                   | 
+| `permissions` | Sim         | Um mapeamento para adicionar, alterar e deletar as permissões do uusário corrente                 | 
+| `actions`     | Sim         | Uma lista de botões para exibir (`add`, `import`, `export`, `bulk_edit`, e/ou `bulk_delete`)      | 
+| `filter_form` | -           | O formulário de filterset atrelado para filtragem da lista de objetos                             | 
+| `return_url`  | -           | A URL retornada para ser passada ao submeter um formulário de operações em grupo (bulk operation) | 
 
 ### bulk_import.html
 
-Path: `generic/bulk_import.html`
+Caminho (path): `generic/bulk_import.html`
 
-This template is used by the `BulkImportView` generic view to import multiple objects at once from CSV data.
+O template utilizado pela visualização genérica (generic view) `BulkImportView` para importar múltiplos objetos de uma vez dos dados de um CSV.
 
-#### Blocks
+#### Blocos (Blocks)
 
 None
 
-#### Context
+#### Contexto (Context)
 
-| Name         | Required | Description                                                  |
-|--------------|----------|--------------------------------------------------------------|
-| `model`      | Yes      | The object class                                             |
-| `form`       | Yes      | The CSV import form class                                    |
-| `return_url` | -        | The return URL to pass when submitting a bulk operation form |
-| `fields`     | -        | A dictionary of form fields, to display import options       |
+| Nome         | Obrigatório | Descrição                                                                           |
+|--------------|-------------|-------------------------------------------------------------------------------------|
+| `model`      | Sim         | A classe do objeto                                                                  |
+| `form`       | Sim         | A classe do formulário para importar o CSV                                          |
+| `return_url` | -           | A URL retornada para ser passada ao submeter uma operação em grupo (bulk operation) |
+| `fields`     | -           | Um diretório de campos de formulário, para opções de importação de exibição         |
 
 ### bulk_edit.html
 
-Path: `generic/bulk_edit.html`
+Caminho (path): `generic/bulk_edit.html`
 
-This template is used by the `BulkEditView` generic view to modify multiple objects simultaneously.
+O template utiliado pela visualização genérica (generic view) `BulkEditView` para modificar múltiplos objetos simultaneamente.
 
-#### Blocks
+#### Blocos (Blocks)
 
 None
 
-#### Context
+#### Contexto (Context)
 
-| Name         | Required | Description                                                     |
-|--------------|----------|-----------------------------------------------------------------|
-| `model`      | Yes      | The object class                                                |
-| `form`       | Yes      | The bulk edit form class                                        |
-| `table`      | Yes      | The table class used for rendering the list of objects          |
-| `return_url` | Yes      | The URL to which the user is redirect after submitting the form |
+| Nome         | Obrigatório | Descrição                                                         |
+|--------------|-------------|-------------------------------------------------------------------| 
+| `model`      | Sim         | A classe do objeto                                                |
+| `form`       | Sim         | Classe de formulário para edição em grupo                         | 
+| `table`      | Sim         | Uma classe de tabela utilizada para renderizar a lista de objetos | 
+| `return_url` | Sim         | A URL que o usuário é redirecionado ao submeter um formulário     | 
 
 ### bulk_delete.html
 
-Path: `generic/bulk_delete.html`
+Caminho (path): `generic/bulk_delete.html`
 
-This template is used by the `BulkDeleteView` generic view to delete multiple objects simultaneously.
+O template utilizado pela visualização genérica (generic view) `BulkDeleteView` para deletar múltiplos objetos simultaneamente.
 
-#### Blocks
+#### Blocos (Blocks)
 
-| Name            | Required | Description                           |
-|-----------------|----------|---------------------------------------|
-| `message_extra` | -        | Supplementary warning message content |
+| Nome            | Obrigatório | Desrição                                     |
+|-----------------|-------------|----------------------------------------------|
+| `message_extra` | -           | Um conteúdo de mensagem de aviso suplementar | 
 
-#### Context
+#### Contexto (Context)
 
-| Name         | Required | Description                                                     |
-|--------------|----------|-----------------------------------------------------------------|
-| `model`      | Yes      | The object class                                                |
-| `form`       | Yes      | The bulk delete form class                                      |
-| `table`      | Yes      | The table class used for rendering the list of objects          |
-| `return_url` | Yes      | The URL to which the user is redirect after submitting the form |
+| Nome         | Obrigatório | Descrição                                                      |
+|--------------|-------------|-------------------------------------------------------------------|
+| `model`      | Yes         | A classe do objeto                                                |
+| `form`       | Yes         | A classe de formulário para remoção em grupo (bulk delte)         |
+| `table`      | Yes         | A classe da tabela utilizada para renderizar uma lista de objetos |
+| `return_url` | Yes         | A URL que o usuário é redireiconado após submeter o formulário    | 
 
 ## Tags
 
-The following custom template tags are available in NetBox.
+O template customizado de tags abaixo estão disponíveis no NetBox.
 
-!!! info
-    These are loaded automatically by the template backend: You do _not_ need to include a `{% load %}` tag in your template to activate them.
+!!! info Informação
+
+    Esses tamplates de backend são automaticamente carregados: Você _não_ precisa incluir uma tag `{% load %}` no seu template para ativá-los.
 
 ::: utilities.templatetags.builtins.tags.badge
 
@@ -227,12 +222,13 @@ The following custom template tags are available in NetBox.
 
 ::: utilities.templatetags.builtins.tags.tag
 
-## Filters
+## Filtros (Filters)
 
-The following custom template filters are available in NetBox.
+Os filtros de template customizado estão disponíveis no NetBox.
 
-!!! info
-    These are loaded automatically by the template backend: You do _not_ need to include a `{% load %}` tag in your template to activate them.
+!!! info Informação
+
+    Esses templates de backend são automaticamente carregados: Você _não_ precisa incluir uma tag `{% load %}` no seu template para ativá-los.
 
 ::: utilities.templatetags.builtins.filters.bettertitle
 

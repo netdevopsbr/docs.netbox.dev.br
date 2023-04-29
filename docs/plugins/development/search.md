@@ -20,7 +20,11 @@ class MyModelIndex(SearchIndex):
     )
 ```
 
+<<<<<<< HEAD
 Para registrar um ou mais indexes dentro do NetBox, defina uma lista nomeada de `indexes` no final do arquivo:
+=======
+Para registrar um ou mais indexes no NetBox, defina uma lista nomeada de `indexes` no inal do arquivo:
+>>>>>>> 10d642ea55302d0cdd3c2087600272f4406da1df
 
 ```python
 indexes = [MyModelIndex]
@@ -28,6 +32,10 @@ indexes = [MyModelIndex]
 
 !!! tip Dica
 
+<<<<<<< HEAD
     O caminho (path) para a lista de indexes pode ser modificada pela configuração `search_indexes` na instância de `PluginConfig`.
+=======
+    O caminho (path) para a lista de pesquisa de indexes pode ser modificada pela configuração `search_indexes` na instância de `PluginConfig`.
+>>>>>>> 10d642ea55302d0cdd3c2087600272f4406da1df
 
 ::: netbox.search.SearchIndex

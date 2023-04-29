@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-# Views
-=======
 # Visualizações (Views)
 
-!!! info
+## Escrevendo Visualizações (Views)
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
->>>>>>> e06ef5523ba15ec31b7ed58bf5799b98023831bc
+Se o seu plugin fornece sua própria página dentro da interface web do NetBox, você precisa definir visualizações (views). Uma view é um pedaço lógico que performa uma ação e/ou renderiza uma página quando a requisição é feita para uma URL particular. O conteúdo HTML é renderizado usando [template](./templates.md). As visualizações são normalmente definidas em `views.py`, e os padrões da URl estão em `urls.py`.
 
-## Writing Views
-
-If your plugin will provide its own page or pages within the NetBox web UI, you'll need to define views. A view is a piece of business logic which performs an action and/or renders a page when a request is made to a particular URL. HTML content is rendered using a [template](./templates.md). Views are typically defined in `views.py`, and URL patterns in `urls.py`.
-
-As an example, let's write a view which displays a random animal and the sound it makes. We'll use Django's generic `View` class to minimize the amount of boilerplate code needed.
+Por exemplo, vamos escrever uma visualização (view) que exibe um animal randômico e o som que o mesmo faz. Nós iremos usar uma classe genérica do Django `View` para minimizar a quantidade de código "desnecessário" para ser utilizado.
 
 ```python
 from django.shortcuts import render
@@ -22,7 +13,7 @@ from .models import Animal
 
 class RandomAnimalView(View):
     """
-    Display a randomly-selected animal.
+    Mostra um animal randômicamente selecionado.
     """
     def get(self, request):
         animal = Animal.objects.order_by('?').first()
@@ -31,13 +22,13 @@ class RandomAnimalView(View):
         })
 ```
 
-This view retrieves a random Animal instance from the database and passes it as a context variable when rendering a template named `animal.html`. HTTP `GET` requests are handled by the view's `get()` method, and `POST` requests are handled by its `post()` method.
+A visualização retorna uma instância randômica de `Animal` do banco de dados e passa como uma variável de contexto ao renderizar um template nomeado de `animal.html`. As requisições HTTP do tipo `GET` são lidadas pelo método de visualização (views) `get()`, enquanto que requisições `POST` são lidadas pelo método `post()`.
 
-Our example above is extremely simple, but views can do just about anything. They are generally where the core of your plugin's functionality will reside. Views also are not limited to returning HTML content: A view could return a CSV file or image, for instance. For more information on views, see the [Django documentation](https://docs.djangoproject.com/en/stable/topics/class-based-views/).
+Nosso exemplo acima é extremamente simples, mas visualizações podem ser sobre qualquer coisa. Elas são utilizadas geralmente nos lugares onde a funcionalidade do plugin irá estar. Visualizações não estão limitadas para retornar somente conteúdo HTML: Uma visualização (view) pode retornar um arquivo CSV ou imagem, por exemplo. Para mais informações sobre visualização, veja a [documentação do Django](https://docs.djangoproject.com/en/stable/topics/class-based-views/).
 
-### URL Registration
+### Registrando a URL
 
-To make the view accessible to users, we need to register a URL for it. We do this in `urls.py` by defining a `urlpatterns` variable containing a list of paths.
+Para fazer uma visualização acessível aos usuários, nós precisamos registrar uma URL para isso. Nós fazemos isso em `urls.py` ao definir uma variável em `urlpatterns` contendo uma lista de caminhos (paths).
 
 ```python
 from django.urls import path
@@ -48,33 +39,34 @@ urlpatterns = [
 ]
 ```
 
-A URL pattern has three components:
+O padrão da URL (pattern) tem três componentes:
 
-* `route` - The unique portion of the URL dedicated to this view
-* `view` - The view itself
-* `name` - A short name used to identify the URL path internally
+* `route` - A porção única da URL dedicada à essa visualização
+* `view` - A visualização em si
+* `name` - Um breve nome utilizado para identificar o caminho (path) da URL internamente
 
-This makes our view accessible at the URL `/plugins/animal-sounds/random/`. (Remember, our `AnimalSoundsConfig` class sets our plugin's base URL to `animal-sounds`.) Viewing this URL should show the base NetBox template with our custom content inside it.
+Isso permite que nossa visualização seja acessível na URL `/plugins/animal-sounds/random/`. (Lembre, nossa classe `AnimalSoundsConfig` do nossa URL base do plugin é definida para `animal-sounds`.). Visualizar a URL deve mostrar o template base do NetBox com nosso conteúdo customizado dentro disto.
 
-### View Classes
+### Classes de Visualização (View Classes)
 
-NetBox provides several generic view classes (documented below) to facilitate common operations, such as creating, viewing, modifying, and deleting objects. Plugins can subclass these views for their own use.
+O NetBox fornece uma classe de visualização genérica (generic view) documentada abaixa para facilitar as operações comuns, como criar, visualizar, modificar e deletar objetos. Os plugins podem criar uma subclasse dessas visualizações para seu próprio uso.
 
-| View Class           | Description                                            |
-|----------------------|--------------------------------------------------------|
-| `ObjectView`         | View a single object                                   |
-| `ObjectEditView`     | Create or edit a single object                         |
-| `ObjectDeleteView`   | Delete a single object                                 |
-| `ObjectChildrenView` | A list of child objects within the context of a parent |
-| `ObjectListView`     | View a list of objects                                 |
-| `BulkImportView`     | Import a set of new objects                            |
-| `BulkEditView`       | Edit multiple objects                                  |
-| `BulkDeleteView`     | Delete multiple objects                                |
+| Classe da Visualização           | Descrição                                                     |
+|----------------------|---------------------------------------------------------------------------|
+| `ObjectView`         | Mostrar um objeto único                                                   |
+| `ObjectEditView`     | Criar ou editar um objeto único                                           |
+| `ObjectDeleteView`   | Deletar um objeto único                                                   |
+| `ObjectChildrenView` | Uma lista de objetos filhos (child) dentro do contexto de um pai (parent) |
+| `ObjectListView`     | Visualizar uma lista de objetos                                           |
+| `BulkImportView`     | Importar um grupo (set) de novos objetos                                  |
+| `BulkEditView`       | Editar múltiplos objetos                                                  |
+| `BulkDeleteView`     | Deletar múltiplos objetos                                                 |
 
-!!! warning
-    Please note that only the classes which appear in this documentation are currently supported. Although other classes may be present within the `views.generic` module, they are not yet supported for use by plugins.
+!!! warning Aviso
 
-#### Example Usage
+    Note que somente a classe que aparece na documentação é a suportada atualmente. Embora outras classes podem estar presentes dentro do módulo `views.generic`, elas não são mais suportadas para serem utilizadas pelos plugins.
+
+#### Exemplo de Uso
 
 ```python
 # views.py
@@ -86,9 +78,9 @@ class ThingEditView(ObjectEditView):
     template_name = 'myplugin/thing.html'
     ...
 ```
-## Object Views
+## Visualizações do Objeto (Object Views)
 
-Below are the class definitions for NetBox's object views. These views handle CRUD actions for individual objects. The view, add/edit, and delete views each inherit from `BaseObjectView`, which is not intended to be used directly.
+Abaixo estão as definições da classe para a visualização do objeto no NetBox (object view). Essas visualizações lidam com as ações de CRUD para objetos individuais. A visualização, adição/modificação e remoção da visualização de cada visualização herda de `BaseObjectView`, que não tem a inteção de ser utilizada diretamente.
 
 ::: netbox.views.generic.base.BaseObjectView
     options:
@@ -117,9 +109,9 @@ Below are the class definitions for NetBox's object views. These views handle CR
         - get_children
         - prep_table_data
 
-## Multi-Object Views
+## Visualizações de Objetos Múltiplos (Multi-Object Views)
 
-Below are the class definitions for NetBox's multi-object views. These views handle simultaneous actions for sets objects. The list, import, edit, and delete views each inherit from `BaseMultiObjectView`, which is not intended to be used directly.
+Abaixo estão as definições da classe de visualização de múltiplos objetos do NetBox. Essa visualização lida com ações simultaneamente para grupos de objetos. A lista, importação, edição e remoção de visualização herda individualmente de `BaseMultiObjectView`, que não tem a inteção de ser utilizada diretamente.
 
 ::: netbox.views.generic.base.BaseMultiObjectView
     options:
@@ -148,9 +140,9 @@ Below are the class definitions for NetBox's multi-object views. These views han
       members:
         - get_form
 
-## Feature Views
+## Características das Visualizações (Views)
 
-These views are provided to enable or enhance certain NetBox model features, such as change logging or journaling. These typically do not need to be subclassed: They can be used directly e.g. in a URL path.
+Essas visualizações são fornecidades para habilitar ou aumentar certas características e funções de modelo do NetBox, como o registro de logs e journaling. Normalmente não é necessário ter uma subclasse: Elas podem ser utilizadas diretamente, por exemplo no caminho (path) da URL.
 
 ::: netbox.views.generic.ObjectChangeLogView
     options:
@@ -162,14 +154,15 @@ These views are provided to enable or enhance certain NetBox model features, suc
       members:
         - get_form
 
-## Extending Core Views
+## Extendendo as Visualizações Nativas
 
-### Additional Tabs
+### Tabs Adicionais
 
-!!! note
-    This feature was introduced in NetBox v3.4.
+!!! note Observação
 
-Plugins can "attach" a custom view to a core NetBox model by registering it with `register_model_view()`. To include a tab for this view within the NetBox UI, declare a TabView instance named `tab`:
+    Essa característica foi introduzida na versão v3.4 do NetBox
+
+Os plugins podem "atribuit" (attach) uma visualização customizada ao modelo nativo do NetBox ao registrá-lo com `register_model_view()`. Incluir uma tab para essa visualização dentro da interface web do NetBox, declare uma instância de `TabView` nomeada de `tab`:
 
 ```python
 from dcim.models import Site
@@ -191,31 +184,31 @@ class MyView(generic.ObjectView):
 
 ::: utilities.views.ViewTab
 
-### Extra Template Content
+### Conteúdo Extra do Template
 
-Plugins can inject custom content into certain areas of core NetBox views. This is accomplished by subclassing `PluginTemplateExtension`, designating a particular NetBox model, and defining the desired method(s) to render custom content. Five methods are available:
+Os plugins podem injetar conteúdo customizado em certas áreas a visualização nativa do NetBox. Ela pode ser realizada ao criar uma subclasse de `PluginTemplateExtension`, designando um modelo particular do NetBox e métodos pretendidos para renderizar conteúdo customizado. Cinco métodos estão disponíveis:
 
-| Method              | View        | Description                                         |
-|---------------------|-------------|-----------------------------------------------------|
-| `left_page()`       | Object view | Inject content on the left side of the page         |
-| `right_page()`      | Object view | Inject content on the right side of the page        |
-| `full_width_page()` | Object view | Inject content across the entire bottom of the page |
-| `buttons()`         | Object view | Add buttons to the top of the page                  |
-| `list_buttons()`    | List view   | Add buttons to the top of the page                  |
+| Método              | Visualização                         | Descrição                                                |
+|---------------------|--------------------------------------|----------------------------------------------------------|
+| `left_page()`       | Visualização do Objeto (Object View) | Injeta conteúdo na parte esqueda da página               |
+| `right_page()`      | Visualização do Objeto (Object View) | Injeta conteúdo na parte direita da página               |
+| `full_width_page()` | Visualização do Objeto (Object View) | Injeta conteúdo sobre a parte inferior inteira da página |
+| `buttons()`         | Visualização do Objeto (Object View) | Adiciona botões ao topo da página                        | 
+| `list_buttons()`    | Visualização da Lista (ListView  )   | Adiciona botões ao topo da página                        |
 
-Additionally, a `render()` method is available for convenience. This method accepts the name of a template to render, and any additional context data you want to pass. Its use is optional, however.
+Adicionalmente, um método `render()` é disponível para conveniência. Esse método aceita o nome de um template para ser renderizado e qualquer dados de contexto adicionais podem ser pasados. Isso tem o uso opcional, no entanto.
 
-When a PluginTemplateExtension is instantiated, context data is assigned to `self.context`. Available data include:
+Quando a `PluginTemplateExtension` é instanciada, os dados de contexto é atrelado à `self.context`. Os dados disponíveis incluem:
 
-* `object` - The object being viewed (object views only)
-* `model` - The model of the list view (list views only)
-* `request` - The current request
-* `settings` - Global NetBox settings
-* `config` - Plugin-specific configuration parameters
+* `object` - O objeto sendo visualizado (somente a visualização de objeto)
+* `model` - O modelo da lista de visualização (visualização de lista somente)
+* `request` - TA requisição corrente (atual)
+* `settings` - Configurações Globais do NetBox
+* `config` - Parâmetros de Configuração específicas do Plugin
 
-For example, accessing `{{ request.user }}` within a template will return the current user.
+Por exemplo, acessar `{{ request.user }}` dentro do template irá retornar o usuário atual.
 
-Declared subclasses should be gathered into a list or tuple for integration with NetBox. By default, NetBox looks for an iterable named `template_extensions` within a `template_content.py` file. (This can be overridden by setting `template_extensions` to a custom value on the plugin's PluginConfig.) An example is below.
+Subclasses declaradas devem ser postas dentro de uma lista ou tuple para integração co mo NetBox. Por padrão, o NetBox procura por um iterável nomeado de `template_extensions` dentro do arquivo `template_content.py`. (Pode ser sobreposto pela configuração `template_extensions` para um valor customizado do `PluginConfig` do seu plugin.). Existe um exemplo abaixo.
 
 ```python
 from extras.plugins import PluginTemplateExtension
