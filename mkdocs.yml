@@ -152,22 +152,22 @@ nav:
         - Webhooks (em Inglês ainda): 'integrations/webhooks.md'
         - NAPALM (em Inglês ainda): 'integrations/napalm.md'
         - Métricas do Prometheus (em Inglês ainda): 'integrations/prometheus-metrics.md'
-    - Plugins (em Inglês ainda):
+    - Plugins:
         - Usando Plugins: 'plugins/index.md'
         - Desenvolvendo Plugins:
             - Começando: 'plugins/development/index.md'
-            - Modelos (em Inglês ainda): 'plugins/development/models.md'
-            - Visualizações (Views) - em Inglês ainda: 'plugins/development/views.md'
-            - Navegação (em Inglês ainda): 'plugins/development/navigation.md'
-            - Templates (em Inglês ainda): 'plugins/development/templates.md'
-            - Tabelas (em Inglês ainda): 'plugins/development/tables.md'
+            - Modelos: 'plugins/development/models.md'
+            - Visualizações (Views): 'plugins/development/views.md'
+            - Navegação: 'plugins/development/navigation.md'
+            - Templates: 'plugins/development/templates.md'
+            - Tabelas: 'plugins/development/tables.md'
             - Formulários: 'plugins/development/forms.md'
             - Filtros & Grupos de Filtro: 'plugins/development/filtersets.md'
-            - Pesquisa (Search) - em Inglês ainda: 'plugins/development/search.md'
-            - API REST (em Inglês ainda): 'plugins/development/rest-api.md'
+            - Pesquisa (Search): 'plugins/development/search.md'
+            - API REST: 'plugins/development/rest-api.md'
             - API GraphQL: 'plugins/development/graphql-api.md'
             - Tarefas de Fundo (Background): 'plugins/development/background-tasks.md'
-            - Mudanças Pendentes (Staged) - em Inglês ainda: 'plugins/development/staged-changes.md'
+            - Mudanças Pendentes (Staged): 'plugins/development/staged-changes.md'
             - Exceções: 'plugins/development/exceptions.md'
     - Administração (em Inglês ainda):
         - Autenticação (em Inglês ainda):
