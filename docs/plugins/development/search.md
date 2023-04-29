@@ -1,6 +1,6 @@
 # Pesquisa (Search)
 
-!!! note Observaçõ
+!!! note Observação
 
     Essa função foi introduzida na versão v3.4 do NetBox.
 

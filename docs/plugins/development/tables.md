@@ -1,22 +1,22 @@
 # Tabelas
 
-NetBox employs the [`django-tables2`](https://django-tables2.readthedocs.io/) library for rendering dynamic object tables. These tables display lists of objects, and can be sorted and filtered by various parameters.
+O NetBox utiliza a biblioteca [`django-tables2`](https://django-tables2.readthedocs.io/) para renderizar tabelas de objetos dinâmicas. Essas tabelas mostram a lista de objetos e podem ser ordenadas e filtradas com diversos parâmetros.
 
 ## NetBoxTable
 
-To provide additional functionality beyond what is supported by the stock `Table` class in `django-tables2`, NetBox provides the `NetBoxTable` class. This custom table class includes support for:
+Para fornecer funcionalidades adicionais além do grupo de funções suportads pela classe `Table` dentro de `django-tables2`. O NetBox fornece a classe `NetBoxTable`. Essa classe de tabela customizada inclui o suporte de:
 
-* User-configurable column display and ordering
-* Custom field & custom link columns
-* Automatic prefetching of related objects
+* Configuração do usuário para exibição de coluna e ordenamento
+* Colunas de campos customizados & links customizados
+* A pré-obtenção automática de objetos relacionados
 
-It also includes several default columns:
+Isso inclui diversas colunas padrões diversas:
 
-* `pk` - A checkbox for selecting the object associated with each table row (where applicable)
-* `id` - The object's numeric database ID, as a hyperlink to the object's view (hidden by default)
-* `actions` - A dropdown menu presenting object-specific actions available to the user
+* `pk` - Um checkbox para selecionar o objeto associado com cada linha de cada tabela (onde aplicável)
+* `id` - O ID número do objeto do banco de dados, como um hyperlink (link) da visualização do objeto (escondida por padrão)
+* `actions` - Um menu de dropdown apresentando ações específicas do objeto disponíveis ao usuário
 
-### Example
+### Exemplo
 
 ```python
 # tables.py
@@ -36,20 +36,20 @@ class MyModelTable(NetBoxTable):
         default_columns = ('pk', 'name', ...)
 ```
 
-### Table Configuration
+### Configuração da Tabela
 
-The NetBoxTable class features dynamic configuration to allow users to change their column display and ordering preferences. To configure a table for a specific request, simply call its `configure()` method and pass the current HTTPRequest object. For example:
+A classe `NetBoxTabel` oferece funções dinâmicas de configuração para permitir que os usuários mudem a exibição de suas colunas ao ordenas as preferências. Para configurar uma tabela para requisições específicas, simplesmente chame o método `configure()` e passe o objeto corrente `HTTPRequest`. Por exemplo:
 
 ```python
 table = MyModelTable(data=MyModel.objects.all())
 table.configure(request)
 ```
 
-This will automatically apply any user-specific preferences for the table. (If using a generic view provided by NetBox, table configuration is handled automatically.)
+Automaticamente será aplicadas preferências especificadas pelo usuário para a tabela. (Se estiver utilizando uma visualização genérica (generic view) fornecida pelo NetBox, configuração da tabela é automaticamente provisionada.)
 
-## Columns
+## Colunas
 
-The table column classes listed below are supported for use in plugins. These classes can be imported from `netbox.tables.columns`.
+As classes da coluna listadas abaixo são suportadas para serem utilizadas pelos plugins. Essas classes podem ser importadas de `netbox.tables.columns`.
 
 ::: netbox.tables.BooleanColumn
     options:
