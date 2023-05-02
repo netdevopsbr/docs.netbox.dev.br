@@ -1,11 +1,26 @@
 site_name: Documentação Netbox
 site_dir: ./site
+site_url: https://docs.netbox.dev.br/
 docs_dir: ./docs
+repo_name: netbox-community/netbox
+repo_url: https://github.com/netbox-community/netbox
 theme:
   name: material
+  custom_dir: docs/_theme/
+  icon:
+    repo: fontawesome/brands/github
   language: pt-BR
   palette:
-    scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to Dark Mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/lightbulb
+        name: Switch to Light Mode
   features:
     - navigation.instant
     - navigation.tracking
@@ -16,9 +31,25 @@ theme:
     - navigation.top
     - toc.follow
     - toc.integrate
-  icon:
-    repo: fontawesome/brands/github
-    logo: assets/favicon.ico
+plugins:
+  - search
+  - social
+  #- mkdocstrings:
+  #    handlers:
+  #      python:
+  #        setup_commands:
+  #          - import os
+  #          - import django
+  #          - os.chdir('netbox/')
+  #          - os.environ.setdefault("DJANGO_SETTINGS_MODULE", "netbox.settings")
+  #          - django.setup()
+  #        options:
+  #          heading_level: 3
+  #          members_order: source
+  #          show_root_heading: true
+  #          show_root_full_path: false
+  #          show_root_toc_entry: false
+  #          show_source: false
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -30,12 +61,9 @@ extra:
     - icon: fontawesome/brands/discord
       link: https://discord.gg/9N3V4mpMXU
   homepage: https://netboxlabs.com
-repo_url: https://github.com/netbox-community/netbox
-plugins:
-  - search
-  - social
 extra_css:
   - https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css
+  - extra.css
 markdown_extensions:
   - attr_list
   - def_list
@@ -52,3 +80,233 @@ markdown_extensions:
       toc_depth: 4
   - tables
   - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+extra_javascript:
+  - 'https://cdn.jsdelivr.net/npm/@material-icons/iconfont/material-icons.min.js'
+nav:
+    - Introdução: 'introduction.md'
+    - Características e Funções:
+        - Instalações (Facilities): 'features/facilities.md'
+        - Dispositivos & Cabeamento (em Inglês ainda): 'features/devices-cabling.md'
+        - Mapeamento de Energia (em Inglês ainda): 'features/power-tracking.md'
+        - IPAM (Endereçamento IP) - em Inglês ainda: 'features/ipam.md'
+        - Gerência de VLANs (em Inglês ainda): 'features/vlan-management.md'
+        - L2VPN & Overlay (em Inglês ainda): 'features/l2vpn-overlay.md'
+        - Circuitos (em Inglês ainda): 'features/circuits.md'
+        - Wireless (Wi-Fi) - em Inglês ainda: 'features/wireless.md'
+        - Virtualização (em Inglês ainda): 'features/virtualization.md'
+        - Locação (Tenancy) - em Inglês ainda: 'features/tenancy.md'
+        - Contatos (em Inglês ainda): 'features/contacts.md'
+        - Pesquisa (Search) - em Inglês ainda: 'features/search.md'
+        - Dados de Contexto (em Inglês ainda): 'features/context-data.md'
+        - Logging de Mudanças (em Inglês ainda): 'features/change-logging.md'
+        - Journaling (em Inglês ainda): 'features/journaling.md'
+        - Autenticação & Permissões (em Inglês ainda): 'features/authentication-permissions.md'
+        - Integrações & API (em Inglês ainda): 'features/api-integration.md'
+        - Customização (em Inglês ainda): 'features/customization.md'
+    - Instalação & Upgrade:
+        - Instalando o NetBox: 'installation/index.md'
+        - 1. PostgreSQL: 'installation/1-postgresql.md'
+        - 2. Redis: 'installation/2-redis.md'
+        - 3. NetBox: 'installation/3-netbox.md'
+        - 4. Gunicorn: 'installation/4-gunicorn.md'
+        - 5. Servidor HTTP: 'installation/5-http-server.md'
+        - 6. LDAP (Opcional): 'installation/6-ldap.md'
+        - Fazendo o Upgrade do NetBox: 'installation/upgrading.md'
+    - Começando com o NetBox:
+        - Planejamento: 'getting-started/planning.md'
+        - Populando o NetBox com Dados  (em Inglês ainda): 'getting-started/populating-data.md'
+    - Configuração (em Inglês ainda):
+        - Configurando o NetBox (em Inglês ainda): 'configuration/index.md'
+        - Parâmetros Obrigatórios (em Inglês ainda): 'configuration/required-parameters.md'
+        - Sistema (em Inglês ainda): 'configuration/system.md'
+        - Segurança (em Inglês ainda): 'configuration/security.md'
+        - Autenticação Remota (em Inglês ainda): 'configuration/remote-authentication.md'
+        - Dados & Validação (em Inglês ainda): 'configuration/data-validation.md'
+        - Valores Padrão (Default) - em Inglês ainda: 'configuration/default-values.md'
+        - Registro de Erros (em Inglês ainda): 'configuration/error-reporting.md'
+        - Plugins (em Inglês ainda): 'configuration/plugins.md'
+        - NAPALM (em Inglês ainda): 'configuration/napalm.md'
+        - Data & Hora (em Inglês ainda): 'configuration/date-time.md'
+        - Diversos (Miscellaneous) - em Inglês ainda: 'configuration/miscellaneous.md'
+        - Desenvolvimento (em Inglês ainda): 'configuration/development.md'
+    - Customização :
+        - Campos Customizados: 'customization/custom-fields.md'
+        - Links Customizados: 'customization/custom-links.md'
+        - Validação Customizada: 'customization/custom-validation.md'
+        - Exportação de Templates: 'customization/export-templates.md'
+        - Relatórios (Reports): 'customization/reports.md'
+        - Scripts Customizados: 'customization/custom-scripts.md'
+    - Integrações (em Inglês ainda):
+        - API REST (em Inglês ainda): 'integrations/rest-api.md'
+        - API GraphQL (em Inglês ainda): 'integrations/graphql-api.md'
+        - Webhooks (em Inglês ainda): 'integrations/webhooks.md'
+        - NAPALM (em Inglês ainda): 'integrations/napalm.md'
+        - Métricas do Prometheus (em Inglês ainda): 'integrations/prometheus-metrics.md'
+    - Plugins:
+        - Usando Plugins: 'plugins/index.md'
+        - Desenvolvendo Plugins:
+            - Começando: 'plugins/development/index.md'
+            - Modelos: 'plugins/development/models.md'
+            - Visualizações (Views): 'plugins/development/views.md'
+            - Navegação: 'plugins/development/navigation.md'
+            - Templates: 'plugins/development/templates.md'
+            - Tabelas: 'plugins/development/tables.md'
+            - Formulários: 'plugins/development/forms.md'
+            - Filtros & Grupos de Filtro: 'plugins/development/filtersets.md'
+            - Pesquisa (Search): 'plugins/development/search.md'
+            - API REST: 'plugins/development/rest-api.md'
+            - API GraphQL: 'plugins/development/graphql-api.md'
+            - Tarefas de Fundo (Background): 'plugins/development/background-tasks.md'
+            - Mudanças Pendentes (Staged): 'plugins/development/staged-changes.md'
+            - Exceções: 'plugins/development/exceptions.md'
+    - Administração (em Inglês ainda):
+        - Autenticação (em Inglês ainda):
+            - Visão Geral (em Inglês ainda): 'administration/authentication/overview.md'
+            - Microsoft Azure AD (em Inglês ainda): 'administration/authentication/microsoft-azure-ad.md'
+            - Okta (em Inglês ainda): 'administration/authentication/okta.md'
+        - Permissões (em Inglês ainda): 'administration/permissions.md'
+        - Registro de Erros (em Inglês ainda): 'administration/error-reporting.md'
+        - Housekeeping (em Inglês ainda): 'administration/housekeeping.md'
+        - Replicando o NetBox (em Inglês ainda): 'administration/replicating-netbox.md'
+        - NetBox Shell (em Inglês ainda): 'administration/netbox-shell.md'
+    - Modelos de Dados (em Inglês ainda):
+        - Circuitos (em Inglês ainda):
+            - Circuito (em Inglês ainda): 'models/circuits/circuit.md'
+            - Terminação de Circuito (em Inglês ainda): 'models/circuits/circuittermination.md'
+            - Tipo de Circuito (em Inglês ainda): 'models/circuits/circuittype.md'
+            - Fornecedor (Provider) - em Inglês ainda: 'models/circuits/provider.md'
+            - Rede do Fornecedor (Provider) - em Inglês ainda: 'models/circuits/providernetwork.md'
+        - DCIM (Gerenciamento de Infraestrutura) - em Inglês ainda:
+            - Cabos (em Inglês ainda): 'models/dcim/cable.md'
+            - ConsolePort (em Inglês ainda): 'models/dcim/consoleport.md'
+            - ConsolePortTemplate (em Inglês ainda): 'models/dcim/consoleporttemplate.md'
+            - ConsoleServerPort (em Inglês ainda): 'models/dcim/consoleserverport.md'
+            - ConsoleServerPortTemplate (em Inglês ainda): 'models/dcim/consoleserverporttemplate.md'
+            - Device (em Inglês ainda): 'models/dcim/device.md'
+            - DeviceBay (em Inglês ainda): 'models/dcim/devicebay.md'
+            - DeviceBayTemplate (em Inglês ainda): 'models/dcim/devicebaytemplate.md'
+            - DeviceRole (em Inglês ainda): 'models/dcim/devicerole.md'
+            - DeviceType (em Inglês ainda): 'models/dcim/devicetype.md'
+            - FrontPort (em Inglês ainda): 'models/dcim/frontport.md'
+            - FrontPortTemplate (em Inglês ainda): 'models/dcim/frontporttemplate.md'
+            - Interface (em Inglês ainda): 'models/dcim/interface.md'
+            - InterfaceTemplate (em Inglês ainda): 'models/dcim/interfacetemplate.md'
+            - InventoryItem (em Inglês ainda): 'models/dcim/inventoryitem.md'
+            - InventoryItemRole (em Inglês ainda): 'models/dcim/inventoryitemrole.md'
+            - InventoryItemTemplate (em Inglês ainda): 'models/dcim/inventoryitemtemplate.md'
+            - Location (em Inglês ainda): 'models/dcim/location.md'
+            - Manufacturer (em Inglês ainda): 'models/dcim/manufacturer.md'
+            - Module (em Inglês ainda): 'models/dcim/module.md'
+            - ModuleBay (em Inglês ainda): 'models/dcim/modulebay.md'
+            - ModuleBayTemplate (em Inglês ainda): 'models/dcim/modulebaytemplate.md'
+            - ModuleType (em Inglês ainda): 'models/dcim/moduletype.md'
+            - Platform (em Inglês ainda): 'models/dcim/platform.md'
+            - PowerFeed (em Inglês ainda): 'models/dcim/powerfeed.md'
+            - PowerOutlet (em Inglês ainda): 'models/dcim/poweroutlet.md'
+            - PowerOutletTemplate (em Inglês ainda): 'models/dcim/poweroutlettemplate.md'
+            - PowerPanel (em Inglês ainda): 'models/dcim/powerpanel.md'
+            - PowerPort (em Inglês ainda): 'models/dcim/powerport.md'
+            - PowerPortTemplate (em Inglês ainda): 'models/dcim/powerporttemplate.md'
+            - Rack (em Inglês ainda): 'models/dcim/rack.md'
+            - RackReservation (em Inglês ainda): 'models/dcim/rackreservation.md'
+            - RackRole (em Inglês ainda): 'models/dcim/rackrole.md'
+            - RearPort (em Inglês ainda): 'models/dcim/rearport.md'
+            - RearPortTemplate (em Inglês ainda): 'models/dcim/rearporttemplate.md'
+            - Region (em Inglês ainda): 'models/dcim/region.md'
+            - Site (em Inglês ainda): 'models/dcim/site.md'
+            - SiteGroup (em Inglês ainda): 'models/dcim/sitegroup.md'
+            - VirtualChassis (em Inglês ainda): 'models/dcim/virtualchassis.md'
+            - VirtualDeviceContext (em Inglês ainda): 'models/dcim/virtualdevicecontext.md'
+        - Extras (em Inglês ainda):
+            - Branch (em Inglês ainda): 'models/extras/branch.md'
+            - ConfigContext (em Inglês ainda): 'models/extras/configcontext.md'
+            - CustomField (em Inglês ainda): 'models/extras/customfield.md'
+            - CustomLink (em Inglês ainda): 'models/extras/customlink.md'
+            - ExportTemplate (em Inglês ainda): 'models/extras/exporttemplate.md'
+            - ImageAttachment (em Inglês ainda): 'models/extras/imageattachment.md'
+            - JournalEntry (em Inglês ainda): 'models/extras/journalentry.md'
+            - SavedFilter (em Inglês ainda): 'models/extras/savedfilter.md'
+            - StagedChange (em Inglês ainda): 'models/extras/stagedchange.md'
+            - Tag (em Inglês ainda): 'models/extras/tag.md'
+            - Webhook (em Inglês ainda): 'models/extras/webhook.md'
+        - IPAM (Endereçamento IP) - em Inglês ainda:
+            - ASN (em Inglês ainda): 'models/ipam/asn.md'
+            - Agregado de Prefixos (Aggregate) em Inglês ainda: 'models/ipam/aggregate.md'
+            - FHRPGroup (em Inglês ainda): 'models/ipam/fhrpgroup.md'
+            - FHRPGroupAssignment (em Inglês ainda): 'models/ipam/fhrpgroupassignment.md'
+            - IPAddress (em Inglês ainda): 'models/ipam/ipaddress.md'
+            - IPRange (em Inglês ainda): 'models/ipam/iprange.md'
+            - L2VPN (em Inglês ainda): 'models/ipam/l2vpn.md'
+            - L2VPNTermination (em Inglês ainda): 'models/ipam/l2vpntermination.md'
+            - Prefix (em Inglês ainda): 'models/ipam/prefix.md'
+            - RIR (em Inglês ainda): 'models/ipam/rir.md'
+            - Role (em Inglês ainda): 'models/ipam/role.md'
+            - RouteTarget (em Inglês ainda): 'models/ipam/routetarget.md'
+            - Service (em Inglês ainda): 'models/ipam/service.md'
+            - ServiceTemplate (em Inglês ainda): 'models/ipam/servicetemplate.md'
+            - VLAN (em Inglês ainda): 'models/ipam/vlan.md'
+            - VLANGroup (em Inglês ainda): 'models/ipam/vlangroup.md'
+            - VRF (em Inglês ainda): 'models/ipam/vrf.md'
+        - Locação (Tenancy) - em Inglês ainda:
+            - Contact (em Inglês ainda): 'models/tenancy/contact.md'
+            - ContactGroup (em Inglês ainda): 'models/tenancy/contactgroup.md'
+            - ContactRole (em Inglês ainda): 'models/tenancy/contactrole.md'
+            - Tenant (em Inglês ainda): 'models/tenancy/tenant.md'
+            - TenantGroup (em Inglês ainda): 'models/tenancy/tenantgroup.md'
+        - Virtualização (Virtualization) - em Inglês ainda:
+            - Cluster (em Inglês ainda): 'models/virtualization/cluster.md'
+            - ClusterGroup (em Inglês ainda): 'models/virtualization/clustergroup.md'
+            - ClusterType (em Inglês ainda): 'models/virtualization/clustertype.md'
+            - VMInterface (em Inglês ainda): 'models/virtualization/vminterface.md'
+            - VirtualMachine (em Inglês ainda): 'models/virtualization/virtualmachine.md'
+        -  Wireless (Wi-Fi) - em Inglês ainda:
+            - WirelessLAN (em Inglês ainda): 'models/wireless/wirelesslan.md'
+            - WirelessLANGroup (em Inglês ainda): 'models/wireless/wirelesslangroup.md'
+            - WirelessLink (em Inglês ainda): 'models/wireless/wirelesslink.md'
+    - Referência (em Inglês ainda):
+        - Filtros (em Inglês ainda): 'reference/filtering.md'
+        - Condições (em Inglês ainda): 'reference/conditions.md'
+        - Markdown (em Inglês ainda): 'reference/markdown.md'
+    - Desenvolvimento (em Inglês ainda):
+        - Introdução (em Inglês ainda): 'development/index.md'
+        - Começando (em Inglês ainda): 'development/getting-started.md'
+        - Guia de Estilo (CSS) - em Inglês ainda: 'development/style-guide.md'
+        - Modelos (em Inglês ainda): 'development/models.md'
+        - Adicionando Modelos (em Inglês ainda): 'development/adding-models.md'
+        - Extendendo Modelos (em Inglês ainda): 'development/extending-models.md'
+        - Sinais (Signals) - em Inglês ainda: 'development/signals.md'
+        - Pesquisa (Search) - em Inglês ainda: 'development/search.md'
+        - Registro das Aplicações (em Inglês ainda): 'development/application-registry.md'
+        - Preferências do Usuário (em Inglês ainda): 'development/user-preferences.md'
+        - Interface Web (em Inglês ainda): 'development/web-ui.md'
+        - Checklist da Versão (Release) - em Inglês ainda: 'development/release-checklist.md'
+        - git Cheat Sheet (em Inglês ainda): 'development/git-cheat-sheet.md'
+    - Notas da Versão (Release Notes) - em Inglês ainda:
+        - Resumo (em Inglês ainda): 'release-notes/index.md'
+        - Versão 3.4 (em Inglês ainda): 'release-notes/version-3.4.md'
+        - Versão 3.3 (em Inglês ainda): 'release-notes/version-3.3.md'
+        - Versão 3.2 (em Inglês ainda): 'release-notes/version-3.2.md'
+        - Versão 3.1 (em Inglês ainda): 'release-notes/version-3.1.md'
+        - Versão 3.0 (em Inglês ainda): 'release-notes/version-3.0.md'
+        - Versão 2.11 (em Inglês ainda): 'release-notes/version-2.11.md'
+        - Versão 2.10 (em Inglês ainda): 'release-notes/version-2.10.md'
+        - Versão 2.9 (em Inglês ainda): 'release-notes/version-2.9.md'
+        - Versão 2.8 (em Inglês ainda): 'release-notes/version-2.8.md'
+        - Versão 2.7 (em Inglês ainda): 'release-notes/version-2.7.md'
+        - Versão 2.6 (em Inglês ainda): 'release-notes/version-2.6.md'
+        - Versão 2.5 (em Inglês ainda): 'release-notes/version-2.5.md'
+        - Versão 2.4 (em Inglês ainda): 'release-notes/version-2.4.md'
+        - Versão 2.3 (em Inglês ainda): 'release-notes/version-2.3.md'
+        - Versão 2.2 (em Inglês ainda): 'release-notes/version-2.2.md'
+        - Versão 2.1 (em Inglês ainda): 'release-notes/version-2.1.md'
+        - Versão 2.0 (em Inglês ainda): 'release-notes/version-2.0.md'
