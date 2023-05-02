@@ -122,8 +122,8 @@ nav:
         - 5. Servidor HTTP: 'installation/5-http-server.md'
         - 6. LDAP (Opcional): 'installation/6-ldap.md'
         - Fazendo o Upgrade do NetBox: 'installation/upgrading.md'
-    - Começando com o NetBox (em Inglês ainda):
-        - Planejamento  (em Inglês ainda): 'getting-started/planning.md'
+    - Começando com o NetBox:
+        - Planejamento: 'getting-started/planning.md'
         - Populando o NetBox com Dados  (em Inglês ainda): 'getting-started/populating-data.md'
     - Configuração (em Inglês ainda):
         - Configurando o NetBox (em Inglês ainda): 'configuration/index.md'
