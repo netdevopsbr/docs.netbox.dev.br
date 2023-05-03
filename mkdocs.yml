@@ -124,7 +124,7 @@ nav:
         - Fazendo o Upgrade do NetBox: 'installation/upgrading.md'
     - Começando com o NetBox:
         - Planejamento: 'getting-started/planning.md'
-        - Populando o NetBox com Dados  (em Inglês ainda): 'getting-started/populating-data.md'
+        - Populando o NetBox com Dados: 'getting-started/populating-data.md'
     - Configuração (em Inglês ainda):
         - Configurando o NetBox (em Inglês ainda): 'configuration/index.md'
         - Parâmetros Obrigatórios (em Inglês ainda): 'configuration/required-parameters.md'
