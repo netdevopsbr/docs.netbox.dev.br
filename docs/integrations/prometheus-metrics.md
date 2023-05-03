@@ -1,34 +1,30 @@
 # Métricas do Prometheus
 
-!!! info
+O NetBox suporta opcionalmente export as métricas do Prometheus nativas da aplicação. [Prometheus](https://prometheus.io/) é uma plataforma de métrica popular de time series utilizada para monitoramento.
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+O NetBox expõe métricas no endpoint HTTP `/metrics`, por exemplo: `https://netbox.local/metrics`. A exposição de métricas podem ser habilitadas através da configuração `METRICS_ENABLED`. Métricas não são expostas por padrão.
 
-NetBox supports optionally exposing native Prometheus metrics from the application. [Prometheus](https://prometheus.io/) is a popular time series metric platform used for monitoring.
+## Tipos de Métricas
 
-NetBox exposes metrics at the `/metrics` HTTP endpoint, e.g. `https://netbox.local/metrics`. Metric exposition can be toggled with the `METRICS_ENABLED` configuration setting. Metrics are not exposed by default.
+O NetBox utiliza a biblioteca [django-prometheus](https://github.com/korfuri/django-prometheus) para exportar um número de diferentes tipos de métricas, incluindo:
 
-## Metric Types
+- Contadores de inserção, atualização e remoção por modelo
+- Contadores de requisição por view (página)
+- Histograma de latência por requisição de view (página)
+- Histograma do tamanho do corpo (body) da requisição
+- Histograma do tamanho do corpo (body) da resposta
+- Contadores de código de resposta
+- Conexão com o banco de dados, execução e contadores de erros
+- Cache hit (uso de cache), miss (perda) e contadores de invalidação (invalidation)
+- Histogramas da latência do middleware Django
+- Outras métricas de metadados relacionadas com o Django
 
-NetBox makes use of the [django-prometheus](https://github.com/korfuri/django-prometheus) library to export a number of different types of metrics, including:
+Para uma lista completa das métricas expostas, visite o endpoint `/metrics` na sua instância do NetBox.
 
-- Per model insert, update, and delete counters
-- Per view request counters
-- Per view request latency histograms
-- Request body size histograms
-- Response body size histograms
-- Response code counters
-- Database connection, execution, and error counters
-- Cache hit, miss, and invalidation counters
-- Django middleware latency histograms
-- Other Django related metadata metrics
+## Observações Sobre Multi Processamento
 
-For the exhaustive list of exposed metrics, visit the `/metrics` endpoint on your NetBox instance.
+Ao subir o NetBox de uma maneira multi-processo (como ao rodar múltiplos workers do Gunicorn), a biblioteca cliente do Prometheus exige o uso de um diretório compartilhado para a coleta das métricas de todos os processos de workers. Para configurar isso, primeiro crie ou designe um diretório local no qual os processos de worker tem permissão de leitura, então configure seu serviço WSGI (como o Gunicorn) para definir o caminho (path) do diretório na variável de ambiente `prometheus_multiproc_dir`.
 
-## Multi Processing Notes
-
-When deploying NetBox in a multiprocess manner (e.g. running multiple Gunicorn workers) the Prometheus client library requires the use of a shared directory to collect metrics from all worker processes. To configure this, first create or designate a local directory to which the worker processes have read and write access, and then configure your WSGI service (e.g. Gunicorn) to define this path as the `prometheus_multiproc_dir` environment variable.
-
-!!! warning
-    If having accurate long-term metrics in a multiprocess environment is crucial to your deployment, it's recommended you use the `uwsgi` library instead of `gunicorn`. The issue lies in the way `gunicorn` tracks worker processes (vs `uwsgi`) which helps manage the metrics files created by the above configurations. If you're using NetBox with gunicorn in a containerized environment following the one-process-per-container methodology, then you will likely not need to change to `uwsgi`. More details can be found in  [issue #3779](https://github.com/netbox-community/netbox/issues/3779#issuecomment-590547562).
+!!! warning Aviso
+    
+    Se não ter métricas de longo prazo com precisão for crucial para o seu ambiente, é recomendando utilizar a biblioteca `uwsgi` no lugar de `gunicorn`. O problema ocorre na forma como o `gunicorn` acompanha os processos dos workers (versus o `uwsgi`) que ajuda gerenciar os arquivos de métricas criados pelas configurações acima. Se você estiver usando o NetBox com o gunicorn em um ambiente que utiliza containers seguindo a metodologia um-processo-por-container (one-proccess-per-container), então provavelmente não não precisa mudar para `uwsgi`. Mais detalhes podem ser encontrados em [issue #3779](https://github.com/netbox-community/netbox/issues/3779#issuecomment-590547562).
