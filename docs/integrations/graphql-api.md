@@ -1,15 +1,10 @@
 # Visão Geral sobre a API GraphQL
 
-!!! info
+O NetBox fornece uma API [GraphQL](https://graphql.org/) de leitura (read-only) para complementar a API REST. A API é fornecida pela biblioteca [Graphene](https://graphene-python.org/) e [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/).
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+## Buscas (Queries)
 
-NetBox provides a read-only [GraphQL](https://graphql.org/) API to complement its REST API. This API is powered by the [Graphene](https://graphene-python.org/) library and [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/).
-
-## Queries
-
-GraphQL enables the client to specify an arbitrary nested list of fields to include in the response. All queries are made to the root `/graphql` API endpoint. For example, to return the circuit ID and provider name of each circuit with an active status, you can issue a request such as the following:
+O GraphQL permite que o cliente especifique uma lista aninhada arbitrária de campos para serem inclusos na resposta. Todas as queries são feitas para o endpoint root da API `/graphql`. Por exemplo, para retornar o ID do circuito e o nome do fornecedor (provider) de cada circuito com um status active (ativo), você pode utilizar uma requisição como a abaixo:
 
 ```
 curl -H "Authorization: Token $TOKEN" \
@@ -19,7 +14,7 @@ http://netbox/graphql/ \
 --data '{"query": "query {circuit_list(status:\"active\") {cid provider {name}}}"}'
 ```
 
-The response will include the requested data formatted as JSON:
+A resposta incluirá os dados requisitados formatados em JSON:
 
 ```json
 {
@@ -42,26 +37,28 @@ The response will include the requested data formatted as JSON:
 }
 ```
 
-!!! note
-    It's recommended to pass the return data through a JSON parser such as `jq` for better readability.
+!!! note Observação
 
-NetBox provides both a singular and plural query field for each object type:
+    É recomendado passar os dados retornados através de um parser JSON como o `jq` para uma melhor leitura.
 
-* `$OBJECT`: Returns a single object. Must specify the object's unique ID as `(id: 123)`.
-* `$OBJECT_list`: Returns a list of objects, optionally filtered by given parameters.
+O NetBox fornece tanto uma query singular ou plural de campos para cada tipo de objeto:
 
-For example, query `device(id:123)` to fetch a specific device (identified by its unique ID), and query `device_list` (with an optional set of filters) to fetch all devices.
+* `$OBJECT`: Retorna um objeto único. Deve especificar o ID único do objeto como `(id: 123)`.
+* `$OBJECT_list`: Retorna uma lista de objetos, opcionalmente filtrados pelos parâmetros fornecidos.
 
-For more detail on constructing GraphQL queries, see the [Graphene documentation](https://docs.graphene-python.org/en/latest/) as well as the [GraphQL queries documentation](https://graphql.org/learn/queries/).
+Por exemplo, utilize `device(id:123)` para obter um dispositivo específico (identificado pelo seu ID único, e busque por `device_list` (com um grupo de filtros opcionais) para obter todos os dispositivos.
 
-## Filtering
+Para mais detalhes sobre a construção de queries GraphQL, veja a [documentação do Graphene](https://docs.graphene-python.org/en/latest/), assim como a [documentação de queries do GraphQL](https://graphql.org/learn/queries/).
 
-The GraphQL API employs the same filtering logic as the UI and REST API. Filters can be specified as key-value pairs within parentheses immediately following the query name. For example, the following will return only sites within the North Carolina region with a status of active:
+## Filtrando
+
+A API do GraphQL utiliza a mesma lógica de filtros como a interface web (UI) e a API REST. Filtros podem especificados por pares de chave-valor (key-value) dentro de parênteses imediatamente seguido do nome da busca (query name). Por exemplo, o exemplo abaixo irá retornar somente os sites dentro da região North Carolina com o status de active:
 
 ```
 {"query": "query {site_list(region:\"north-carolina\", status:\"active\") {name}}"}
 ```
-In addition, filtering can be done on list of related objects as shown in the following query:
+
+Além disso, filtros podem ser feitos em uma lista de objetos relacionados como mostrado na query abaixo:
 
 ```
 {
@@ -75,9 +72,9 @@ In addition, filtering can be done on list of related objects as shown in the fo
 }
 ```
 
-## Multiple Return Types
+## Múltiplos Tipos de Retorno (Return Types)
 
-Certain queries can return multiple types of objects, for example cable terminations can return circuit terminations, console ports and many others.  These can be queried using [inline fragments](https://graphql.org/learn/schema/#union-types) as shown below:
+Certas queries podem retornar múltiplos tipos de objetos, por exemplo, a terminação de cabos podem retornar a terminação de circuitos, portas console e muitas outras. Elas podem ser buscadas utilizando [inline fragments](https://graphql.org/learn/schema/#union-types) como mostrado abaixo:
 
 ```
 {
@@ -101,16 +98,17 @@ Certain queries can return multiple types of objects, for example cable terminat
 }
 
 ```
-The field "class_type" is an easy way to distinguish what type of object it is when viewing the returned data, or when filtering.  It contains the class name, for example "CircuitTermination" or "ConsoleServerPort".
 
-## Authentication
+O campo "class_type" é uma maneira fácil de distinguir qual tipo de objeto está sendo utilizado ao visualizar os dados retornados, ou quando estiver filtrando. Contém o nome da classe, por exemplo "CircuitTermination" ou "ConsoleServerPort".
 
-NetBox's GraphQL API uses the same API authentication tokens as its REST API. Authentication tokens are included with requests by attaching an `Authorization` HTTP header in the following form:
+## Autenticação (Authentication)
+
+A API do GraphQL utiliza os mesmos tokens de autenticação que a API REST. Tokens de autenticação são incluidos dentro da requisição ao colocar o cabeçalho HTTP `Authorization` dentro do formulário a seguir:
 
 ```
 Authorization: Token $TOKEN
 ```
 
-## Disabling the GraphQL API
+## Desabilitando a API GraphQL
 
-If not needed, the GraphQL API can be disabled by setting the [`GRAPHQL_ENABLED`](../configuration/miscellaneous.md#graphql_enabled) configuration parameter to False and restarting NetBox.
+Se não necessária, a API do GraphQL pode ser desabilitada ao configurar o parâmetro de configuração [`GRAPHQL_ENABLED`](../configuration/miscellaneous.md#graphql_enabled) para `False` e reiniciar o NetBox.
