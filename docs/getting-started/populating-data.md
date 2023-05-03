@@ -1,49 +1,47 @@
 # Populando NetBox com Dados
 
-!!! info
+Essa página cobre os mecanismos que estão disponíveis para popular os dados dentro do NetBox.
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+## Criação de Objeto Manual
 
-This section covers the mechanisms which are available to populate data in NetBox.
+A forma mais simples e direta de popular dados dentro do NetBox é utilizar a criação de objetos via formulário dentro da interface do usuário.
 
-## Manual Object Creation
+!!! warning Não idela para Importações Grandes
 
-The simplest and most direct way of populating data in NetBox is to use the object creation forms in the user interface.
+    Enquanto é conveniente e acessível para até mesmo os mais novos usuários, criar objetos um por um manualmente completando esses formulários obviamente não escalam bem. Para importações grandes, você provavelmente estará bem servido ao usar um dos outros métodos discutidos nessa seção.
 
-!!! warning "Not Ideal for Large Imports"
-    While convenient and readily accessible to even novice users, creating objects one at a time by manually completing these forms obviously does not scale well. For large imports, you're generally best served by using one of the other methods discussed in this section.
+Para criar um novo objeto dentro do NetBox, encontre o tipo de objeto dentro do menu de navegação e clique no botão verde de "Add" (Adicionar)
 
-To create a new object in NetBox, find the object type in the navigation menu and click the green "Add" button.
+!!! info Não está achando o Botão?
 
-!!! info "Missing Button?"
-    If you don't see an "add" button for certain object types, it's likely that your account does not have sufficient permission to create these types. Ask your NetBox administrator to grant the required permissions.
-    
-    Also note that some object types, such as device components, cannot be created directly from the navigation menu. These must be created within the context of a parent object (such as a parent device).
+    Se você não encontrar o botão de "Add" em alguns tipos de objeto, é porque sua conta não tem permissões suficientes para criar esses tipos. Peça ao administrador do seu NetBox para que lhe atribua as permissões necessárias.
+
+    Note também que para alguns tipos de objetos, como os componentes de dispositivos, você não pode criá-los diretamente do menu de navegação. Eles devem ser criados dentro do contexto de um objeto pai (como no dispositivo pai).
 
 <!-- TODO: Screenshot -->
 
-## Bulk Import (CSV/YAML)
+## Importação em Grupo (CSV/YAML)
 
-NetBox supports the bulk import of new objects, and updating of existing objects using CSV-formatted data. This method can be ideal for importing spreadsheet data, which is very easy to convert to CSV data. CSV data can be imported either as raw text using the form field, or by uploading a properly formatted CSV file.
+O NetBox suporta uma importação em grupo de novos objetos e a atualização existente dos objetos utilizando dados formatados em CSV. Esse método pode ser o ideal para a importação de planilhas, que são facilmente convertidas para CSV. Dados em CSV podem ser importados, seja como um campo de formulário, ou fazendo o upload próprio do arquivo em CSV já formatado.
 
-When viewing the CSV import form for an object type, you'll notice that the headers for the required columns have been pre-populated. Each form has a table beneath it titled "CSV Field Options," which lists _all_ supported columns for your reference. (Generally, these map to the fields you see in the corresponding creation form for individual objects.)
+Ao visualizar o formulátio de importação do CSV de um tipo de objeto, você irá notar cabeçalhos (headers) para as colunas obrigatórios foram pré-populadas. Cada formulário tem uma tabela abaixo com o título de "CSV Field Options", que lista _todas_ as colunas suportadas para ser utilizada de referência. (Geralmente, isso mapeia os campos que você vê no formulário de criação correspondente para cada objeto individual.)
 
 <!-- TODO: Screenshot -->
 
-If an "id" field is added the data will be used to update existing records instead of importing new objects.
+Se o campo "id" é adicionado aos dados da planilha CSV, esses dados serão utilizados para atualizar os registros existentes e não importar novos objetos.
 
-Note that some models (namely device types and module types) do not support CSV import. Instead, they accept YAML-formatted data to facilitate the import of both the parent object as well as child components.
+Note que alguns modelos (como os device types & module types) não suportam a importação do CSV. No lugar, eles aceitam dados formatados em YAML para facilitar a importação de ambos objetos pai quando os componentes filho.
 
 ## Scripting
 
-Sometimes you'll find that data you need to populate in NetBox can be easily reduced to a pattern. For example, suppose you have one hundred branch sites and each site gets five VLANs, numbered 101 through 105. While it's certainly possible to explicitly define each of these 500 VLANs in a CSV file for import, it may be quicker to draft a simple custom script to automatically create these VLANs according to the pattern. This ensures a high degree of confidence in the validity of the data, since it's impossible for a script to "miss" a VLAN here or there.
+Às vezes você irá encontrar dados que precisam ser populados no NetBox de forma facilmente reduzida em um padrão (pattern). Por exemplo, suponha que você tem 100 locais (branch sites) e cada local tem 05 VLANs, numeradas de 101 até 105. Enquanto que é certamente possível de explicitamente definir cada uma dessas 500 VLANs dentro da importação de um arquivo CSV, pode ser rapidamente rascunhado em um simples script para automaticamente criar essas VLANs de acordo com um padrão definido. Isso garante um alto nível de confiança na validação dos dados, já que é impossível para um script "esquecer" uma VLAN ou outra.
 
-!!! tip "Reconstruct Existing Data with Scripts"
-    Sometimes, you might want to write a script to populate objects even if you have the necessary data ready for import. This is because using a script eliminates the need to manually verify existing data prior to import.
+!!! tip Reconstruindo os Dados Existentes com Scripts
+
+    Às vezes, você pode talvez possa querer escrever um script para popular os objetos mesmo que você tenha os dados necessários prontos para importação. Isso é porque ao utilizar um script, é eliminada a necessidade de manualmente verificar se os dados existem antes da importação.
 
 ## REST API
 
-You can also use the REST API to facilitate the population of data in NetBox. The REST API offers full programmatic control over the creation of objects, subject to the same validation rules enforced by the UI forms. Additionally, the REST API supports the bulk creation of multiple objects using a single request.
+Você pode usar a API REST para facilitar na população de dados dentro do NetBox. A API REST oferece um controle completo e programático para a criação de objetos, sujeitos as mesmas regras de validação forçadas pelos formulários da interface do usuário (UI). Além disso, a API REST suporta a criação em grupos de múltiplos objetos usando somente uma requisição (single request).
 
-For more information about this option, see the [REST API documentation](../integrations/rest-api.md).
+Para mais informações sobre essa opção, veja a [documentação sobre API REST](../integrations/rest-api.md).
