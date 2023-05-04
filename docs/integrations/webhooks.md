@@ -1,18 +1,14 @@
 # Webhooks
 
-!!! info
+O NetBox pode ser configurado para transmitir webhooks de saída para sistemas remotos em resposta às mudanças do objeto interna. O recebedor pode agir nesses dados sobre essas mensagens de webook para tarefas relacionadas.
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+Por exemplo, suponha que você quer automaticamente configurar um sistema de monitoramento para começar o monitoramento de um dispositivo quando o status operacional for mudado para ativo (active), e remove do monitoramento para qualquer outro status. Você pode criar um webhook no NetBox para um modelo de dispositivo e construir o conteúdo a URL de destino para afetar a mudança desjada no sistema recebedor. Webhooks serão enviados automaticamente pelo NetBox independente as configurações não forem atendidas.
 
-NetBox can be configured to transmit outgoing webhooks to remote systems in response to internal object changes. The receiver can act on the data in these webhook messages to perform related tasks.
+Cada webook deve ser associado com ao menos um tipo de objeto doNetBox e ao menos um evento (criar, atualizar ou remover). Usuários podem especificar o recebedor da URL, o tipo da requisição HTTP (`GET`, `POST`, etc.), tipo do conteúdo (content type) e cabeçalhos. Se deixado vazio, terá uma representação serializada por padrão para o objeto afetado.
 
-For example, suppose you want to automatically configure a monitoring system to start monitoring a device when its operational status is changed to active, and remove it from monitoring for any other status. You can create a webhook in NetBox for the device model and craft its content and destination URL to effect the desired change on the receiving system. Webhooks will be sent automatically by NetBox whenever the configured constraints are met.
+!!! warning Aviso sobre Segurança
 
-Each webhook must be associated with at least one NetBox object type and at least one event (create, update, or delete). Users can specify the receiver URL, HTTP request type (`GET`, `POST`, etc.), content type, and headers. A request body can also be specified; if left blank, this will default to a serialized representation of the affected object.
-
-!!! warning "Security Notice"
-    Webhooks support the inclusion of user-submitted code to generate the URL, custom headers, and payloads, which may pose security risks under certain conditions. Only grant permission to create or modify webhooks to trusted users.
+    Webhooks suportam a inclusão de código submetido pelo usuário para gerar a URL, cabeçalhos customizados e payloads, que possam ter riscos de segurança sobre certas circunstâncias. Apenas garanta permissão para criar ou modificar webhooks para usuários confiáveis.
 
 ## Jinja2 Template Support
 
