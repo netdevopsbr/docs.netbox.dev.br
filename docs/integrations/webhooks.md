@@ -8,35 +8,35 @@ Cada webook deve ser associado com ao menos um tipo de objeto doNetBox e ao meno
 
 !!! warning Aviso sobre Segurança
 
-    Webhooks suportam a inclusão de código submetido pelo usuário para gerar a URL, cabeçalhos customizados e payloads, que possam ter riscos de segurança sobre certas circunstâncias. Apenas garanta permissão para criar ou modificar webhooks para usuários confiáveis.
+    Webhooks suportam a inclusão de código submetido pelo usuário para gerar a URL, cabeçalhos customizados e payloads, que possam ter riscos de segurança sobre certas circunstâncias. Apenas garanta permissão para criar ou  modificar webhooks para usuários confiáveis.
 
-## Jinja2 Template Support
+## Suporte ao Template do Jinja2
 
-[Jinja2 templating](https://jinja.palletsprojects.com/) is supported for the `URL`, `additional_headers` and `body_template` fields. This enables the user to convey object data in the request headers as well as to craft a customized request body. Request content can be crafted to enable the direct interaction with external systems by ensuring the outgoing message is in a format the receiver expects and understands.
+O [template do Jinja2](https://jinja.palletsprojects.com/) é suportado para a `URL`, `additional_headers` e `body_template` campos. Isso habilita o usuário que transfira os dados do objeto no cabeçalho da requisição, assim como construir um corpo da requisição customizada. O conteúdo da requisição pode ser construída para habilitar a interação direta com um sistema externo ao garantir uma mensagem de saída no formato que o recebedor espera e entende.
 
-For example, you might create a NetBox webhook to [trigger a Slack message](https://api.slack.com/messaging/webhooks) any time an IP address is created. You can accomplish this using the following configuration:
+Por exemplo, você pode criar um webook do NetBox [para enviar uma mensagem ao Slack](https://api.slack.com/messaging/webhooks) à qualquer momento que um endereço IP seja criado. Você pode realizar isso com a seguinte configuração:
 
-* Object type: IPAM > IP address
-* HTTP method: `POST`
-* URL: Slack incoming webhook URL
-* HTTP content type: `application/json`
-* Body template: `{"text": "IP address {{ data['address'] }} was created by {{ username }}!"}`
+* Tipo de objeto: `IPAM > IP address`
+* Método HTTP: `POST`
+* URL: URL recebida do Webhook do Slack
+* Tipo do Conteúdo HTTP: `application/json`
+* Tipo do Corpo: `{"text": "IP address {{ data['address'] }} was created by {{ username }}!"}`
 
-### Available Context
+### Contexto Disponível
 
-The following data is available as context for Jinja2 templates:
+Os dados à seguir estão disponíveis para o contexto de templates do Jinja2:
 
-* `event` - The type of event which triggered the webhook: created, updated, or deleted.
-* `model` - The NetBox model which triggered the change.
-* `timestamp` - The time at which the event occurred (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format).
-* `username` - The name of the user account associated with the change.
-* `request_id` - The unique request ID. This may be used to correlate multiple changes associated with a single request.
-* `data` - A detailed representation of the object in its current state. This is typically equivalent to the model's representation in NetBox's REST API.
-* `snapshots` - Minimal "snapshots" of the object state both before and after the change was made; provided as a dictionary with keys named `prechange` and `postchange`. These are not as extensive as the fully serialized representation, but contain enough information to convey what has changed.
+* `event` - O tipo de evento que a webhook será ativa: criada, atualizada ou removida.
+* `model` - O modelo do NetBox que ativou a mudança.
+* `timestamp` - A data que o evento ocorreu (no formato [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601))
+* `username` - O nome da conta do usuário associada com a mudança.
+* `request_id` - O ID da requisição único. Isso pode ser correlacionado com múltiplas mudanças associadas com uma única requisição.
+* `data` - A representação detalhada do objeto e seu estado atual. Isso é tipicamente equivalente à representação do modelo na REST API do NetBox.
+* `snapshots` - "Snapshots" mínimas do estado do objeto de antes e depois antes da mudança ter sido feita; fornecido com um dicionário de chaves nomeadas com `prechange` e `postchange`. Isso não é tão extensiva como a representação completamente serializada, mas certas informações são suficientes para comunicar aquilo que foi mudado.
 
-### Default Request Body
+### Corpo Padrão da Requisição (Request)
 
-If no body template is specified, the request body will be populated with a JSON object containing the context data. For example, a newly created site might appear as follows:
+Se nenhum corpo (body) do template for especificado, o corpo da requisição será populado com um objeto JSON contedo os dados de contexto. Por exemplo, um site (local) recentemente criado pode aparecer, como:
 
 ```json
 {
@@ -71,9 +71,9 @@ If no body template is specified, the request body will be populated with a JSON
 }
 ```
 
-## Conditional Webhooks
+## Webhooks Condicionais
 
-A webhook may include a set of conditional logic expressed in JSON used to control whether a webhook triggers for a specific object. For example, you may wish to trigger a webhook for devices only when the `status` field of an object is "active":
+Um webhook pode incluir um grupo de lógica condicional expressada pelo JSON usado para controlar se um webhook ativa um objeto específico. Por exemplo, você pode querer ativar um webhook para dispositivos somente quando o campo de `status` do objeto estiver como "active" (ativo):
 
 ```json
 {
@@ -86,30 +86,30 @@ A webhook may include a set of conditional logic expressed in JSON used to contr
 }
 ```
 
-For more detail, see the reference documentation for NetBox's [conditional logic](../reference/conditions.md).
+Para mais detalhes, veja a documentação do NetBox para referência sobre [lógica condicional](../reference/conditions.md).
 
-## Webhook Processing
+## Processamento do Webhook
 
-When a change is detected, any resulting webhooks are placed into a Redis queue for processing. This allows the user's request to complete without needing to wait for the outgoing webhook(s) to be processed. The webhooks are then extracted from the queue by the `rqworker` process and HTTP requests are sent to their respective destinations. The current webhook queue and any failed webhooks can be inspected in the admin UI under System > Background Tasks.
+Quando uma mudança for detectada, qualquer resultados de webhooks são postos na fila de Redis para processamento. Isso permite a requisição do usuário para permite que não seja necessário esperar a saída do webhook para ser processada. Os webhooks são então extraídos da fila pelo processo `rqworker` a as requisições HTTP são enviadas para seus destinos respectivos. A fila de webhook atual e qualquer webhooks com falha podem ser inspecionadas na interface web do admin `System > Background Tasks`.
 
-A request is considered successful if the response has a 2XX status code; otherwise, the request is marked as having failed. Failed requests may be retried manually via the admin UI.
+A requisição é considerada que tee sucesso, caso a resposta do status do código seja 2XX; de outra forma, a requisição é marcada como se tivesse falhado. Requisições com falha podem ser manualmente extraídas através da interface admin do NetBox.
 
-## Troubleshooting
+## Resolvendo os Problemas (Troubleshooting)
 
-To assist with verifying that the content of outgoing webhooks is rendered correctly, NetBox provides a simple HTTP listener that can be run locally to receive and display webhook requests. First, modify the target URL of the desired webhook to `http://localhost:9000/`. This will instruct NetBox to send the request to the local server on TCP port 9000. Then, start the webhook receiver service from the NetBox root directory:
+Para auxiliar na verificação se o conteúdo renderizado pela saída do webhook está correta, o NetBox fornece um simples "escutador" (listener) HTTP para rodar localmente, receber e exibir as requisições de webhook. Primeiro, modifique a URL de destino para o webhook desejado para `http://localhost:9000/`. Isso irá instruir o NetBox à enviar as requisições para o servidor local na porta TCP 9000. Então, inicie (start) o serviço recebedor (receiver) do webhook no diretório root do NetBox:
 
 ```no-highlight
 $ python netbox/manage.py webhook_receiver
 Listening on port http://localhost:9000. Stop with CONTROL-C.
 ```
 
-You can test the receiver itself by sending any HTTP request to it. For example:
+Você pode testar o recebedor (receiver) em si ao enviar a requisição HTTP. Por exemplo:
 
 ```no-highlight
 $ curl -X POST http://localhost:9000 --data '{"foo": "bar"}'
 ```
 
-The server will print output similar to the following:
+O servidor irá retornar uma saída similar como a seguinte:
 
 ```no-highlight
 [1] Tue, 07 Apr 2020 17:44:02 GMT 127.0.0.1 "POST / HTTP/1.1" 200 -
@@ -123,6 +123,6 @@ Content-Type: application/x-www-form-urlencoded
 ------------
 ```
 
-Note that `webhook_receiver` does not actually _do_ anything with the information received: It merely prints the request headers and body for inspection.
+Observe que o `webhook_receiver` _não_ faz nada com a informação recebida: Ele meramente retorna os cabeçalhos da rquisição e o corpo (body) para inspeção.
 
-Now, when the NetBox webhook is triggered and processed, you should see its headers and content appear in the terminal where the webhook receiver is listening. If you don't, check that the `rqworker` process is running and that webhook events are being placed into the queue (visible under the NetBox admin UI).
+Agora, então o webhook do NetBox é ativado e processado, você deve ver que os cabeçalhos e o conteúdo da página aparecem no terminal onde o recebedor do webhook está escutando. Se não, verifique se o processo `rqworker` está rodando e que os eventos do webhook estão sendo postos na fial (queue). Isto é visível na interface de admin do NetBox.
