@@ -146,12 +146,12 @@ nav:
         - Exportação de Templates: 'customization/export-templates.md'
         - Relatórios (Reports): 'customization/reports.md'
         - Scripts Customizados: 'customization/custom-scripts.md'
-    - Integrações (em Inglês ainda):
-        - API REST (em Inglês ainda): 'integrations/rest-api.md'
-        - API GraphQL (em Inglês ainda): 'integrations/graphql-api.md'
-        - Webhooks (em Inglês ainda): 'integrations/webhooks.md'
-        - NAPALM (em Inglês ainda): 'integrations/napalm.md'
-        - Métricas do Prometheus (em Inglês ainda): 'integrations/prometheus-metrics.md'
+    - Integrações:
+        - API REST: 'integrations/rest-api.md'
+        - API GraphQL: 'integrations/graphql-api.md'
+        - Webhooks: 'integrations/webhooks.md'
+        - NAPALM: 'integrations/napalm.md'
+        - Métricas do Prometheus: 'integrations/prometheus-metrics.md'
     - Plugins:
         - Usando Plugins: 'plugins/index.md'
         - Desenvolvendo Plugins:
