@@ -1,22 +1,17 @@
 # Visão Geral da API REST
 
-!!! info
+## O que é uma API REST?
+ 
+REST significa [representational state transfer](https://en.wikipedia.org/wiki/Representational_state_transfer) (estado representacional de transferência). É um tipo particular de API que utiliza as requisições HTTP e [JavaScript Object Notation (JSON)](https://www.json.org/) para facilitar as operações de criação, obtenção, atualizaçã oe remoção (CRUD) em objetos dentro de uma aplicação. Cada tipo de operação é associado com um verbo particular do HTTP:
 
-    **English (en):** This page was not translated yet!
-    **Portuguese (pt-br):** Essa página não foi traduzida ainda!
+* `GET`: Obter um objeto ou lista de objetos
+* `POST`: Criar um objeto
+* `PUT` / `PATCH`: Modificar um objeto existente. `PUT` exige que todos os campos obrigatórios sejam especificados, enquanto que `PATCH` apenas espera que somente os campos que estão sendo modificados sejam especificados.
+* `DELETE`: Deletar um objeto existente
 
-## What is a REST API?
+Adicionalmente, o verbo `OPTIONS` podem ser usados para inspecionar um endpoint em particular da API REST e retornar todas as ações suportadas e seus parâmetros disponíveis.
 
-REST stands for [representational state transfer](https://en.wikipedia.org/wiki/Representational_state_transfer). It's a particular type of API which employs HTTP requests and [JavaScript Object Notation (JSON)](https://www.json.org/) to facilitate create, retrieve, update, and delete (CRUD) operations on objects within an application. Each type of operation is associated with a particular HTTP verb:
-
-* `GET`: Retrieve an object or list of objects
-* `POST`: Create an object
-* `PUT` / `PATCH`: Modify an existing object. `PUT` requires all mandatory fields to be specified, while `PATCH` only expects the field that is being modified to be specified.
-* `DELETE`: Delete an existing object
-
-Additionally, the `OPTIONS` verb can be used to inspect a particular REST API endpoint and return all supported actions and their available parameters.
-
-One of the primary benefits of a REST API is its human-friendliness. Because it utilizes HTTP and JSON, it's very easy to interact with NetBox data on the command line using common tools. For example, we can request an IP address from NetBox and output the JSON using `curl` and `jq`. The following command makes an HTTP `GET` request for information about a particular IP address, identified by its primary key, and uses `jq` to present the raw JSON data returned in a more human-friendly format. (Piping the output through `jq` isn't strictly required but makes it much easier to read.)
+Um dos benefócios primários de uma API REST é ser amigável para ser utilizada por humanos. Porque utiliza HTTP e JSON, que são muito fáceis de interagir com os dados do NetBox na linha de comando usando ferramentas conhecidas. Por exemplo, nós podemos requisitar um endereço IP do NetBox e obter a saida em JSON usando `curl` e `jq`. O comando seguinte faz uma requisição HTTP do tipo `GET` para requisitar informações sobre um endereço IP em particular, identificado pela sua chave primária, enquanto utiliza `jq` para apresentar os dados JSON "puros" retornados em um formato mais amigável. (Passar os dados em `jq` não é estritamente obrigatório, mas torna os dados bem mais legíveis.)
 
 ```no-highlight
 curl -s http://netbox/api/ipam/ip-addresses/2954/ | jq '.'
@@ -64,43 +59,43 @@ curl -s http://netbox/api/ipam/ip-addresses/2954/ | jq '.'
 }
 ```
 
-Each attribute of the IP address is expressed as an attribute of the JSON object. Fields may include their own nested objects, as in the case of the `assigned_object` field above. Every object includes a primary key named `id` which uniquely identifies it in the database.
+Cada atributo do endereço IP é expressado como um atributo de um objeto JSON. Campos podem incluir seus próprios objetos aninhados, como é no caso do campo `assigned_object` acima. Todo objeto inclui uma chave primária nomeada de `id` que unicamente identifica-o dentro do banco de dados.
 
-## Interactive Documentation
+## Documentação Interativa
 
-Comprehensive, interactive documentation of all REST API endpoints is available on a running NetBox instance at `/api/docs/`. This interface provides a convenient sandbox for researching and experimenting with specific endpoints and request types. The API itself can also be explored using a web browser by navigating to its root at `/api/`.
+Uma documentação completa e interativa de todos os endpoints da API REST estão disnpóveis em uma instância rodando do NetBox em `/api/docs`. Essa interface fornece um sandbox conveniente para pesquisa e experimentação de endpoints específicos e os tipos de requsição (request types). A API em si pode ser explorada utilizando um navegador ao navegar pelo root `/api/`.
 
-## Endpoint Hierarchy
+## Hierarquia de Endpoints
 
-NetBox's entire REST API is housed under the API root at `https://<hostname>/api/`. The URL structure is divided at the root level by application: circuits, DCIM, extras, IPAM, plugins, tenancy, users, and virtualization. Within each application exists a separate path for each model. For example, the provider and circuit objects are located under the "circuits" application:
+A API REST inteira do NetBox é hospedada abaixo do root da API em `https://<hostname>/<api>`. Essa estrutura de URL é dividida no nível root da aplicação: circuits, DCIM, extras, IPAM, plugins, tenancy, users, and virtualization. Dentro de cada aplicação, existe um caminho (path) separado de cada modelo.  Por exemplo, os objetos de provider e circuits estão localizados abaixo da aplicação "circuits":
 
 * `/api/circuits/providers/`
 * `/api/circuits/circuits/`
 
-Likewise, the site, rack, and device objects are located under the "DCIM" application:
+Da mesma forma, objetos de site, rack e device estão localizados abaixo ad aplicação "DCIM":
 
 * `/api/dcim/sites/`
 * `/api/dcim/racks/`
 * `/api/dcim/devices/`
 
-The full hierarchy of available endpoints can be viewed by navigating to the API root in a web browser.
+A hierarquia completa de endpoints disponíveis podem ser visualizadas ao navegar pelo root da API no navegador.
 
-Each model generally has two views associated with it: a list view and a detail view. The list view is used to retrieve a list of multiple objects and to create new objects. The detail view is used to retrieve, update, or delete an single existing object. All objects are referenced by their numeric primary key (`id`).
+Cada modelo geralmente tem duas visualizações (views) associadas: a visualização de lista e a visualização detalhada. A visualização de lista é utilizada para obter múltiplos objetos e criar novos objetos. A visualização detalhada é utilizada para obter, atualizar ou deletar um objeto único existente. Todos os objetos são referenciados pelo seu valor número de chave primária (primary key) nomeado de `id` ou `pk`.
 
-* `/api/dcim/devices/` - List existing devices or create a new device
-* `/api/dcim/devices/123/` - Retrieve, update, or delete the device with ID 123
+* `/api/dcim/devices/` - Lista os dispositivos existentes ou cria um novo dispositivo
+* `/api/dcim/devices/123/` - Obtém, atualiza ou deleta um dispositivo com o ID 123
 
-Lists of objects can be filtered using a set of query parameters. For example, to find all interfaces belonging to the device with ID 123:
+Listas de objetos podem ser filtradas utilizando um grupo de parâmetros de busca (query parameters). Por exemplo, para buscar todas as interfaces que pertencem ao dispositivo com ID 123:
 
 ```
 GET /api/dcim/interfaces/?device_id=123
 ```
 
-See the [filtering documentation](../reference/filtering.md) for more details.
+Veja a [documentação completa de filtros](../reference/filtering.md) para mais detalhes.
 
-## Serialization
+## Serialização (Serialization)
 
-The REST API employs two types of serializers to represent model data: base serializers and nested serializers. The base serializer is used to present the complete view of a model. This includes all database table fields which comprise the model, and may include additional metadata. A base serializer includes relationships to parent objects, but **does not** include child objects. For example, the `VLANSerializer` includes a nested representation its parent VLANGroup (if any), but does not include any assigned Prefixes.
+A API REST utiliza dois tipos de serializadores para representar cada modelo de dados: serializadores base e serializados aninhados. O serializador base é utilizado para apresentar uma visualização completa de um modelo. Isso inclui todos os campos da tabela do banco de dados do modelo em específico, enquanto pode incluir metadado adicional. Um serializador base inclui relacionamento de objetos pais, mas **não** inclui objetos filhos. Por exemplo, `VLANSerializer` inclui uma representação aninhada (nested) de seu `VLANGroup` pai (se houver um), mas não inclui qualquer `Prefixes` atrelado.
 
 ```json
 {
@@ -136,11 +131,11 @@ The REST API employs two types of serializers to represent model data: base seri
 }
 ```
 
-### Related Objects
+### Objetos Relacionados
 
-Related objects (e.g. `ForeignKey` fields) are represented using nested serializers. A nested serializer provides a minimal representation of an object, including only its direct URL and enough information to display the object to a user. When performing write API actions (`POST`, `PUT`, and `PATCH`), related objects may be specified by either numeric ID (primary key), or by a set of attributes sufficiently unique to return the desired object.
+Objetos relacionados (como os campos de `ForeignKey`) são representados utilizando serializadores aninhados. E um serializador aninhado fornece uma representação mínima de u m objeto, incluindo a URL direta e informações suficientes para exibir o objeto ao usuário. Ao performar ações de escrita (write) na API (`POST`, `PUT` & `PATCH`), objetos relacionados podem ser especificados seja pelo ID numérico (primary key), ou por um grupo de atributos que são suficientemente únicos para retornar o objeto desejado.
 
-For example, when creating a new device, its rack can be specified by NetBox ID (PK):
+Por exemplo, ao criar um novo dispositivo, o rack pode ser especificado pelo ID do NetBox (PK):
 
 ```json
 {
@@ -150,7 +145,7 @@ For example, when creating a new device, its rack can be specified by NetBox ID 
 }
 ```
 
-Or by a set of nested attributes which uniquely identify the rack:
+Ou por um grupo de atributos aninhados que identifica de forma única o rack:
 
 ```json
 {
@@ -165,16 +160,16 @@ Or by a set of nested attributes which uniquely identify the rack:
 }
 ```
 
-Note that if the provided parameters do not return exactly one object, a validation error is raised.
+Observe que se os parâmetros fornecidos não retornarem exatamente um único objeto, um erro de validação é acionado.
 
-### Generic Relations
+### Relações Genéricas
 
-Some objects within NetBox have attributes which can reference an object of multiple types, known as _generic relations_. For example, an IP address can be assigned to either a device interface _or_ a virtual machine interface. When making this assignment via the REST API, we must specify two attributes:
+Alguns objetos dentro do NetBox têm atributos que podem referenciar um objeto de múltiplos tipos, conhecido como _generic relations_ (relacionamento genérico). Por exemplo, um endereço IP pode ser atribuído para tanto para a interface de um dispositivo _ou_ para a interface de uma máquina virtual. Ao criar essa associação pela API REST, nós devemos especificar dois atributos:
 
-* `assigned_object_type` - The content type of the assigned object, defined as `<app>.<model>`
-* `assigned_object_id` - The assigned object's unique numeric ID
+* `assigned_object_type` - O tipo do conteúdo do objeto atribuído, definido como `<app>.<model>`
+* `assigned_object_id` - O ID númerico e único do objeto associado
 
-Together, these values identify a unique object in NetBox. The assigned object (if any) is represented by the `assigned_object` attribute on the IP address model.
+Juntos, esses valores identificam um objeto único dentro do NetBox. O objeto associado (se houver) é representado pelo atributo `assigned_object` no modelo do endereço IP.
 
 ```no-highlight
 curl -X POST \
@@ -212,11 +207,11 @@ http://netbox/api/ipam/ip-addresses/ \
 }
 ```
 
-If we wanted to assign this IP address to a virtual machine interface instead, we would have set `assigned_object_type` to `virtualization.vminterface` and updated the object ID appropriately.
+Se queremos associar esse endereço IP para a interface de uma máquina virtual, ao invés, devemos mudar `assigned_object_type` para `virtualization.vminterface` e o ID do objeto que foi atualizado propriamente.
 
-### Brief Format
+### Formato Resumido (Brief)
 
-Most API endpoints support an optional "brief" format, which returns only a minimal representation of each object in the response. This is useful when you need only a list of available objects without any related data, such as when populating a drop-down list in a form. As an example, the default (complete) format of an IP address looks like this:
+A maioria dos endpoints da API suportam um formato opcional resumido (ou "brief") que retorna somente uma representação mínima de cada objeto na resposta. Isso é útil quando você precisa somente uma lista de objetos disponíveis sem seus dados relacioandos, como quando estiver populando uma lista drop-down em um formulário. Por exemplo, o formato padrão (completo) de um endereço IP é algo como:
 
 ```
 GET /api/ipam/prefixes/13980/
@@ -257,7 +252,7 @@ GET /api/ipam/prefixes/13980/
 }
 ```
 
-The brief format is much more terse:
+O formato resumido é algo muito mais conciso:
 
 ```
 GET /api/ipam/prefixes/13980/?brief=1
@@ -270,22 +265,22 @@ GET /api/ipam/prefixes/13980/?brief=1
 }
 ```
 
-The brief format is supported for both lists and individual objects.
+O formato resumido é suportado para tanto lista de objetos ou objetos individuais.
 
-### Excluding Config Contexts
+### Tirando as Configurações de Contexto
 
-When retrieving devices and virtual machines via the REST API, each will include its rendered [configuration context data](../features/context-data.md) by default. Users with large amounts of context data will likely observe suboptimal performance when returning multiple objects, particularly with very high page sizes. To combat this, context data may be excluded from the response data by attaching the query parameter `?exclude=config_context` to the request. This parameter works for both list and detail views.
+Ao obter os dispositivos e máquinas virutais pela API REST, cada uma inclui sua própria [configuração de dados de contexto](../features/context-data.md), por padrão. Usuários com uma grande quantidade de dados de contexto (context data) normalmente enfrentará uma performance prejudicada quando estiver retornando múltiplos objetos, particularmente com páginas com grandes tamanhos. Para contornar isso, dados de contexto podem ser excluídos dos dados de resposta ao incluir o parâmetro `?exclude=config_context` na requisição. Esse parâemtro funciona tanto com visualizações de listas, quanto com visualizações detalhadas.
 
-## Pagination
+## Paginação (Pagination)
 
-API responses which contain a list of many objects will be paginated for efficiency. The root JSON object returned by a list endpoint contains the following attributes:
+Respostas de API quem contém uma lista de objetos serão paginadas para eficiência. O objeto root do JSON retornado por um endpoint de lista contém os seguintes atributos:
 
-* `count`: The total number of all objects matching the query
-* `next`: A hyperlink to the next page of results (if applicable)
-* `previous`: A hyperlink to the previous page of results (if applicable)
-* `results`: The list of objects on the current page
+* `count`: Número total de todos os objetos que dão match na query utilizada
+* `next`: Um hyperlink para os resultados da próxima página (se houver)
+* `previous`: Um hyperlink para os resultados da página anterior (se houver)
+* `results`: A lista de objetos da página atual
 
-Here is an example of a paginated response:
+Aqui está um exemplo de resposta página:
 
 ```
 HTTP 200 OK
@@ -313,13 +308,13 @@ Vary: Accept
 }
 ```
 
-The default page is determined by the [`PAGINATE_COUNT`](../configuration/default-values.md#paginate_count) configuration parameter, which defaults to 50. However, this can be overridden per request by specifying the desired `offset` and `limit` query parameters. For example, if you wish to retrieve a hundred devices at a time, you would make a request for:
+A página padrão é determinada pelo parâmetro de configuração [`PAGINATE_COUNT`](../configuration/default-values.md#paginate_count), que por padrão é 50. No entanto, isso pode ser sobreposto pela requisição ao especificar os parâmetros da busca (query) em `offset` e `limit`. Por exemplo, se você quiser obter 100 dispositivos ao mesmo tempo, você vai fazer uma requisição:
 
 ```
 http://netbox/api/dcim/devices/?limit=100
 ```
 
-The response will return devices 1 through 100. The URL provided in the `next` attribute of the response will return devices 101 through 200:
+O resposta retornará os dispositivos de 1 à 100. A URL fornecida no atributo `next` da resposta irá retornar os dispositivos de 101 até 200:
 
 ```json
 {
@@ -330,16 +325,17 @@ The response will return devices 1 through 100. The URL provided in the `next` a
 }
 ```
 
-The maximum number of objects that can be returned is limited by the [`MAX_PAGE_SIZE`](../configuration/miscellaneous.md#max_page_size) configuration parameter, which is 1000 by default. Setting this to `0` or `None` will remove the maximum limit. An API consumer can then pass `?limit=0` to retrieve _all_ matching objects with a single request.
+O número máximo de objetos que podem ser retornados é limitado pelo parâmetros de configuração [`MAX_PAGE_SIZE`](../configuration/miscellaneous.md#max_page_size), que é 1000, por padrão. Configurar para `0` ou `None` irá remover o limite máximo. O consumor da API pode passar `?limit=0` para obter _todos_ os objetos dando match com uma única requisição.
 
-!!! warning
-    Disabling the page size limit introduces a potential for very resource-intensive requests, since one API request can effectively retrieve an entire table from the database.
+!!! warning Aviso
 
-## Interacting with Objects
+    Desabilitando o tamanho máximo da página introduz um potencial para requisições que utilizam os recursos de forma muito intensiva, já que uma única requisição API pode obter uma tabela inteira de um banco de dados.
 
-### Retrieving Multiple Objects
+## Interagindo com Objetos
 
-To query NetBox for a list of objects, make a `GET` request to the model's _list_ endpoint. Objects are listed under the response object's `results` parameter.
+### Obtendo Múltiplos Objetos
+
+Para buscar (query) por uma lista de objetos no NetBox, realize uma requisição do tipo `GET` para o endpoint de _list_ (lista) do modelo. Objetos são listados abaixo do parâmetro `results` do objeto.
 
 ```no-highlight
 curl -s -X GET http://netbox/api/ipam/ip-addresses/ | jq '.'
@@ -371,12 +367,13 @@ curl -s -X GET http://netbox/api/ipam/ip-addresses/ | jq '.'
 }
 ```
 
-### Retrieving a Single Object
+### Obtendo um Único Objeto
 
-To query NetBox for a single object, make a `GET` request to the model's _detail_ endpoint specifying its unique numeric ID.
+Para buscar (query) por um objeto individual no NetBox, realize uma requisição do tipo `GET` para o ednpoint _detail_ (detalhado) do modelo, especificando seu ID numérico único.
 
-!!! note
-    Note that the trailing slash is required. Omitting this will return a 302 redirect.
+!!! note Observação
+    
+    Observe que a "trailing slash" é obrigatória. Ocultá-la retornada um redirecionamento HTTP 302 (redirect).
 
 ```no-highlight
 curl -s -X GET http://netbox/api/ipam/ip-addresses/5618/ | jq '.'
@@ -390,9 +387,9 @@ curl -s -X GET http://netbox/api/ipam/ip-addresses/5618/ | jq '.'
 }
 ```
 
-### Creating a New Object
+### Criando um Novo Objeto
 
-To create a new object, make a `POST` request to the model's _list_ endpoint with JSON data pertaining to the object being created. Note that a REST API token is required for all write operations; see the [authentication section](#authenticating-to-the-api) for more information. Also be sure to set the `Content-Type` HTTP header to `application/json`.
+Para criar um novo objeto, faça uma requisição do tipo `POST` para o endpoint _list_ do modelo com dados em JSON pertencentes ao objeto sendo criado. Observe que o token da API REST é necessário para todas as operações de escrita (write); veja a [seção de autenticação](#authenticating-to-the-api) para mais informações. Também certifique-se de definir o cabeçalho HTTP `Content-Type` para `application/json`.
 
 ```no-highlight
 curl -s -X POST \
@@ -434,9 +431,9 @@ http://netbox/api/ipam/prefixes/ \
 }
 ```
 
-### Creating Multiple Objects
+### Criand Múltiplos Objetos
 
-To create multiple instances of a model using a single request, make a `POST` request to the model's _list_ endpoint with a list of JSON objects representing each instance to be created. If successful, the response will contain a list of the newly created instances. The example below illustrates the creation of three new sites.
+Para criar instâncias múltiplas de modelos utilizando uma única requisição, faça uma requisição do tipo `POST` para o endpoint _list_ (lista) do modelo representando cada instância à ser criada. Se houver sucesso, a resposta irá conter uma lista as instâncias recentemente criadas. O exemplo abaixo ilustra a criação de três novos sites (locais).
 
 ```no-highlight
 curl -X POST -H "Authorization: Token $TOKEN" \
@@ -473,9 +470,9 @@ http://netbox/api/dcim/sites/ \
 ]
 ```
 
-### Updating an Object
+### Atualizando um Objeto
 
-To modify an object which has already been created, make a `PATCH` request to the model's _detail_ endpoint specifying its unique numeric ID. Include any data which you wish to update on the object. As with object creation, the `Authorization` and `Content-Type` headers must also be specified.
+Para modificar um objeto que foi recentemente criada, faça uma requisição do tipo `PATCH` para o endpoint _detail_ (detalhado) do modelo especificando seu ID número único. Inclua qualquer dado que você precisa para atualizar um objeto. Assim como é na criação do objeto, os cabeçalhos `Authorization` e `Content-Type` podem também ser especificados.
 
 ```no-highlight
 curl -s -X PATCH \
@@ -517,12 +514,13 @@ http://netbox/api/ipam/prefixes/18691/ \
 }
 ```
 
-!!! note "PUT versus PATCH"
-    The NetBox REST API support the use of either `PUT` or `PATCH` to modify an existing object. The difference is that a `PUT` request requires the user to specify a _complete_ representation of the object being modified, whereas a `PATCH` request need include only the attributes that are being updated. For most purposes, using `PATCH` is recommended.
+!!! note PUT versus PATCH
+    
+    A API REST do NetBox suporta o uso de tanto `PUT` quanto `PATCH` para modificar um objeto existente. A diferença é que a requisição `PUT` exige que o usuário especifique uma representação _completa_ do objeto sendo modificado, enquanto que a requisição `PATCH` precisa incluir somente atributos que estão sendo atualizados. Para a maioria dos propósitos, utilizazr o `PATCH` é recomendado.
 
-### Updating Multiple Objects
+### Atualizando Múltiplos Objetos
 
-Multiple objects can be updated simultaneously by issuing a `PUT` or `PATCH` request to a model's list endpoint with a list of dictionaries specifying the numeric ID of each object to be deleted and the attributes to be updated. For example, to update sites with IDs 10 and 11 to a status of "active", issue the following request:
+Múltiplos objetos podem ser atualizados de maneira simultânea utilizando requisições `PUT` ou `PATCH` para o endpoint de lista do modelo com uma lista de dicionários (dicts) especificando um ID numérico de cada objeto para ser deletado e os atributos serem atualizados. Por exemplo, para atualizar os sites com ID 11 e 11 para o status de "active", utilize a requisição abaixo:
 
 ```no-highlight
 curl -s -X PATCH \
@@ -532,14 +530,15 @@ http://netbox/api/dcim/sites/ \
 --data '[{"id": 10, "status": "active"}, {"id": 11, "status": "active"}]'
 ```
 
-Note that there is no requirement for the attributes to be identical among objects. For instance, it's possible to update the status of one site along with the name of another in the same request.
+Observer que não há necessidade para que os atributos sejam idêntios através dos objetos. Por exemplo, é possível atualizar o status de um ou mais sites com o nome de outra na mesma quisição.
 
-!!! note
-    The bulk update of objects is an all-or-none operation, meaning that if NetBox fails to successfully update any of the specified objects (e.g. due a validation error), the entire operation will be aborted and none of the objects will be updated.
+!!! note Observação
 
-### Deleting an Object
+    A atualização em grupo de objetos é uma operação tudo-ou-nada (all-or-none), significa que se o NetBox falhar de atualizar com sucesso qualquer objeto específico (devido a validação de erro, por exemplo), a operação inteira será abortada e nenhum dos objetos será atualizado.
 
-To delete an object from NetBox, make a `DELETE` request to the model's _detail_ endpoint specifying its unique numeric ID. The `Authorization` header must be included to specify an authorization token, however this type of request does not support passing any data in the body.
+### Deletando um Objeto
+
+Para deletar um objeto do NetBox, faça uma requisição `DELETE` para o endpoint _detal_ do modelo especificando seu ID número único. O cabeçalho `Authorization` deve ser incluso para especificar um token de autenticação, no entanto esse tipo de requisição não suporta passar qualquer dados no corpo (body) da requisição.
 
 ```no-highlight
 curl -s -X DELETE \
@@ -547,14 +546,15 @@ curl -s -X DELETE \
 http://netbox/api/ipam/prefixes/18691/
 ```
 
-Note that `DELETE` requests do not return any data: If successful, the API will return a 204 (No Content) response.
+Observe que as requisições `DELETE` não retornam qualquer dado: Se não houver sucesso, a API irá retornar uma resposta com o código HTTP 204 (No Content)
 
-!!! note
-    You can run `curl` with the verbose (`-v`) flag to inspect the HTTP response codes.
+!!! note Observação
 
-### Deleting Multiple Objects
+    Você pode utilizar o `curl` com a flag de saída completa/verbose (`-v`) para inspecionar os códigos de resposta HTTP.
 
-NetBox supports the simultaneous deletion of multiple objects of the same type by issuing a `DELETE` request to the model's list endpoint with a list of dictionaries specifying the numeric ID of each object to be deleted. For example, to delete sites with IDs 10, 11, and 12, issue the following request:
+### Deletando Múltiplos Objetos
+
+O NetBox suporta a remoção simultânea de múltiplos objetos do mesmo tipo utilizando a requisição do tipo `DELETE` para o endpoint de lista do modelo com uma lista de dicionários (dicts) especificando o ID númeor de cada objeto que será deletado, Por exemplo, para deletar sites com ID 10, 11 e 12, utilize a seguinte requisição:
 
 ```no-highlight
 curl -s -X DELETE \
@@ -564,45 +564,49 @@ http://netbox/api/dcim/sites/ \
 --data '[{"id": 10}, {"id": 11}, {"id": 12}]'
 ```
 
-!!! note
-    The bulk deletion of objects is an all-or-none operation, meaning that if NetBox fails to delete any of the specified objects (e.g. due a dependency by a related object), the entire operation will be aborted and none of the objects will be deleted.
+!!! note Observação
 
-## Authentication
+    A remoção em grupo de objetos é uma operação tudo-ou-nada (all-or-none), sinigica que se o NetBox falhar na remoção de um dos objetos especificados (devido a dependência relacionada de um objeto, por exemplo), a operação inteira será abortada e nenhum dos objetos será deletado.
 
-The NetBox REST API primarily employs token-based authentication. For convenience, cookie-based authentication can also be used when navigating the browsable API.
+## Autenticação (Authentication)
+
+A API REST do NetBox primariamente utiliza autenticação baseada em tokens. Para conveniência, a autenticação baseada em cookie pode também ser utilizada ao navegar na parte "pesquisável" (browsable) da API.
 
 ### Tokens
 
-A token is a unique identifier mapped to a NetBox user account. Each user may have one or more tokens which he or she can use for authentication when making REST API requests. To create a token, navigate to the API tokens page under your user profile.
+O token é um identificador único mapeando a conta do usuário do NetBox. Cada usuário pode utilizar um ou mais tokens onde ele ou ela pode usar autenticação ao realizar as requisições da API REST. Para criar um token, navegue até a página de tokens da API abaixo do seu profile de usuário.
 
-!!! note
-    All users can create and manage REST API tokens under the user control panel in the UI. The ability to view, add, change, or delete tokens via the REST API itself is controlled by the relevant model permissions, assigned to users and/or groups in the admin UI. These permissions should be used with great care to avoid accidentally permitting a user to create tokens for other user accounts.
+!!! note Observação
 
-Each token contains a 160-bit key represented as 40 hexadecimal characters. When creating a token, you'll typically leave the key field blank so that a random key will be automatically generated. However, NetBox allows you to specify a key in case you need to restore a previously deleted token to operation.
+    Todos os usuários podem criar e gerenciar os tokens da API REST abaixo do paínel de controle da interface web do usuário (UI). Essa habilidade de visualizar, adicionar ou remover tokens através da API REST em si é controlada pelos modelos relevantes de permissões, associando os usuários e/ou grupos dentro da interface de admin do NetBox. Essas permissões devem ser utilizadas com muito cuidado para evitar o permissionamento de um usuário criar tokens para outras contas de usuário.
 
-By default, a token can be used to perform all actions via the API that a user would be permitted to do via the web UI. Deselecting the "write enabled" option will restrict API requests made with the token to read operations (e.g. GET) only.
+Cada token contém uma chave de 160-bit representada em 40 caracteres hexadecimal. Ao criar um token, você normalmente irá deixar um campo de chave em branco para que uma chave randômica seja automaticamente gerada. No entnato, o NetBox permite que você especifique uma chave no caso que precise restaurar um token deletado anteriormente para operação.
 
-Additionally, a token can be set to expire at a specific time. This can be useful if an external client needs to be granted temporary access to NetBox.
+Por padrão, um token precisa ser utilizado para performar todas as ações através da API que um usuário seria permitido fazer através da interface web (web UI). Desativar a opção "write enabled" irá restringir requisições API feitas com este token para somente operações de leitura (como o `GET`).
 
-!!! warning "Restricting Token Retrieval"
-    The ability to retrieve the key value of a previously-created API token can be restricted by disabling the [`ALLOW_TOKEN_RETRIEVAL`](../configuration/security.md#allow_token_retrieval) configuration parameter.
+Adicionalmente, um token pode ser definido para expirar em um período específico. Isto pode ser útil para que um cliente externo tenha permissão de acesso temporária ao NetBox.
 
-#### Client IP Restriction
+!!! warning Restringindo a Obtenção do Token
 
-Each API token can optionally be restricted by client IP address. If one or more allowed IP prefixes/addresses is defined for a token, authentication will fail for any client connecting from an IP address outside the defined range(s). This enables restricting the use a token to a specific client. (By default, any client IP address is permitted.)
+    A habilidade para obter o valor da chave de um token de API criado previamente pode ser restringida ao desabilitar o parâmetro de configuração [`ALLOW_TOKEN_RETRIEVAL`](../configuration/security.md#allow_token_retrieval)
 
-#### Creating Tokens for Other Users
+#### Restrição por IP do Cliente
 
-It is possible to provision authentication tokens for other users via the REST API. To do, so the requesting user must have the `users.grant_token` permission assigned. While all users have inherent permission to create their own tokens, this permission is required to enable the creation of tokens for other users.
+Cada token da API pode ser opcionalmente restrita por endereço IP do cliente. Se um ou mais endereços IP ou prefixos for definido para um token, a autenticação irá falhar para qualquer cliente que esteja conectando de um endereço IP fora do range previamente definido. Isso permite a restrinção de uso do token para um cliente específico. Por padrão, qualquer endereço IP do cliente é permitido.
 
-![Adding the grant action to a permission](../media/admin_ui_grant_permission.png)
+#### Criando Tokens para Outros Usuários
 
-!!! warning "Exercise Caution"
-    The ability to create tokens on behalf of other users enables the requestor to access the created token. This ability is intended e.g. for the provisioning of tokens by automated services, and should be used with extreme caution to avoid a security compromise.
+É possível provisionar os tokens de autnteicação para outros usuários via API REST. Para fazer isso, o usuário requisitante deve ter uma permissão atribuída de `users.grant_token`. Enquanto que todos os usuários herdam permissões para criar seus próprios tokens, essa permissão é necessária para habilitar a criação de tokens para outros usuários.
 
-### Authenticating to the API
+![Adicionando a ação de garantir permissão](../media/admin_ui_grant_permission.png)
 
-An authentication token is attached to a request by setting the `Authorization` header to the string `Token` followed by a space and the user's token:
+!!! warning Tenha Cuidado!
+
+    A habilidade de criar tokens no lugar dos outros permite que os usuários habilitem ao requisitor o acesso do token criado. A habilidade tem a intenção de provisionar os tokens através de serviços automatizados, e deve ser usado com extremo cuidado para evitar problemas de segurança;
+
+### Autenticando via API
+
+O token de autenticação é atrelado à requisição ao configurar o cabeçalho de `Authorization` com o valor de `Token` seguido de um espaço em branco e o token do usuário:
 
 ```
 $ curl -H "Authorization: Token $TOKEN" \
@@ -616,7 +620,7 @@ https://netbox/api/dcim/sites/
 }
 ```
 
-A token is not required for read-only operations which have been exempted from permissions enforcement (using the [`EXEMPT_VIEW_PERMISSIONS`](../configuration/security.md#exempt_view_permissions) configuration parameter). However, if a token _is_ required but not present in a request, the API will return a 403 (Forbidden) response:
+Um  oken não é exigido para operações de leitura somente (read-only) que dispensam a obrigação de permissões (utilizando o parâmetro de configuração [`EXEMPT_VIEW_PERMISSIONS`](../configuration/security.md#exempt_view_permissions)). No entanto, se um token _é_ obrigatório, mas não presente dentro de uma requisição, a API irá retornar uma resposta HTTP com o código 403 (Forbidden):
 
 ```
 $ curl https://netbox/api/dcim/sites/
@@ -625,16 +629,17 @@ $ curl https://netbox/api/dcim/sites/
 }
 ```
 
-When a token is used to authenticate a request, its `last_updated` time updated to the current time if its last use was recorded more than 60 seconds ago (or was never recorded). This allows users to determine which tokens have been active recently.
+Quando um token é usado para autenticar uma requisição, a data `last_updated` para a data atual se o úiltimo uso foi registrado mais de 60 segundos atrás (ou nunca foi registrado). Isso permite determinar quais tokens de usuário foram utilizados recentemente.
 
-!!! note
-    The "last used" time for tokens will not be updated while maintenance mode is enabled.
+!!! note Observação
 
-### Initial Token Provisioning
+    A data de "last used" para tokens não será atualizado enquanto o mode de manutenção (maintenance) for habilitado.
 
-Ideally, each user should provision his or her own REST API token(s) via the web UI. However, you may encounter where a token must be created by a user via the REST API itself. NetBox provides a special endpoint to provision tokens using a valid username and password combination.
+### Provisionamento Inicial de Token
 
-To provision a token via the REST API, make a `POST` request to the `/api/users/tokens/provision/` endpoint:
+De preferência, cada usuário deve provisionar seu próprio token da API REST via interface web (UI). No entanto, você pode ver quando um token deve ser criado pelo usuário pela API REST em si. O NetBox fornece um endpoint especial para provisionar tokens usando uma combinação de usuário e senha.
+
+Para provisioanr um token pela API REST, faça uma requisição do tipo `POST` para o endpoint `/api/users/tokens/provision/`
 
 ```
 $ curl -X POST \
@@ -647,7 +652,7 @@ https://netbox/api/users/tokens/provision/ \
 }'
 ```
 
-Note that we are _not_ passing an existing REST API token with this request. If the supplied credentials are valid, a new REST API token will be automatically created for the user. Note that the key will be automatically generated, and write ability will be enabled.
+Observe _não_ estamos passando um token existente da requisição da API REST. Se as credenciais fornecidas forem válidas, um token novo da API REST será automaticamente criado para o usuário. Observe que a chave será automaticamente gerada, e a habilidade de escrita será habilitada.
 
 ```json
 {
