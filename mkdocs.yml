@@ -52,6 +52,7 @@ plugins:
   #          show_source: false
 extra:
   google_analytics:
+    tracking_id: UA-227228706-1
     measurement_id: G-R708SEN30V
   social:
     - icon: fontawesome/brands/github
