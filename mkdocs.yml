@@ -172,7 +172,8 @@ nav:
           - Tarefas de Fundo (Background): 'plugins/development/background-tasks.md'
           - Mudanças Pendentes (Staged): 'plugins/development/staged-changes.md'
           - Exceções: 'plugins/development/exceptions.md'
-        - Proxbox: 'plugins/netbox-proxbox.md'
+        - Proxbox Plugin:
+          - Proxbox: 'plugins/netbox-proxbox.md'
           - Instalando o Plugin: 'plugins/proxbox/installation.md'
     - Administração (em Inglês ainda):
         - Autenticação (em Inglês ainda):
