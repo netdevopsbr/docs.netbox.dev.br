@@ -57,24 +57,39 @@ The following table shows the Netbox and Proxmox versions compatible (tested) wi
 
 ### Summary
 [1. Installation](#1-installation)
+
 - [1.1. Install package](#11-install-package)
+  
   - [1.1.1. Using pip (production use)](#111-using-pip-production-use---not-working-yet)
+  
   - [1.1.2. Using git (development use)](#112-using-git-development-use)
+
 - [1.2. Enable the Plugin](#12-enable-the-plugin)
+
 - [1.3. Configure Plugin](#13-configure-plugin)
+  
   - [1.3.1. Change Netbox 'configuration.py' to add PLUGIN parameters](#131-change-netbox-configurationpy-to-add-plugin-parameters)
+  
   - [1.3.2. Change Netbox 'settings.py' to include Proxbox Template directory](#132-change-netbox-settingspy-to-include-proxbox-template-directory)
+
 - [1.4. Run Database Migrations](#14-run-database-migrations)
+
 - [1.5 Restart WSGI Service](#15-restart-wsgi-service)
 
 [2. Configuration Parameters](#2-configuration-parameters)
 
 [3. Custom Fields](#3-custom-fields)
+
 - [3.1. Custom Field Configuration](#31-custom-field-configuration)
-	- [3.1.1. Proxmox ID](#311-proxmox-id)
-	- [3.1.2. Proxmox Node](#312-proxmox-node)
-	- [3.1.3. Proxmox Type](#313-proxmox-type-qemu-or-lxc)
-	- [3.1.4. Proxmox Keep Interface](#314-proxmox-keep-interface)
+	
+    - [3.1.1. Proxmox ID](#311-proxmox-id)
+	
+    - [3.1.2. Proxmox Node](#312-proxmox-node)
+	
+    - [3.1.3. Proxmox Type](#313-proxmox-type-qemu-or-lxc)
+	
+    - [3.1.4. Proxmox Keep Interface](#314-proxmox-keep-interface)
+
 - [3.2. Custom Field Example](#32-custom-field-example)
 
 [4. Usage](#4-usage)
