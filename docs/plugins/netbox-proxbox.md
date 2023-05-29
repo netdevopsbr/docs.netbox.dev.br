@@ -12,14 +12,9 @@ Official **English** Documentation can be **[found here](https://proxbox.netbox.
 	<a href="http://proxbox.netbox.dev.br/">
 		<img width="532" src="https://github.com/N-Multifibra/proxbox/blob/main/etc/img/proxbox-full-logo.png?raw=true" alt="Proxbox logo">
 	</a>
-	<br>
-	
-<div>
-	
-### [New Documentation available!](http://proxbox.netbox.dev.br/)
 </div>
+
 <br>
-</div>
 
 
 
@@ -47,8 +42,6 @@ Proxbox is currently able to get the following information from Proxmox:
 
 ---
 
-<div align="center">
-	
 ### Versions
 
 
@@ -59,9 +52,6 @@ The following table shows the Netbox and Proxmox versions compatible (tested) wi
 | >= v3.4.0 | >= v6.2.0  | =v0.0.5 |
 | >= v3.2.0 | >= v6.2.0 | =v0.0.4 |
 | >= v3.0.0 < v3.2 | >= v6.2.0 | =v0.0.3 |
-
-
-</div>
 
 ---
 
@@ -303,7 +293,7 @@ Required values (must be equal)
 
 ### 3.2. Custom Field Example
 
-![custom field image](etc/img/custom_field_example.png?raw=true "preview")
+![custom field image](https://github.com/N-Multifibra/proxbox/blob/main/etc/img/custom_field_example.png?raw=true "preview")
 
 ---
 
