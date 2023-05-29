@@ -174,7 +174,6 @@ nav:
           - Exceções: 'plugins/development/exceptions.md'
         - Proxbox Plugin:
           - Proxbox: 'plugins/netbox-proxbox.md'
-          - Instalando o Plugin: 'plugins/proxbox/installation.md'
     - Administração (em Inglês ainda):
         - Autenticação (em Inglês ainda):
             - Visão Geral (em Inglês ainda): 'administration/authentication/overview.md'
