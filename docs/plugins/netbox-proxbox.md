@@ -367,8 +367,12 @@ Issues and pull requests are welcomed.
 ---
 
 ## 8. Get Help from Community!
+
 If you are struggling to get Proxbox working, feel free to contact someone from community (including me) to help you.
 Below some of the communities available:
+
 - **[Official - Slack Community (english)](https://netdev.chat/)**
+
 - **[Community Discord Channel - 🇧🇷 (pt-br)](https://discord.gg/X6FudvXW)**
+
 - **[Community Telegram Chat - 🇧🇷 (pt-br)](https://t.me/netboxbr)**
